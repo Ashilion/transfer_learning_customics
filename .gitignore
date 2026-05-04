@@ -1,0 +1,10 @@
+.ipynb_checkpoints
+data/
+results/
+venv/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+slurm_output/
