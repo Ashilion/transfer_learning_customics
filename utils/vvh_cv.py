@@ -32,4 +32,4 @@ def vvh_cv(estimator,alpha, X_train, y_train, X_test, y_test):
     ll_train = log_likelihood_cox(pred_train, event_train, time_train)
     ll_whole = log_likelihood_cox(pred_whole, event_whole, time_whole)
     
-    return ll_whole - ll_train
+    return -2 *(ll_whole - ll_train)
