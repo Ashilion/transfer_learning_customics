@@ -51,6 +51,7 @@ inner_cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=0)
 
 outer_results = []
 
+l1_ratio = 0.0001
 
 # for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(Xt,y["status"])):
 for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds)):
@@ -60,7 +61,7 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
     X_test_outer = Xt.iloc[test_idx,:]
 
     # get list of alphas in the outer fold to have the same alphas for the inner folds
-    coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(n_alphas=100,l1_ratio=0.9, alpha_min_ratio=0.001, max_iter=100, fit_baseline_model=True))
+    coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(n_alphas=100,l1_ratio=l1_ratio, alpha_min_ratio=0.001, max_iter=100, fit_baseline_model=True))
     coxnet_pipe.fit(X_train_outer, y[train_idx])
 
     estimated_alphas = coxnet_pipe.named_steps["coxnetsurvivalanalysis"].alphas_
@@ -77,7 +78,7 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
        
         start_train = time.time()
 
-        coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=0.9,alphas=estimated_alphas, fit_baseline_model=True))
+        coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=l1_ratio,alphas=estimated_alphas, fit_baseline_model=True))
         est = coxnet_pipe.fit(X_train_inner, y[inner_train_idx])
         model = coxnet_pipe.named_steps["coxnetsurvivalanalysis"]
 
@@ -94,9 +95,9 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
             times = np.arange(t_min, t_max)
 
             ### dans la doc (user guide) ils utilisent mais très lent : preds = np.asarray([[fn(t) for t in times] for fn in survs]) 
-            preds = np.vstack([fn(times) for fn in survs])
 
             if validation_function == "ibs":
+                preds = np.vstack([fn(times) for fn in survs])
                 score = integrated_brier_score(y[inner_train_idx],y[inner_val_idx],preds,times)
             elif validation_function == "vvh":
                 score = vvh_cv(model, alpha, X_train_inner,y[inner_train_idx], X_val_inner, y[inner_val_idx])
@@ -116,7 +117,7 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
             best_alpha = alpha
 
     #retrain the model on the train + validation data with the best alpha + evaluate on the test data 
-    coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=0.9,alphas=[best_alpha], fit_baseline_model=True))
+    coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=l1_ratio,alphas=[best_alpha], fit_baseline_model=True))
     est = coxnet_pipe.fit(X_train_outer, y[train_idx])
     model = coxnet_pipe.named_steps["coxnetsurvivalanalysis"]
     survs = model.predict_survival_function(X_test_outer, alpha = best_alpha)
