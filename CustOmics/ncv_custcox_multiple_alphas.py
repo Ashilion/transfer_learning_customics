@@ -3,8 +3,11 @@ import numpy as np
 import pickle
 import copy
 import torch
+import time
 
 from sklearn.model_selection import KFold, ParameterGrid
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 from src.network.customics import CustOMICS
 from src.tools.utils import get_sub_omics_df
@@ -15,6 +18,7 @@ from sksurv.metrics import integrated_brier_score, concordance_index_ipcw
 import sys 
 sys.path.append('..')
 import utils.folds_utils as fold_utils
+from utils.vvh_cv import vvh_cv
 
 #load the pancancer object
 path = "../data/dict_pancancer_union_mutation.pickle"
@@ -74,13 +78,13 @@ param_grid = {
 alpha = 0.01
 
 nbFeatures = 5000
+validation_function = "vvh"
 
 outer_cv = KFold(n_splits=5, shuffle=True, random_state=0)
 inner_cv = KFold(n_splits=3, shuffle=True, random_state=0)
 
 outer_results = []
-
-
+l1_ratio= 0.01
 
 def fit_feature_selector(cancer_dataset, nbFeatures):
     selector = {}
@@ -111,8 +115,11 @@ def apply_feature_selector(cancer_dataset, selector):
         filtered[name] = df.loc[:, df.columns.intersection(cols)]
     return filtered
 
-# for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
-for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds)):
+
+outer_results = []
+
+for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
+# for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds)):
 
     
     print(f" OUTER FOLD {outer_fold}")
@@ -123,12 +130,67 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
     best_score = -np.inf
     best_params = None
 
+    # outer fold data preparation / do it before inner because we need to train a model on the "big" train to generate the list of alphas
+    omics_train_outer_raw = get_sub_omics_df(omics_df, samples_train_outer)
+    omics_test_outer_raw = get_sub_omics_df(omics_df, samples_test_outer)
+
+    selector = fit_feature_selector(omics_train_outer_raw, nbFeatures=nbFeatures)
+
+    omics_train_outer = apply_feature_selector(omics_train_outer_raw, selector)
+    omics_test_outer = apply_feature_selector(omics_test_outer_raw, selector)
+
+    y_train_outer = np.array(
+        [(bool(e), t) for e, t in zip(clinical_df.loc[samples_train_outer, event],
+                                    clinical_df.loc[samples_train_outer, surv_time])],
+        dtype=[('status', 'bool'), ('time', 'float')]
+    )
+
+    y_test_outer = np.array(
+        [(bool(e), t) for e, t in zip(clinical_df.loc[samples_test_outer, event],
+                                    clinical_df.loc[samples_test_outer, surv_time])],
+        dtype=[('status', 'bool'), ('time', 'float')]
+    )
+
     for params in ParameterGrid(param_grid):
 
         inner_scores = []
 
-        for inner_train_idx, inner_val_idx in inner_cv.split(samples_train_outer):
+        #============================= get the list of alpha for this params on the outer train fold ======================================
+         # rebuild params
+        source_params = {}
+        
+        x_dim = [omics_train_outer[src].shape[1] for src in sources]
+        for i, src in enumerate(sources):
+            source_params[src] = {'input_dim': x_dim[i], 'hidden_dim': hidden_dim, 'latent_dim': params['rep_dim'], 'norm': True, 'dropout':dropout}
 
+        central_params = {'hidden_dim': central_hidden, 'latent_dim': params['latent_dim'], 'norm': True, 'dropout':dropout,'beta': 1 }
+
+        classif_params = {'n_class': num_classes, 'lambda': 0, 'hidden_layers': classifier_dim, 'dropout':dropout}
+
+        surv_params = {'lambda': 5, 'dims': survival_dim,'activation': 'SELU', 'l2_reg': 1e-2, 'norm': True, 'dropout':dropout }
+
+        train_params = {'switch': 5,'lr': params['lr']}
+
+        model = CustOMICS(source_params=source_params,central_params=central_params, classif_params=classif_params, 
+            surv_params=surv_params,train_params=train_params, device=device,unsupervised=unsupervised).to(device)
+
+        model.fit(omics_train=omics_train_outer, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time, 
+            omics_val=None, batch_size=batch_size, n_epochs=n_epochs, verbose=False, task=task)
+
+        Z_train_outer = model.get_latent_representation(omics_train_outer)
+        Z_test_outer  = model.get_latent_representation(omics_test_outer)
+
+        coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(n_alphas=10,l1_ratio=l1_ratio, alpha_min_ratio=0.00001, max_iter=100, fit_baseline_model=True))
+        coxnet_pipe.fit(Z_train_outer, y_train_outer)
+        coxnet = coxnet_pipe.named_steps["coxnetsurvivalanalysis"]
+        estimated_alphas = coxnet.alphas_
+        #==================================================================================================================================
+        alpha_scores = {alpha: [] for alpha in estimated_alphas}
+
+        tot_time_train = 0
+        tot_time_validate = 0 
+        for inner_train_idx, inner_val_idx in inner_cv.split(samples_train_outer):
+            start_train = time.time()
             samples_train_inner = [samples_train_outer[i] for i in inner_train_idx]
             samples_val_inner = [samples_train_outer[i] for i in inner_val_idx]
 
@@ -157,7 +219,7 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
                         surv_params=surv_params, train_params=train_params, device=device, unsupervised=unsupervised).to(device)
 
             model.fit(omics_train=omics_train, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
-                omics_val=omics_val, batch_size=batch_size, n_epochs=n_epochs, verbose=True, task=task)
+                omics_val=omics_val, batch_size=batch_size, n_epochs=n_epochs, verbose=False, task=task)
             
             # score = model.evaluate(omics_test=omics_val, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
             #     task=task, batch_size=1024, plot_roc=False)
@@ -166,7 +228,6 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
             
             Z_train = model.get_latent_representation(omics_train)
             Z_val   = model.get_latent_representation(omics_val)
-
             
             y_train_struct = np.array(
                 [(bool(e), t) for e, t in zip(clinical_df.loc[samples_train_inner, event],
@@ -183,34 +244,45 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
             # Try all values of lambda for this model / latent representation 
             # TODO elastic net vs l2 regression only
             # Cox model
-            cox = CoxPHSurvivalAnalysis(alpha=alpha)
-            cox.fit(Z_train, y_train_struct)
+            #====================================================================================================================
+            coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=l1_ratio,alphas=estimated_alphas, fit_baseline_model=True))        
+            est = coxnet_pipe.fit(Z_train, y_train_struct)
+            coxnet = coxnet_pipe.named_steps["coxnetsurvivalanalysis"]
 
-            # risk prediction
-            risk_scores = cox.predict(Z_val)
+            stop_train = time.time()
+            tot_time_train += stop_train - start_train 
+            start_validate = time.time()
 
-            # C-index
-            c_index = concordance_index_ipcw(y_train_struct, y_val_struct, risk_scores)[0]
+            for i, alpha in enumerate(coxnet.alphas_):
+                # extract survival functions for alpha i
+                survs = coxnet.predict_survival_function(Z_val, alpha = alpha)
+                t_min = y_val_struct["time"].min()
+                t_max = min(1492, y_val_struct["time"].max())
+                times = np.arange(t_min, t_max)
 
-            inner_scores.append(c_index)
-            print(f"inner_score /cindex -> {c_index}")
-        mean_score = np.mean(inner_scores)
-        print(f"Params {params} -> score {mean_score:.4f}")
+                if validation_function == "ibs":
+                    preds = np.vstack([fn(times) for fn in survs])
+                    score = integrated_brier_score(y_train_struct,y_val_struct,preds,times)
+                elif validation_function == "vvh":
+                    score = vvh_cv(coxnet, alpha, Z_train,y_train_struct, Z_val, y_val_struct)
+                
+                alpha_scores[alpha].append(score)
+            #====================================================================================================================
+            stop_validate = time.time()
+            tot_time_validate += stop_validate - start_validate 
+        for i , alpha in enumerate(estimated_alphas):
 
-        if mean_score > best_score:
-            best_score = mean_score
-            best_params = params
+            mean_score = np.mean(alpha_scores[alpha])
+            print(f"Params {params} -> alpha {alpha} -> score {mean_score:.4f}")
+
+            if mean_score > best_score:
+                best_score = mean_score
+                best_params = params
+                best_alpha = alpha
 
     print("Best params:", best_params)
 
     
-    omics_train_outer_raw = get_sub_omics_df(omics_df, samples_train_outer)
-    omics_test_outer_raw = get_sub_omics_df(omics_df, samples_test_outer)
-
-    selector = fit_feature_selector(omics_train_outer_raw, nbFeatures=nbFeatures)
-
-    omics_train_outer = apply_feature_selector(omics_train_outer_raw, selector)
-    omics_test_outer = apply_feature_selector(omics_test_outer_raw, selector)
 
     # rebuild params
     source_params = {}
@@ -231,36 +303,44 @@ for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds))
     model.fit(omics_train=omics_train_outer, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time, 
         omics_val=None, batch_size=batch_size, n_epochs=n_epochs, verbose=False, task=task)
 
-    # test_score = model.evaluate(omics_test=omics_test_outer,clinical_df=clinical_df,label=label,event=event,surv_time=surv_time,
-    #     task=task, batch_size=1024 )
-
     Z_train_outer = model.get_latent_representation(omics_train_outer)
     Z_test_outer  = model.get_latent_representation(omics_test_outer)
+    
+    coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=l1_ratio,alphas=[best_alpha], fit_baseline_model=True))        
+    coxnet_pipe.fit(Z_train_outer, y_train_outer)
+    coxnet = coxnet_pipe.named_steps["coxnetsurvivalanalysis"]
 
-    y_train_outer = np.array(
-        [(bool(e), t) for e, t in zip(clinical_df.loc[samples_train_outer, event],
-                                    clinical_df.loc[samples_train_outer, surv_time])],
-        dtype=[('status', 'bool'), ('time', 'float')]
-    )
-
-    y_test_outer = np.array(
-        [(bool(e), t) for e, t in zip(clinical_df.loc[samples_test_outer, event],
-                                    clinical_df.loc[samples_test_outer, surv_time])],
-        dtype=[('status', 'bool'), ('time', 'float')]
-    )
-    cox = CoxPHSurvivalAnalysis(alpha=alpha)
-    cox.fit(Z_train_outer, y_train_outer)
-
-    risk_scores = cox.predict(Z_test_outer)
-
-
+    #cindex calcul
+    risk_scores = coxnet.predict(Z_test_outer, alpha=best_alpha)
     c_index = concordance_index_ipcw(y_train_outer, y_test_outer, risk_scores)[0]
 
+    #ibs calcul
+    survs = coxnet.predict_survival_function(Z_test_outer, alpha = best_alpha)
+    t_min = y_test_outer["time"].min()
+    t_max = min(1492, y_test_outer["time"].max())
+    times = np.arange(t_min, t_max)
+    preds = np.vstack([fn(times) for fn in survs])
+    ibs_score = integrated_brier_score(y_train_outer,y_test_outer,preds,times)
+    
+
+
     print(f"Outer test score: {c_index:.4f}")
-    outer_results.append(c_index)
+
     model.save_figure_loss(outer_fold)
 
+    step_values = {
+        "fold": outer_fold,
+        "cindex_default": c_index,
+        "graf": ibs_score, 
+        "time_train": tot_time_train,
+        "time_eval": tot_time_validate
+    }
+    print(step_values)
+    outer_results.append(step_values)
 
 
-print("Mean score:", np.mean(outer_results))
-print("Std:", np.std(outer_results))
+
+results_df = pd.DataFrame(outer_results)
+print("Mean score:", np.mean(results_df["cindex_default"]))
+print("Std:", np.std(results_df["cindex_default"]))
+results_df.to_csv("results/ncv_custcox_mult_alpha_results.csv", index=False)
