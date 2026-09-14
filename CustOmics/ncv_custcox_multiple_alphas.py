@@ -5,7 +5,7 @@ import copy
 import torch
 import time
 
-from sklearn.model_selection import KFold, ParameterGrid
+from sklearn.model_selection import KFold, ParameterGrid,StratifiedKFold
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -45,6 +45,7 @@ omics_df = {
 }
 
 lt_samples = list(clinical_df.index)
+print("taille donnée :", len(lt_samples))
 
 device = torch.device("cpu")
 batch_size = 32
@@ -80,8 +81,9 @@ alpha = 0.01
 nbFeatures = 5000
 validation_function = "vvh"
 
-outer_cv = KFold(n_splits=5, shuffle=True, random_state=0)
-inner_cv = KFold(n_splits=3, shuffle=True, random_state=0)
+# outer_cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
+inner_cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=0)
+
 
 outer_results = []
 l1_ratio= 0.01
@@ -118,8 +120,8 @@ def apply_feature_selector(cancer_dataset, selector):
 
 outer_results = []
 
-for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
-# for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds)):
+# for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
+for outer_fold, (train_idx, test_idx) in enumerate(zip(train_folds, test_folds)):
 
     
     print(f" OUTER FOLD {outer_fold}")
@@ -189,7 +191,8 @@ for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
 
         tot_time_train = 0
         tot_time_validate = 0 
-        for inner_train_idx, inner_val_idx in inner_cv.split(samples_train_outer):
+        #TODO stratify
+        for inner_train_idx, inner_val_idx in inner_cv.split(samples_train_outer, y_train_outer["status"]):
             start_train = time.time()
             samples_train_inner = [samples_train_outer[i] for i in inner_train_idx]
             samples_val_inner = [samples_train_outer[i] for i in inner_val_idx]
@@ -243,7 +246,7 @@ for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
 
             # Try all values of lambda for this model / latent representation 
             # TODO elastic net vs l2 regression only
-            # Cox model
+            # Cox model 
             #====================================================================================================================
             coxnet_pipe = make_pipeline(StandardScaler(), CoxnetSurvivalAnalysis(l1_ratio=l1_ratio,alphas=estimated_alphas, fit_baseline_model=True))        
             est = coxnet_pipe.fit(Z_train, y_train_struct)
@@ -316,9 +319,12 @@ for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(lt_samples)):
 
     #ibs calcul
     survs = coxnet.predict_survival_function(Z_test_outer, alpha = best_alpha)
-    t_min = y_test_outer["time"].min()
-    t_max = min(1492, y_test_outer["time"].max())
-    times = np.arange(t_min, t_max)
+    times = np.sort(np.unique(y[test_idx]["time"]))
+    upper = min(
+        np.max( y[train_idx]["time"]),
+        np.max(y[test_idx]["time"])
+    )
+    times = times[times < upper]
     preds = np.vstack([fn(times) for fn in survs])
     ibs_score = integrated_brier_score(y_train_outer,y_test_outer,preds,times)
     

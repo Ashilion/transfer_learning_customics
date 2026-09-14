@@ -24,3 +24,32 @@ for col in py.columns:
 
     print(py[col])
     print(r[col])
+
+### IBS =======================================================
+
+py_df = pd.read_csv(f"{data_path}_ibs_python.csv")
+r_df = pd.read_csv(f"{data_path}_ibs_r.csv")
+
+compare_df = py_df.merge(
+    r_df,
+    on=["alpha_index"],
+    suffixes=("_python", "_r")
+)
+
+compare_df["abs_diff"] = np.abs(
+    compare_df["ibs_normalized_python"]
+    - compare_df["ibs_normalized_r"]
+)
+
+compare_df["relative_diff"] = (
+    compare_df["abs_diff"]
+    / np.maximum(compare_df["ibs_normalized_python"], 1e-12)
+)
+
+print(compare_df.head())
+
+print("\nMax absolute difference:")
+print(compare_df["abs_diff"].max())
+
+print("\nMean absolute difference:")
+print(compare_df["abs_diff"].mean())

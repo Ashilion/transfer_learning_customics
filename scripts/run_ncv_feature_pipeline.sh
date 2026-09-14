@@ -8,6 +8,6 @@ module load python
 
 cd /env/cnrgh/proj/math_stats/scratch/hlegrand/CustOmics
 
-source ../venv/bin/activate
+source ../venv_sksurv_dev/bin/activate
 
 python ncv_feature_pipeline.py

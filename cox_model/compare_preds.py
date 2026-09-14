@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sksurv.linear_model import CoxnetSurvivalAnalysis
+from sksurv.metrics import integrated_brier_score, concordance_index_ipcw
 import pickle
 
 import sys 
@@ -34,7 +35,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-model = CoxnetSurvivalAnalysis(l1_ratio=0.01, alpha_min_ratio=0.0001, n_alphas=100)
+model = CoxnetSurvivalAnalysis(l1_ratio=0.01, alpha_min_ratio=0.0001, n_alphas=100, tol=1e-15,fit_baseline_model=True)
 model.fit(X_train, y_train)
 
 alphas = model.alphas_
@@ -54,13 +55,11 @@ pd.DataFrame({
 
 pd.DataFrame({"lambda": alphas}).to_csv(f"{data_path}_lambda_grid.csv", index=False)
 
-indices = [0, 25, 50, 75, 99]
 
-preds = {}
-vvh_score = {}
-for i in indices:
-    a = alphas[i]
-    preds[f"alpha_{i}"] = model.predict(X_test, alpha=a)
+preds = []
+vvh_score = []
+for a in alphas:
+    preds.append(model.predict(X_test, alpha=a))
 
     score = vvh_cv(
         model,
@@ -70,16 +69,17 @@ for i in indices:
         X_test,
         y_test
     )
-    vvh_score[f"alpha_{i}"] = [score]
+    vvh_score.append(score)
 
 preds_df = pd.DataFrame(preds)
 vvh_df = pd.DataFrame(vvh_score)
-alpha_values = {f"alpha_{i}": alphas[i] for i in indices}
+print(preds_df.head())
+print(vvh_df.head())
 
-meta_df = pd.DataFrame({
-    "index": indices,
-    "alpha": [alphas[i] for i in indices]
-})
+preds_df.to_csv(f"{data_path}_pred_python_multi_full.csv", index=False)
+vvh_df.to_csv(f"{data_path}_vvh_python_full.csv", index=False)
 
-preds_df.to_csv(f"{data_path}_pred_python_multi.csv", index=False)
-vvh_df.to_csv(f"{data_path}_vvh_python.csv", index=False)
+# save model coefs
+coef_df = pd.DataFrame(model.coef_)
+print(coef_df.head())
+coef_df.to_csv(f"{data_path}_coef_python.csv")

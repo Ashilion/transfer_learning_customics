@@ -51,7 +51,7 @@ class Encoder(nn.Module):
         dropout_flag = True
         for num in range(1, block_layer_num):
             self.dt_layers['Layer{}'.format(num)] = FullyConnectedLayer(hidden_dim[num - 1], hidden_dim[num], norm_layer=norm_layer, leaky_slope=leaky_slope,
-                                    dropout=dropout_flag*dropout, activation=True)
+                                    dropout=dropout, activation=True)
             # dropout for every other layer
             dropout_flag = not dropout_flag
 

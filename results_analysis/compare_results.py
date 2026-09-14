@@ -58,7 +58,7 @@ def compare_results(path_ref, path_new, type_ref="ref"):
     return merged
 
 # path_ref = "/env/cnrgh/proj/math_stats/scratch/hlegrand/results/ref_results.csv"
-path_new = "/env/cnrgh/proj/math_stats/scratch/hlegrand/results/outer_cv_results_vvh.csv"
+path_new = "/env/cnrgh/proj/math_stats/scratch/hlegrand/results/outer_cv_results_vvh_COAD.csv"
 path_ref = "/env/cnrgh/proj/math_stats/scratch/hlegrand/results/ref_results.csv"
 
 merged = compare_results(path_ref, path_new, type_ref="ref")

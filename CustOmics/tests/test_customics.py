@@ -1,3 +1,6 @@
+import sys 
+sys.path.append('..')
+
 from src.network.customics import CustOMICS
 from src.tools.prepare_dataset import prepare_dataset
 from src.tools.utils import get_sub_omics_df
@@ -32,7 +35,7 @@ x_dim = [omics_df[omic_source].shape[1] for omic_source in omics_df.keys()]
 #### Defining Hyperparameters
 
 batch_size = 32
-n_epochs = 10
+n_epochs = 30
 device = torch.device('cpu')
 label = 'cluster.id'
 event = 'cluster.id'
@@ -64,10 +67,10 @@ train_params = {'switch': 5, 'lr': 1e-3}
 #### Training the model
 
 model = CustOMICS(source_params=source_params, central_params=central_params, classif_params=classif_params,
-                        surv_params=surv_params, train_params=train_params, device=device).to(device)
+                        surv_params=surv_params, train_params=train_params, device=device, unsupervised= True).to(device)
 print('Number of Parameters: ', model.get_number_parameters())
 model.fit(omics_train=omics_train, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
-            omics_val=omics_val, batch_size=batch_size, n_epochs=n_epochs, verbose=True)
+            omics_val=omics_val, batch_size=batch_size, n_epochs=n_epochs, verbose=True,patience=True, min_delta=1e-3 )
 metric = model.evaluate(omics_test=omics_test, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
                 task=task, batch_size=1024, plot_roc=False)
 model.plot_loss()

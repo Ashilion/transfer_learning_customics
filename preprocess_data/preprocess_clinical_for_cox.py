@@ -5,7 +5,7 @@ import numpy as np
 import os
 import pickle
 
-cancer_name = "LGG"
+cancer_name = "COAD"
 
 #get the file of specific cancer
 
@@ -23,6 +23,7 @@ regex = "clinical|time|status|bcr_patient_barcode"
 df = df.filter(regex=f"({regex})$")
 
 print(df.head())
+print(df.describe())
 
 final_path = f"{wkd_path}data/{cancer_name}_clinical.pickle"
 tmp_path = f"{final_path}.tmp"

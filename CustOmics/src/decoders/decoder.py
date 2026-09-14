@@ -21,7 +21,7 @@ class Decoder(nn.Module):
     """
     Standard Decoder Network.
     """
-    def __init__(self, latent_dim, hidden_dim, output_dim, norm_layer=nn.BatchNorm1d, leaky_slope=0.2 ,dropout=0):
+    def __init__(self, latent_dim, hidden_dim, output_dim, norm_layer=nn.BatchNorm1d, leaky_slope=0.2 , dropout=0, activation=True):
         """
         Constructs the Standard Decoder network
         Parameters
@@ -46,13 +46,13 @@ class Decoder(nn.Module):
         self.dt_layers = OrderedDict()
 
         self.dt_layers['InputLayer'] = FullyConnectedLayer(latent_dim, hidden_dim[0], norm_layer=norm_layer, leaky_slope=leaky_slope, dropout=dropout,
-                                activation=True)
+                                activation=activation)
 
         block_layer_num = len(hidden_dim)
         dropout_flag = True
         for num in range(1, block_layer_num):
             self.dt_layers['Layer{}'.format(num)] = FullyConnectedLayer(hidden_dim[num - 1], hidden_dim[num], norm_layer=norm_layer, leaky_slope=leaky_slope,
-                                    dropout=dropout_flag*dropout, activation=True)
+                                    dropout=dropout, activation=activation)
             # dropout for every other layer
             dropout_flag = not dropout_flag
 

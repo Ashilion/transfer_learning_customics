@@ -2,9 +2,30 @@
 data/
 results/
 venv/
+venv_sksurv_dev
+venv_numpy1
 
 __pycache__/
 *.py[cod]
 *$py.class
 
 slurm_output/
+
+slurm-*.out
+*.out
+.RData
+.Rhistory
+
+r_libs/
+
+*.png
+mprofile*
+
+wheels/
+results_tgcc/
+
+*.csv
+logs/
+missing_folds*
+
+CustOmics/models/

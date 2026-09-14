@@ -21,11 +21,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.svm import SVC
 
-from sksurv.linear_model import CoxnetSurvivalAnalysis, CoxPHSurvivalAnalysis
-from sksurv.metrics import (    
-    integrated_brier_score,
-)
-from torch.optim import Adam
+from torch.optim import Adam, AdamW
 
 import shap
 
@@ -47,7 +43,11 @@ from src.tools.utils import get_common_samples
 from src.ex_vae.shap_vae import processPhenotypeDataForSamples, randomTrainingSample, splitExprandSample, ModelWrapper, addToTensor
 from lifelines import KaplanMeierFitter
 
+from src.loss.grl import grad_reverse
+from src.tasks.domain_classifier import DomainClassifier
+
 import matplotlib.pyplot as plt
+import time
 
 plt.rcParams.update({'font.size': 22})
 
@@ -56,7 +56,10 @@ class CustOMICS(nn.Module):
     """
     The main CustOMICS object that represents the main network for dealing with multi-source integration and multi-task learning
     """
-    def __init__(self, source_params, central_params, classif_params, surv_params, train_params, device, unsupervised):
+    def __init__(self, source_params, central_params, classif_params, surv_params, train_params, device, unsupervised, domain_params=None, linear_central_decoder=False
+        optimizer="adam",
+        weight_decay=0.0,
+    ):
         """
         Construct the whole architecture with intermediate autoencoders, central layer and eventually downstream predictors
         Parameters:
@@ -69,6 +72,8 @@ class CustOMICS(nn.Module):
         """
         super(CustOMICS, self).__init__()
         self.n_source = len(list(source_params.keys()))
+        self.source_names = list(source_params.keys())
+        self.source_params = source_params
         self.device = device
         self.lt_encoders = [Encoder(input_dim=source_params[source]['input_dim'], hidden_dim=source_params[source]['hidden_dim'],
                              latent_dim=source_params[source]['latent_dim'], norm_layer=source_params[source]['norm'], 
@@ -82,7 +87,7 @@ class CustOMICS(nn.Module):
                                                     dropout=central_params['dropout'])
         self.central_decoder = ProbabilisticDecoder(latent_dim=central_params['latent_dim'], hidden_dim=central_params['hidden_dim'], 
                                                     output_dim=self.rep_dim, norm_layer=central_params['norm'],
-                                                    dropout=central_params['dropout'])
+                                                    dropout=central_params['dropout'], activation = not linear_central_decoder)
         self.beta = central_params['beta']
         self.num_classes = classif_params['n_class']
         self.lambda_classif = classif_params['lambda']
@@ -100,35 +105,96 @@ class CustOMICS(nn.Module):
         self._set_autoencoders()
         self._set_central_layer()
         self._relocate()
-        self.optimizer = self._get_optimizer(self.lr)
         self.vae_history = []
         self.survival_history = []
         self.label_encoder = None
         self.one_hot_encoder = None
-
+        self.lambda_central = central_params.get("lambda_central", 1)
         self.unsupervised = unsupervised
+        self.modality_dropout_p = train_params.get('modality_dropout_p', 0.0) 
+        self.modality_dropout_mode = train_params.get('modality_dropout_mode', 'exclude')
+        if self.modality_dropout_mode not in ('exclude', 'reconstruct'):
+            raise ValueError("modality_dropout_mode doit être 'exclude' ou 'reconstruct'.")
 
-    def _get_optimizer(self, lr):
+        self.use_domain_adv = domain_params is not None
+        if self.use_domain_adv:
+            self.n_domains = domain_params['n_domains']
+            self.lambda_domain = domain_params['lambda']
+            self.domain_classifier = DomainClassifier(
+                latent_dim=central_params['latent_dim'],
+                n_domains=self.n_domains,
+                hidden_layers=domain_params['hidden_layers'],
+                dropout=domain_params['dropout'],
+            ).to(self.device)
+
+        self.optimizer = self._get_optimizer(
+            self.lr,
+            optimizer=optimizer,
+            weight_decay=weight_decay
+        )
+    
+    def _get_optimizer(self, lr, optimizer="adam", weight_decay=0.0):
         """
-        Initilizes the optimizer
+        Initializes the optimizer.
+
         Parameters:
-            lr (float)      -- learning rate for the CustOmics network
+            lr (float): learning rate
+            optimizer (str): "adam" or "adamw"
+            weight_decay (float): weight decay coefficient
         """
+
         lt_params = []
+
         for autoencoder in self.autoencoders:
             lt_params += list(autoencoder.parameters())
-        lt_params += list(self.central_layer.parameters())
-        lt_params += list(self.survival_predictor.parameters())
-        lt_params += list(self.classifier.parameters())        
-        optimizer = Adam(lt_params, lr=lr)
-        return optimizer
 
+        lt_params += list(self.central_layer.parameters())
+
+        if not self.unsupervised:
+            lt_params += list(self.survival_predictor.parameters())
+            lt_params += list(self.classifier.parameters())
+
+        if self.use_domain_adv:
+            lt_params += list(self.domain_classifier.parameters())
+
+        if optimizer.lower() == "adam":
+            optimizer = Adam(
+                lt_params,
+                lr=lr,
+                weight_decay=weight_decay
+            )
+
+        elif optimizer.lower() == "adamw":
+            optimizer = AdamW(
+                lt_params,
+                lr=lr,
+                weight_decay=weight_decay
+            )
+
+        else:
+            raise ValueError(
+                f"Unknown optimizer: {optimizer}. "
+                "Choose 'adam' or 'adamw'."
+            )
+
+        return optimizer
     def _set_autoencoders(self):
         """
-        Initializes the autoencoders
+        Initializes the autoencoders.
+        Each source can optionally be binary.
         """
-        for i in range(self.n_source):
-            self.autoencoders.append(AutoEncoder(self.lt_encoders[i], self.lt_decoders[i], self.device))
+        for i, source in enumerate(self.source_names):
+
+            binary = self.source_params[source].get("binary", False)
+
+            self.autoencoders.append(
+                AutoEncoder(
+                    self.lt_encoders[i],
+                    self.lt_decoders[i],
+                    self.device,
+                    binary=binary
+                )
+            )
 
     def _set_central_layer(self):
         """
@@ -189,44 +255,58 @@ class CustOMICS(nn.Module):
         mean, logvar = self.central_encoder(central_concat)
         return lt_hat, lt_rep ,mean 
 
-    def _compute_loss(self, x):
+    def _compute_loss(self, x, loss_eval = False, modality_mask = None, x_target = None):
         if self.phase == 1:
             lt_rep = self.get_per_source_representation(x)
             loss = 0
-            for source, autoencoder in zip(x, self.autoencoders):
-                loss += autoencoder.loss(source, self.beta)
+            for i, (source, autoencoder) in enumerate(zip(x, self.autoencoders)):
+                sample_mask = modality_mask[:, i] if modality_mask is not None else None
+                target = x_target[i] if x_target is not None else None
+
+                loss += autoencoder.loss(source, self.beta, sample_mask=sample_mask, x_target=target)
             return lt_rep, loss
         elif self.phase == 2:
             lt_rep = self.get_per_source_representation(x)
             loss = 0
-            for source, autoencoder in zip(x, self.autoencoders):
-                loss += autoencoder.loss(source, self.beta)
+            for i, (source, autoencoder) in enumerate(zip(x, self.autoencoders)):
+                sample_mask = modality_mask[:, i] if modality_mask is not None else None
+                target = x_target[i] if x_target is not None else None
+                loss += autoencoder.loss(source, self.beta, sample_mask=sample_mask, x_target=target)
+
             central_concat = torch.cat(lt_rep, dim=1)
-            loss += self.central_layer.loss(central_concat, self.beta)
+            beta = 0 if loss_eval else self.beta
+            loss += self.lambda_central*self.central_layer.loss(central_concat, beta)
             mean, logvar = self.central_encoder(central_concat)
             z = mean
             return z, loss
 
-    def _train_loop(self, x, labels, os_time, os_event, task):
+    def _train_loop(self, x, labels, os_time, os_event, task, domain_labels,
+                 observed_mask=None, apply_modality_dropout=False):
         for i in range(len(x)):
             x[i] = x[i].to(self.device)
-        # If we don't disjoint the autoencoder's architecture 
+
+        # masque "vraie donnée manquante" (persistant, vient du dataset)
+        modality_mask = observed_mask.to(self.device) if observed_mask is not None else None
+
+        # dropout aléatoire additionnel
+        x_target = None
+        if apply_modality_dropout and self.phase == 2:
+            x_clean = x
+            x, dropout_mask = self._apply_modality_dropout_input(x)
+            if self.modality_dropout_mode == "reconstruct":
+                # l'entrée reste masquée, mais on reconstruit la valeur d'origine
+                # et on n'exclut plus ces échantillons de la loss
+                x_target = x_clean
+            else:
+                # comportement historique : échantillons droppés exclus de la loss
+                modality_mask = dropout_mask if modality_mask is None else modality_mask * dropout_mask
+
         loss = 0
         self.optimizer.zero_grad()
         if self.phase == 1:
-            lt_rep, loss = self._compute_loss(x)
-            for z in lt_rep:
-                if task == 'survival' and not self.unsupervised:
-                    hazard_pred = self.survival_predictor(z)
-                    survival_loss = CoxLoss(survtime=os_time, censor=os_event, hazard_pred=hazard_pred, device=self.device)
-                    loss += self.lambda_survival * survival_loss
-                elif task == 'classification':
-                    y_pred_proba = self.classifier(z)
-                    classification = classification_loss('CE', y_pred_proba, labels)
-                    loss += self.lambda_classif * classification
-
+            lt_rep, loss = self._compute_loss(x, modality_mask=modality_mask, x_target=x_target) 
         elif self.phase == 2:
-            z, loss = self._compute_loss(x)
+            z, loss = self._compute_loss(x, modality_mask=modality_mask, x_target=x_target)
             if task == 'survival' and not self.unsupervised:
                 hazard_pred = self.survival_predictor(z)
                 survival_loss = CoxLoss(survtime=os_time, censor=os_event, hazard_pred=hazard_pred, device=self.device)
@@ -236,11 +316,22 @@ class CustOMICS(nn.Module):
                 classification = classification_loss('CE', y_pred_proba, labels)
                 loss += self.lambda_classif * classification
 
+
+            if self.use_domain_adv:
+                z_reversed = grad_reverse(z, self.lambda_domain)
+                domain_pred = self.domain_classifier(z_reversed)
+                domain_loss = nn.functional.cross_entropy(domain_pred, domain_labels)
+                loss += domain_loss
         return loss
 
-
-    def fit(self, omics_train, clinical_df, label, event, surv_time, task, omics_val=None, batch_size=32, n_epochs=30, verbose=False,):
+    def fit(self, omics_train, clinical_df, label, event, surv_time, task, omics_val=None,
+        batch_size=32, n_epochs=30, verbose=False, patience=None, min_delta=1e-3,
+        early_stopping_on="val", track_loss_components=False,
+        modality_mask_train=None, modality_mask_val=None, missing_strategy="impute"):
         
+        if missing_strategy not in ("impute", "drop"):
+            raise ValueError("missing_strategy doit être 'impute' ou 'drop'.")
+
         encoded_clinical_df = clinical_df.copy()
         self.label_encoder = LabelEncoder().fit(encoded_clinical_df.loc[:, label].values)
         encoded_clinical_df.loc[:, label] = self.label_encoder.transform(encoded_clinical_df.loc[:, label].values)
@@ -249,57 +340,207 @@ class CustOMICS(nn.Module):
         kwargs = {'num_workers': 2, 'pin_memory': True} if self.device.type == "cuda" else {}
 
         lt_samples_train = get_common_samples([df for df in omics_train.values()] + [clinical_df])
+
+        if missing_strategy == "drop":
+            if modality_mask_train is None:
+                raise ValueError("missing_strategy='drop' nécessite modality_mask_train.")
+            complete_mask = modality_mask_train.loc[lt_samples_train].all(axis=1)
+            n_before = len(lt_samples_train)
+            lt_samples_train = [s for s in lt_samples_train if complete_mask.loc[s]]
+            if verbose:
+                print(f"\t[missing_strategy=drop] {n_before - len(lt_samples_train)} patients retirés du train "
+                    f"({len(lt_samples_train)} restants)")
+            modality_mask_train = None  # plus besoin, tous les patients restants sont complets
+
+
         self.baseline = self._compute_baseline(clinical_df, lt_samples_train, event, surv_time)
-        dataset_train = MultiOmicsDataset(omics_df=omics_train, clinical_df=encoded_clinical_df, lt_samples=lt_samples_train,
-                                            label=label, event=event, surv_time=surv_time)
+        dataset_train = MultiOmicsDataset(
+            omics_df=omics_train, clinical_df=encoded_clinical_df, lt_samples=lt_samples_train,
+            label=label, event=event, surv_time=surv_time,
+            domain_col="domain_label" if self.use_domain_adv else None,
+            modality_mask_df=modality_mask_train,
+        )
         train_loader = DataLoader(dataset_train, batch_size=batch_size, shuffle=False, **kwargs)
         if omics_val:
             lt_samples_val = get_common_samples([df for df in omics_val.values()] + [clinical_df])
-            dataset_val = MultiOmicsDataset(omics_df=omics_val, clinical_df=encoded_clinical_df, lt_samples=lt_samples_val,
-                                            label=label, event=event, surv_time=surv_time)
+            if missing_strategy == "drop":
+                if modality_mask_val is None:
+                    raise ValueError("missing_strategy='drop' nécessite modality_mask_val quand omics_val est fourni.")
+                complete_mask_val = modality_mask_val.loc[lt_samples_val].all(axis=1)
+                n_before_val = len(lt_samples_val)
+                lt_samples_val = [s for s in lt_samples_val if complete_mask_val.loc[s]]
+                if verbose:
+                    print(f"\t[missing_strategy=drop] {n_before_val - len(lt_samples_val)} patients retirés du val "
+                        f"({len(lt_samples_val)} restants)")
+                modality_mask_val = None
+
+            dataset_val = MultiOmicsDataset(
+                omics_df=omics_val, clinical_df=encoded_clinical_df, lt_samples=lt_samples_val,
+                label=label, event=event, surv_time=surv_time,
+                domain_col="domain_label" if self.use_domain_adv else None,
+                modality_mask_df=modality_mask_val,
+            )
             val_loader = DataLoader(dataset_val, batch_size=batch_size, shuffle=False, **kwargs)
+            
+        # Validation du paramètre early_stopping_on
+        if patience is not None:
+            if early_stopping_on == "val" and omics_val is None:
+                raise ValueError("early_stopping_on='val' nécessite de fournir omics_val.")
+            if early_stopping_on not in ("val", "train"):
+                raise ValueError("early_stopping_on doit être 'val' ou 'train'.")
+
+        # Early stopping state
+        best_loss = float('inf')
+        best_weights = None
+        epochs_without_improvement = 0
 
         self.history = []
+        self.final_epoch = n_epochs
+        if track_loss_components:
+            self.detailed_history = {'train': [], 'val': []}
+
         for epoch in range(n_epochs):
+            start_time_epoch = time.time()
             overall_loss = 0
-            self._switch_phase(epoch)
-            for batch_idx, (x,labels,os_time,os_event) in enumerate(train_loader):
+            if patience is None:
+                self._switch_phase(epoch)
+
+            epoch_components_train = {}
+            for batch_idx, (x, labels, os_time, os_event, domain_labels, observed_mask) in enumerate(train_loader):
+                if(x[0].shape[0] == 1):
+                    break
                 self.train_all()
-                loss_train = self._train_loop(x, labels, os_time,os_event,task)
+
+                apply_modality_dropout = self.modality_dropout_p != 0
+                if track_loss_components:
+                    loss_train, comp_train = self._train_loop_with_components(
+                        x, labels, os_time, os_event, task, domain_labels, observed_mask, apply_modality_dropout)
+                    for k, v in comp_train.items():
+                        epoch_components_train.setdefault(k, []).append(v)
+                else:
+                    loss_train = self._train_loop(x, labels, os_time, os_event, task, domain_labels, observed_mask, apply_modality_dropout)
+
                 overall_loss += loss_train.item()
                 loss_train.backward()
                 self.optimizer.step()
             average_loss_train = overall_loss / ((batch_idx+1)*batch_size)
             overall_loss = 0
+            end_time_epoch = time.time()
+
+            if track_loss_components:
+                self.detailed_history['train'].append(
+                    {k: np.mean(v) for k, v in epoch_components_train.items()}
+                )
+
             if omics_val != None:
-                for batch_idx, (x,labels, os_time,os_event) in enumerate(val_loader):
+                for batch_idx, (x, labels, os_time, os_event, domain_labels, observed_mask) in enumerate(val_loader):
+                    if(x[0].shape[0] == 1):
+                        break
                     self.eval_all()
-                    loss_val = self._train_loop(x, labels, os_time,os_event,task)
+                    loss_val = self._train_loop(x, labels, os_time, os_event, task, domain_labels, observed_mask)
                     overall_loss += loss_val.item()
                 average_loss_val = overall_loss / ((batch_idx+1)*batch_size)
-
                 self.history.append((average_loss_train, average_loss_val))
+                
                 if verbose:
-                    print("\tEpoch", epoch + 1, "complete!", "\tAverage Loss Train : ", average_loss_train, "\tAverage Loss Val : ", average_loss_val)
+                    print("\tEpoch", epoch + 1, "complete!", "\tAverage Loss Train : ", average_loss_train, "\tAverage Loss Val : ", average_loss_val, "\t Time :", end_time_epoch-start_time_epoch)
+                
+            if patience is not None:
+                monitored_loss = average_loss_train if early_stopping_on == "train" else average_loss_val
+
+                if monitored_loss < best_loss * (1 - min_delta):
+                    best_loss = monitored_loss
+                    best_weights = {k: v.cpu().clone() for k, v in self.state_dict().items()}
+                    epochs_without_improvement = 0
+                else:
+                    epochs_without_improvement += 1
+                    if verbose:
+                        print(f"\t  >> Pas d'amélioration sur {early_stopping_on}_loss ({epochs_without_improvement}/{patience})")
+                    if epochs_without_improvement >= patience:
+                        if self.phase == 1 :
+                            if verbose:
+                                print(f"\tEarly stopping à l'epoch {epoch + 1}. Restauration des meilleurs poids et passage a la phase 2.")
+                            self.load_state_dict({k: v.to(self.device) for k, v in best_weights.items()})
+                            self.switch_epoch = epoch
+                            best_loss = float('inf')
+                            best_weights = None
+                            epochs_without_improvement = 0
+                            self.phase = 2
+                        else :
+                            if verbose:
+                                print(f"\tEarly stopping à l'epoch {epoch + 1}. Restauration des meilleurs poids.")
+                            self.load_state_dict({k: v.to(self.device) for k, v in best_weights.items()})
+                            self.phase = 2
+                            self.final_epoch = epoch
+                            break
+                        
             else:
                 self.history.append(average_loss_train)
                 if verbose:
                     print("\tEpoch", epoch + 1, "complete!", "\tAverage Loss Train : ", average_loss_train)
 
-        #cox regression here , ou seulement après transfer learning?
+    def get_switch_epoch(self):
+        return self.switch_epoch
 
-    def survival_cox_regression(self, omics_df, y, alpha=0):
+    def get_final_epoch(self):
+        return self.final_epoch
 
-        z = self.get_latent_representation(omics_df=omics_df)
+    # def get_loss_eval(self, omics_val):
+    #     x_val = [
+    #         torch.Tensor(omics_val[src].values).to(self.device)
+    #         for src in omics_val.keys()
+    #     ]
+    #     self.eval_all()
+    #     self.phase = 2
+    #     z, loss = self._compute_loss(x_val, loss_eval = True)
+    #     if self.use_domain_adv:
+    #         z_reversed = grad_reverse(z, self.lambda_domain)
+    #         domain_pred = self.domain_classifier(z_reversed)
+    #         domain_loss = nn.functional.cross_entropy(domain_pred, domain_labels)
+    #         loss += domain_loss 
+    #     return loss
 
-        cph = CoxPHSurvivalAnalysis()
-        cph.set_params(alpha=alpha)
-        cph.fit(z, y)
+    def get_loss_eval(self, omics_val, clinical_df, label, event, surv_time):
+        lt_samples_val = get_common_samples([df for df in omics_val.values()] + [clinical_df])
 
-        return cph
+        encoded_clinical_df = clinical_df.copy()
+        if label:
+            encoded_clinical_df.loc[:, label] = self.label_encoder.transform(
+                encoded_clinical_df.loc[:, label].values
+            )
+
+        dataset_val = MultiOmicsDataset(
+            omics_df=omics_val,
+            clinical_df=encoded_clinical_df,
+            lt_samples=lt_samples_val,
+            label=label,
+            event=event,
+            surv_time=surv_time,
+            domain_col="domain_label" if self.use_domain_adv else None,
+        )
+        val_loader = DataLoader(dataset_val, batch_size=len(lt_samples_val), shuffle=False)
+
+        self.eval_all()
+        self.phase = 2
+
+        x, labels, os_time, os_event, domain_labels = next(iter(val_loader))
+        for i in range(len(x)):
+            x[i] = x[i].to(self.device)
+
+        z, loss = self._compute_loss(x, loss_eval=True)
+
+        if self.use_domain_adv:
+            domain_labels = domain_labels.to(self.device)
+            z_reversed = grad_reverse(z, self.lambda_domain)
+            domain_pred = self.domain_classifier(z_reversed)
+            domain_loss = nn.functional.cross_entropy(domain_pred, domain_labels)
+            loss += domain_loss
+
+        return loss
 
     def get_latent_representation(self, omics_df, tensor=False):
         self.eval_all()
+        self.phase= 2
         if tensor == False:
             x = [torch.Tensor(omics_df[source].values) for source in omics_df.keys()]
         else:
@@ -348,7 +589,8 @@ class CustOMICS(nn.Module):
         return dt_surv
 
 
-    def evaluate(self, omics_test, clinical_df, label, event, surv_time, task, batch_size=32, plot_roc=False):
+    def evaluate(self, omics_test, clinical_df, label, event, surv_time, task, batch_size=32,
+             plot_roc=False, modality_mask_test=None):
 
         encoded_clinical_df = clinical_df.copy()
         encoded_clinical_df.loc[:, label] = self.label_encoder.transform(encoded_clinical_df.loc[:, label].values)
@@ -356,16 +598,23 @@ class CustOMICS(nn.Module):
         kwargs = {'num_workers': 2, 'pin_memory': True} if self.device.type == "cuda" else {}
 
         lt_samples_train = get_common_samples([df for df in omics_test.values()] + [clinical_df])
-        dataset_test = MultiOmicsDataset(omics_df=omics_test, clinical_df=encoded_clinical_df, lt_samples=lt_samples_train,
-                                            label=label, event=event, surv_time=surv_time)
+        dataset_test = MultiOmicsDataset(
+            omics_df=omics_test, clinical_df=encoded_clinical_df, lt_samples=lt_samples_train,
+            label=label, event=event, surv_time=surv_time,
+            domain_col="domain_label" if self.use_domain_adv else None,
+            modality_mask_df=modality_mask_test,
+        )
         test_loader = DataLoader(dataset_test, batch_size=batch_size, shuffle=False, **kwargs)
 
         self.eval_all()
         classif_metrics = []
         c_index = []
         with torch.no_grad():
-            for batch_idx, (x, labels, os_time, os_event) in enumerate(test_loader):
-                z, loss  = self._compute_loss(x)
+            for batch_idx, (x, labels, os_time, os_event, domain_labels, observed_mask) in enumerate(test_loader):
+                for i in range(len(x)):
+                    x[i] = x[i].to(self.device)
+                modality_mask = observed_mask.to(self.device) if observed_mask is not None else None
+                z, loss = self._compute_loss(x, modality_mask=modality_mask)
                 if task == 'survival':
                     predicted_survival_hazard = self.survival_predictor(z)
                     predicted_survival_hazard = predicted_survival_hazard.cpu().detach().numpy().reshape(-1, 1)
@@ -382,8 +631,6 @@ class CustOMICS(nn.Module):
                     if plot_roc:
                         plot_roc_multiclass(y_test=y_true, y_pred_proba=y_pred_proba, filename='test', n_classes=self.num_classes,
                                             var_names=np.unique(clinical_df.loc[:, label].values.tolist()))
-
-                
                     return classif_metrics
 
 
@@ -456,7 +703,7 @@ class CustOMICS(nn.Module):
     def plot_loss(self):
         n_epochs = len(self.history)
         plt.title('Evolution of the loss function with respect to the epochs')
-        plt.vlines(x=self.switch_epoch, ymin=0, ymax=2.5, colors='purple', ls='--', lw=2, label='phase 2 switch')
+        plt.vlines(x=self.switch_epoch, ymin=0.1, ymax=0.7, colors='purple', ls='--', lw=2, label='phase 2 switch')
         plt.plot(range(0, n_epochs), [loss[0] for loss in self.history], label = 'train loss')
         plt.plot(range(0, n_epochs), [loss[1] for loss in self.history], label = 'val loss')
         plt.xlabel('epochs')
@@ -522,3 +769,414 @@ class CustOMICS(nn.Module):
             self.survival_predictor.eval()
         if self.classifier:
             self.classifier.eval()
+
+    ### Transfer learning methods =======================================================================================
+    
+    def freeze_autoencoders(self):
+        for ae in self.autoencoders:
+            for p in ae.parameters():
+                p.requires_grad = False
+
+    def unfreeze_autoencoders(self):
+        for ae in self.autoencoders:
+            for p in ae.parameters():
+                p.requires_grad = True
+
+    def freeze_central_vae(self):
+        for p in self.central_layer.parameters():
+            p.requires_grad = False
+
+    def unfreeze_central_vae(self):
+        for p in self.central_layer.parameters():
+            p.requires_grad = True
+
+    def update_optimizer(self, lr):
+        """
+        update the optimizer
+        Parameters:
+            lr (float)      -- learning rate for the CustOmics network
+        """
+        lt_params = []
+        for autoencoder in self.autoencoders:
+            lt_params += list(autoencoder.parameters())
+        lt_params += list(self.central_layer.parameters())
+        if not self.unsupervised:
+            lt_params += list(self.survival_predictor.parameters())
+            lt_params += list(self.classifier.parameters())       
+        if self.use_domain_adv:
+            lt_params += list(self.domain_classifier.parameters())     
+        self.optimizer = Adam(
+            filter(lambda p: p.requires_grad,
+                lt_params),
+            lr=lr
+        ) 
+    
+
+    # ============================================================
+    # Modality Dropout
+    # ============================================================
+    def _apply_modality_dropout_input(self, x):
+        if self.modality_dropout_p <= 0:
+            return x, None
+
+        batch_size = x[0].shape[0]
+        n_sources = len(x)
+        device = x[0].device
+
+        keep_mask = (torch.rand(batch_size, n_sources, device=device) > self.modality_dropout_p).float()
+
+        all_dropped = keep_mask.sum(dim=1) == 0
+        if all_dropped.any():
+            idx = torch.randint(0, n_sources, (int(all_dropped.sum().item()),), device=device)
+            keep_mask[all_dropped, idx] = 1.0
+
+        x_dropped = [x[s] * keep_mask[:, s].unsqueeze(1) for s in range(n_sources)]
+        return x_dropped, keep_mask
+
+    # ============================================================
+    # Fonctions pour afficher chaque partie de la loss séparément
+    # ============================================================
+    
+    def _compute_loss_with_components(self, x, loss_eval=False, modality_mask=None, x_target = None):
+        """
+        Équivalent de _compute_loss mais retourne en plus un dictionnaire
+        contenant la valeur (float) de chaque terme de reconstruction.
+        Les termes de supervision (survie / classification / domaine) sont
+        ajoutés ensuite dans _train_loop_with_components, car ils nécessitent
+        labels / os_time / os_event / domain_labels.
+    
+        Utilise self.source_names (liste des noms de modalités, dans le même
+        ordre que self.autoencoders) pour nommer chaque composante au lieu
+        d'un simple indice. Voir __init__ : self.source_names = list(source_params.keys())
+        """
+        components = {}
+    
+        if self.phase == 1:
+            lt_rep = self.get_per_source_representation(x)
+            loss = 0
+            for i, (name, source, autoencoder) in enumerate(zip(self.source_names, x, self.autoencoders)):
+                sample_mask = modality_mask[:, i] if modality_mask is not None else None
+                target = x_target[i] if x_target is not None else None
+                source_loss = autoencoder.loss(source, self.beta, sample_mask=sample_mask, x_target=target)
+                components[f'recon_{name}'] = source_loss.item()
+                loss += source_loss
+            return lt_rep, loss, components
+    
+        elif self.phase == 2:
+            lt_rep = self.get_per_source_representation(x)
+            loss = 0
+            
+            for i, (name, source, autoencoder) in enumerate(zip(self.source_names, x, self.autoencoders)):
+                sample_mask = modality_mask[:, i] if modality_mask is not None else None
+                target = x_target[i] if x_target is not None else None
+                source_loss = autoencoder.loss(source, self.beta, sample_mask=sample_mask, x_target=target)
+                components[f'recon_{name}'] = source_loss.item()
+                loss += source_loss
+    
+            central_concat = torch.cat(lt_rep, dim=1)
+            beta = 0 if loss_eval else self.beta
+            central_loss = self.central_layer.loss(central_concat, beta)
+            components['recon_central'] = self.lambda_central * central_loss.item()
+            loss += self.lambda_central * central_loss
+    
+            mean, logvar = self.central_encoder(central_concat)
+            z = mean
+            return z, loss, components
+    
+    
+
+    
+    def _train_loop_with_components(self, x, labels, os_time, os_event, task, domain_labels, 
+            observed_mask=None, apply_modality_dropout=False):
+        for i in range(len(x)):
+            x[i] = x[i].to(self.device)
+
+        modality_mask = observed_mask.to(self.device) if observed_mask is not None else None
+
+        x_target = None
+        if apply_modality_dropout and self.phase == 2:
+            x_clean = x
+            x, dropout_mask = self._apply_modality_dropout_input(x)
+            if self.modality_dropout_mode == "reconstruct":
+                # l'entrée reste masquée, mais on reconstruit la valeur d'origine
+                # et on n'exclut plus ces échantillons de la loss
+                x_target = x_clean
+            else:
+                # comportement historique : échantillons droppés exclus de la loss
+                modality_mask = dropout_mask if modality_mask is None else modality_mask * dropout_mask
+            
+        self.optimizer.zero_grad()
+        components = {}
+    
+        if self.phase == 1:
+            lt_rep, loss, components = self._compute_loss_with_components(x, modality_mask=modality_mask, x_target=x_target)
+    
+        elif self.phase == 2:
+            z, loss, components = self._compute_loss_with_components(x, modality_mask=modality_mask, x_target=x_target)
+    
+            if task == 'survival' and not self.unsupervised:
+                hazard_pred = self.survival_predictor(z)
+                survival_loss = CoxLoss(survtime=os_time, censor=os_event,
+                                        hazard_pred=hazard_pred, device=self.device)
+                components['survival_raw'] = survival_loss.item()
+                components['survival_weighted'] = (self.lambda_survival * survival_loss).item()
+                loss += self.lambda_survival * survival_loss
+    
+            elif task == 'classification':
+                y_pred_proba = self.classifier(z)
+                classification = classification_loss('CE', y_pred_proba, labels)
+                components['classification_raw'] = classification.item()
+                components['classification_weighted'] = (self.lambda_classif * classification).item()
+                loss += self.lambda_classif * classification
+    
+            if self.use_domain_adv:
+                z_reversed = grad_reverse(z, self.lambda_domain)
+                domain_pred = self.domain_classifier(z_reversed)
+                domain_loss = torch.nn.functional.cross_entropy(domain_pred, domain_labels)
+                components['domain'] = domain_loss.item()
+                loss += domain_loss
+    
+        return loss, components
+    
+
+    
+
+    
+    def plot_loss_detailed(self, show=True, save_path=None, log_scale=False):
+        """
+        Plot séparant :
+            - la reconstruction de chaque omique
+            - la reconstruction centrale (VAE central)
+            - la supervision par la survie (pondérée par lambda_survival,
+            c'est-à-dire le terme tel qu'il contribue réellement à la loss totale)
+    
+        Nécessite d'avoir entraîné avec fit(..., track_loss_components=True).
+    
+        log_scale : si True, affiche l'axe des y en échelle logarithmique.
+        """
+        if not hasattr(self, 'detailed_history') or len(self.detailed_history['train']) == 0:
+            raise ValueError("Aucun historique détaillé trouvé. "
+                            "Relancer fit(..., track_loss_components=True).")
+    
+        history = self.detailed_history['train']
+        n_epochs = len(history)
+        epochs = range(n_epochs)
+    
+        # Récupère l'ensemble des clés rencontrées sur tout l'entraînement
+        all_keys = set()
+        for epoch_dict in history:
+            all_keys.update(epoch_dict.keys())
+    
+        plt.figure(figsize=(10, 6))
+        plt.title("Décomposition de la loss par composante (train)")
+    
+        # ordonne les modalités selon self.source_names pour un affichage stable
+        def sort_key(k):
+            if k.startswith('recon_') and k != 'recon_central':
+                name = k[len('recon_'):]
+                return (0, self.source_names.index(name)) if name in self.source_names else (0, 999)
+            return (1, 0)
+    
+        for key in sorted(all_keys, key=sort_key):
+            # certaines clés (recon_central, survival_*) n'existent qu'à partir
+            # de la phase 2 : on remplit avec NaN avant, matplotlib laissera un trou
+            values = [epoch_dict.get(key, np.nan) for epoch_dict in history]
+    
+            if key.startswith('recon_') and key != 'recon_central':
+                label = f"reconstruction {key[len('recon_'):]}"
+            elif key == 'recon_central':
+                label = "reconstruction centrale"
+            elif key == 'survival_weighted':
+                label = "supervision survie (pondérée)"
+            elif key == 'survival_raw':
+                continue  # affichée dans l'autre plot
+            elif key.startswith('classification'):
+                label = key.replace('_', ' ')
+            elif key == 'domain':
+                label = "dann"
+            else:
+                label = key
+    
+            plt.plot(epochs, values, label=label)
+    
+        plt.axvline(x=self.switch_epoch, color='purple', ls='--', lw=2, label='passage phase 2')
+        plt.xlabel('epochs')
+        plt.ylabel('loss')
+        if log_scale:
+            plt.yscale('log')
+        plt.legend(fontsize=10)
+        plt.tight_layout()
+    
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+        if show:
+            plt.show()
+        plt.close()
+    
+    
+    
+    def plot_loss_recon_surv(self, show=True, save_path=None, log_scale=False):
+        """
+        Version simplifiée : uniquement reconstruction centrale et supervision
+        par la survie, avec la loss de survie brute (CoxLoss telle quelle,
+        SANS multiplication par lambda_survival).
+    
+        log_scale : si True, affiche l'axe des y en échelle logarithmique.
+        """
+        if not hasattr(self, 'detailed_history') or len(self.detailed_history['train']) == 0:
+            raise ValueError("Aucun historique détaillé trouvé. "
+                            "Relancer fit(..., track_loss_components=True).")
+    
+        history = self.detailed_history['train']
+        n_epochs = len(history)
+        epochs = range(n_epochs)
+    
+        recon_central = [epoch_dict.get('recon_central', np.nan) for epoch_dict in history]
+        survival_raw = [epoch_dict.get('survival_raw', np.nan) for epoch_dict in history]
+    
+        plt.figure(figsize=(10, 6))
+        plt.title("Reconstruction centrale vs supervision survie (sans lambda_survival)")
+        plt.plot(epochs, recon_central, label="reconstruction centrale")
+        plt.plot(epochs, survival_raw, label="survie (brute, sans λ)")
+        plt.axvline(x=self.switch_epoch, color='purple', ls='--', lw=2, label='passage phase 2')
+        plt.xlabel('epochs')
+        plt.ylabel('loss')
+        if log_scale:
+            plt.yscale('log')
+        plt.legend(fontsize=10)
+        plt.tight_layout()
+    
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+        if show:
+            plt.show()
+        plt.close()
+    
+
+    
+    def plot_loss_detailed_stacked(self, show=True, save_path=None, log_scale=False):
+        """
+        Même contenu que plot_loss_detailed, mais en aires empilées : chaque
+        composante s'ajoute par-dessus les précédentes, le sommet de la pile
+        correspond à la loss totale (hors lambda_central appliqué au terme
+        central, cf. remarque ci-dessous).
+    
+        Avant la phase 2, seules les reconstructions par omique existent : les
+        composantes 'recon_central' / 'survival_weighted' valent alors 0
+        (et non NaN, un stackplot ne tolère pas les trous).
+    
+        log_scale : si True, affiche l'axe des y en échelle logarithmique.
+            Comme log(0) est indéfini, les valeurs à 0 (phase 1) sont alors
+            remplacées par un epsilon (1e-8) pour rester affichables.
+        """
+        if not hasattr(self, 'detailed_history') or len(self.detailed_history['train']) == 0:
+            raise ValueError("Aucun historique détaillé trouvé. "
+                            "Relancer fit(..., track_loss_components=True).")
+    
+        history = self.detailed_history['train']
+        n_epochs = len(history)
+        epochs = np.arange(n_epochs)
+    
+        all_keys = set()
+        for epoch_dict in history:
+            all_keys.update(epoch_dict.keys())
+    
+        # on ignore survival_raw ici : on veut le terme pondéré, qui est celui
+        # qui contribue réellement à la loss totale empilée
+        all_keys.discard('survival_raw')
+    
+        def sort_key(k):
+            # ordre d'empilement : modalités d'abord (dans l'ordre de self.source_names),
+            # puis central, puis survie/classif/domaine
+            if k.startswith('recon_') and k != 'recon_central':
+                name = k[len('recon_'):]
+                idx = self.source_names.index(name) if name in self.source_names else 999
+                return (0, idx)
+            if k == 'recon_central':
+                return (1, 0)
+            if k.startswith('classification'):
+                return (2, 0)
+            if k.startswith('survival'):
+                return (3, 0)
+            if k == 'domain':
+                return (4, 0)
+            return (5, 0)
+    
+        ordered_keys = sorted(all_keys, key=sort_key)
+    
+        label_map = {
+            'recon_central': 'reconstruction centrale',
+            'survival_weighted': 'supervision survie (pondérée)',
+            'classification_weighted': 'classification (pondérée)',
+            'domain': 'adversarial de domaine',
+        }
+    
+        series = []
+        labels = []
+        for key in ordered_keys:
+            values = [epoch_dict.get(key, 0.0) for epoch_dict in history]
+            if log_scale:
+                values = [v if v > 0 else 1e-8 for v in values]
+            series.append(values)
+            if key.startswith('recon_') and key != 'recon_central':
+                labels.append(f"reconstruction {key[len('recon_'):]}")
+            else:
+                labels.append(label_map.get(key, key))
+    
+        plt.figure(figsize=(10, 6))
+        plt.title("Décomposition cumulée de la loss (train)")
+        plt.stackplot(epochs, *series, labels=labels)
+        plt.axvline(x=self.switch_epoch, color='purple', ls='--', lw=2, label='passage phase 2')
+        plt.xlabel('epochs')
+        plt.ylabel('loss cumulée')
+        if log_scale:
+            plt.yscale('log')
+        plt.legend(fontsize=10, loc='upper right')
+        plt.tight_layout()
+    
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+        if show:
+            plt.show()
+        plt.close()
+    
+    
+    def plot_loss_recon_surv_stacked(self, show=True, save_path=None, log_scale=False):
+        """
+        Version empilée du duo reconstruction centrale / survie brute
+        (sans lambda_survival).
+    
+        log_scale : si True, affiche l'axe des y en échelle logarithmique
+            (les valeurs à 0 sont remplacées par un epsilon 1e-8).
+        """
+        if not hasattr(self, 'detailed_history') or len(self.detailed_history['train']) == 0:
+            raise ValueError("Aucun historique détaillé trouvé. "
+                            "Relancer fit(..., track_loss_components=True).")
+    
+        history = self.detailed_history['train']
+        n_epochs = len(history)
+        epochs = np.arange(n_epochs)
+    
+        recon_central = [epoch_dict.get('recon_central', 0.0) for epoch_dict in history]
+        survival_raw = [epoch_dict.get('survival_raw', 0.0) for epoch_dict in history]
+        if log_scale:
+            recon_central = [v if v > 0 else 1e-8 for v in recon_central]
+            survival_raw = [v if v > 0 else 1e-8 for v in survival_raw]
+    
+        plt.figure(figsize=(10, 6))
+        plt.title("Reconstruction centrale + survie brute (cumulé, sans lambda_survival)")
+        plt.stackplot(epochs, recon_central, survival_raw,
+                    labels=["reconstruction centrale", "survie (brute, sans λ)"])
+        plt.axvline(x=self.switch_epoch, color='purple', ls='--', lw=2, label='passage phase 2')
+        plt.xlabel('epochs')
+        plt.ylabel('loss cumulée')
+        if log_scale:
+            plt.yscale('log')
+        plt.legend(fontsize=10, loc='upper right')
+        plt.tight_layout()
+    
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+        if show:
+            plt.show()
+        plt.close()

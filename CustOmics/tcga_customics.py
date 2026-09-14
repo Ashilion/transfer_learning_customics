@@ -7,12 +7,28 @@ from src.tools.prepare_dataset import prepare_dataset
 from src.tools.utils import get_sub_omics_df
 from sklearn.model_selection import train_test_split
 import torch
+import time
 
 path = "../data/dict_pancancer_preprocessed.pickle"
 
-### load the preprocessed data
-with open(path, "rb") as f:
-    data = pickle.load(f)
+
+def load_pancancer(path="../data/dict_pancancer_union_mutation.pickle"):
+    with open(path, "rb") as f:
+        return pickle.load(f)
+
+
+def get_cancer_data(pancancer, cancer_name):
+    return {
+        name: df[pancancer["clinical"]["cancer_type"] == cancer_name]
+        for name, df in pancancer.items()
+    }
+
+pancancer = load_pancancer(path="../data/dict_pancancer_preprocessed.pickle")
+cancer_name = "COAD"
+data = get_cancer_data(pancancer, cancer_name)
+# ### load the preprocessed data
+# with open(path, "rb") as f:
+#     data = pickle.load(f)
 
 for name_omic, df in data.items():
     print("head of " + name_omic)
@@ -50,7 +66,7 @@ x_dim = [omics_df[omic_source].shape[1] for omic_source in omics_df.keys()]
 
 #### Defining Hyperparameters
 
-n_epochs = 10
+n_epochs = 500
 device = torch.device('cpu')
 label = 'status'
 event = 'status'
@@ -77,7 +93,7 @@ classif_params = {'n_class': num_classes, 'lambda': lambda_classif, 'hidden_laye
 surv_params = {'lambda': lambda_survival, 'dims': survival_dim, 'activation': 'SELU', 'l2_reg': 1e-2, 'norm': True, 'dropout': dropout}
 for i, source in enumerate(sources):
     source_params[source] = {'input_dim': x_dim[i], 'hidden_dim': hidden_dim, 'latent_dim': rep_dim, 'norm': True, 'dropout': 0.2}
-train_params = {'switch': 5, 'lr': 1e-3}
+train_params = {'switch': 5, 'lr': 2e-5}
 
 unsupervised = True
 #### Training the model
@@ -85,8 +101,12 @@ unsupervised = True
 model = CustOMICS(source_params=source_params, central_params=central_params, classif_params=classif_params,
                         surv_params=surv_params, train_params=train_params, device=device, unsupervised=unsupervised).to(device)
 print('Number of Parameters: ', model.get_number_parameters())
+
+start_train = time.time()
 model.fit(omics_train=omics_train, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
-            omics_val=omics_val, batch_size=batch_size, n_epochs=n_epochs, verbose=True, task=task)
-metric = model.evaluate(omics_test=omics_test, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
-                task=task, batch_size=1024, plot_roc=False)
+            omics_val=omics_val, batch_size=batch_size, n_epochs=n_epochs, verbose=True, task=task, patience=3, min_delta=1e-3, early_stopping_on="train" )
+end_train = time.time()
+print(f"total time train {end_train - start_train}")
+# metric = model.evaluate(omics_test=omics_test, clinical_df=clinical_df, label=label, event=event, surv_time=surv_time,
+#                 task=task, batch_size=1024, plot_roc=False)
 model.plot_loss()
