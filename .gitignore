@@ -30,3 +30,5 @@ missing_folds*
 
 CustOmics/models/
 PCLSurv/
+
+optuna_journal/
