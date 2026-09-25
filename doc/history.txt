@@ -1,0 +1,3602 @@
+    1  cd /env/cnrgh/proj/math_stats/
+    2  ssh agloague@intifuture.cnrgh.fr
+    3  ssh agloague@intifutur.cnrgh.fr
+    4  cd /env/cnrgh/proj/math_stats/
+    5  touch test.py
+    6  cat test.py 
+    7  mkdir test
+    8  ls
+    9  ls -a
+   10  ssh agloague@intifuture.cnrgh.fr
+   11  ssh agloague@intifutur.cnrgh.fr
+   12  touch test.py
+   13  module avail python
+   14  module load python/3.11
+   15  python
+   16  python test.py
+   17  module avail jupyter
+   18  cd /env/cnrgh/proj/math_stats/
+   19  jupyter notebook --no-browser --port=8080
+   20  cd /env/cnrgh/proj/math_stats/
+   21  cd /env/cnrgh/proj/math_stats/
+   22  jupyter notebook --no-browser --port=8080
+   23  ccc_mpinfo
+   24  sshare | grep hlrgrand
+   25  sshare | grep hlegrand
+   26  sshare | grep agloague
+   27  sshare
+   28  cd /env/cnrgh/proj/math_stats/
+   29  code .
+   30  cd /env/cnrgh/proj/math_stats/scratch/
+   31  cd hlegrand/
+   32  code .
+   33  sshare | grep agloague
+   34  sshare
+   35  cd /env/cnrgh/proj/math_stats/
+   36  code .
+   37  cd /env/cnrgh/proj/math_stats/scratch/
+   38  cd hlegrand/
+   39  code .
+   40  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+   41  module load python
+   42  source venv/bin/activate
+   43  python preprocess_tcga_part3.py 
+   44  module avail jupyter
+   45  module avail
+   46  clear
+   47  module avail python
+   48  module avail pytorch
+   49  pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+   50  pip install matplotlib
+   51  pip install pip install scikit-learn
+   52  pip install scikit-learn
+   53  pip install shap
+   54  pip install lifelines
+   55  pip install seaborn
+   56  cd CustOmics/
+   57  python CustOmics/test_customics.py 
+   58  python test_customics.py 
+   59  cd CustOmics/
+   60  python test_customics.py 
+   61  ls
+   62  pip install pip install scikit-learn
+   63  pip install scikit-learn
+   64  pip install shap
+   65  pip install lifelines
+   66  pip install seaborn
+   67  python CustOmics/test_customics.py 
+   68  ls
+   69  cd ../
+   70  ccc_mpp -u hlegrand
+   71  squeue
+   72  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+   73  sbatch run_preprocessing.sh 
+   74  python preprocess_tcga.py 
+   75  python preprocess_tcga_part2.py 
+   76  python preprocess_tcga_part3.py 
+   77  cd CustOmics/
+   78  python preprocess_for_customics.py 
+   79  python test_customics.py 
+   80  code .
+   81  module load python
+   82  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+   83  source venv/bin/activate
+   84  sshell -c2
+   85  sshell -c2 
+   86  sshell -c2 
+   87  cd CustOmics/
+   88  python preprocess_for_customics.py 
+   89  python tcga_customics.py 
+   90  python preprocess_for_customics.py 
+   91  cd CustOmics/
+   92  python tcga_customics.py 
+   93  module load python
+   94  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+   95  source venv/bin/activate
+   96  sshell -c2
+   97  cd Customics
+   98  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+   99  cd CustOmics/
+  100  module load python
+  101  jupyter-notebook &
+  102  jupyter-lab &
+  103  cd CustOmics/
+  104  python tcga_customics.py 
+  105  module load python
+  106  source venv/bin/activate
+  107  cd /env/cnrgh/proj/projet_TCGA_903/scratch/msavino/
+  108  ls TCGA/
+  109  cd TCGA/TCGA-CHOL/
+  110  cd Copy_Number_Variation/
+  111  cd Gene_Level_Copy_Number/
+  112  ls
+  113  vi a91d6034-951e-48e8-a0e5-cccbafae312d/
+  114  vi a91d6034-951e-48e8-a0e5-cccbafae312d/TCGA-CHOL.b8e72a36-c593-4982-8ebb-128d9d1536b3.ascat3.gene_level_copy_number.v36.tsv 
+  115  ls -lh  a91d6034-951e-48e8-a0e5-cccbafae312d/TCGA-CHOL.b8e72a36-c593-4982-8ebb-128d9d1536b3.ascat3.gene_level_copy_number.v36.tsv 
+  116  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  117  module load jupyterlab/
+  118  jupyter-notebook &
+  119  jupyter-lab &
+  120  bg
+  121  bz
+  122  htop
+  123  sshell -c2 -mem-per-cpu=10G
+  124  sshell -c2 --mem-per-cpu=G
+  125  sshell -c2 -mem-per-cpu=7G
+  126  sshell -c2
+  127  sshell -c2 -t 00:10:00
+  128  python upset_plot.py 
+  129  clear
+  130  python upset_plot.py 
+  131  clear
+  132  cd CustOmics/
+  133  pip install scikit-survival
+  134  python tcga_nested_cross_validation.py 
+  135  python ncv_feature_pipeline.py 
+  136  ccc_mpinfo
+  137  sshell -c2 -t 00:10:00
+  138  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  139  module load python
+  140  source venv/bin/activate
+  141  pip install upsetplot
+  142  ls
+  143  sshell -c2
+  144  clear
+  145  sbatch run_ncv_feature_pipeline.sh
+  146  pip install upsetplot
+  147  sshell -c2
+  148  clear
+  149  sbatch run_ncv_feature_pipeline.sh
+  150  cd /env/cnrgh/proj/math_stats/scratch/
+  151  cd legoff/
+  152  cd benchmark
+  153  cd data/
+  154  module load r
+  155  R
+  156  cp folds.rds ../../../hlegrand/data/.
+  157  cd ../results/
+  158  cd ref/
+  159  ls
+  160  less ref_results.csv 
+  161  cp ref_results.csv ../../../../hlegrand/data/.
+  162  cp ref_results.csv ../../../../hlegrand/data/.
+  163  ls
+  164  module load python
+  165  source venv/bin/activate
+  166  python preprocess_clinical_for_cox.py 
+  167  python cox_model.py 
+  168  module load python
+  169  source venv/bin/activate
+  170  pip install upsetplot
+  171  ls
+  172  ls -a
+  173  ls .vscode-server/
+  174  ls .vscode-server/extensions/
+  175  rm .vscode-server/extensions/ms-python.vscode-pylance-2025.10.4/
+  176  rm -r .vscode-server/extensions/ms-python.vscode-pylance-2025.10.4/
+  177  ls .vscode-server/data/CachedExtensionVSIXs/
+  178  rm -r .vscode-server/data/CachedExtensionVSIXs/ms-python.vscode-pylance-2025 
+  179  rm -r .vscode-server/data/CachedExtensionVSIXs/ms-python.vscode-pylance-2025.10.4 
+  180  rm -r .vscode-server/data/CachedExtensionVSIXs/ms-python.vscode-pylance-2026.2.1 
+  181  ls .vscode-server/data
+  182  ls .vscode-server/data/Cached
+  183  ls .vscode-server/data/CachedProfilesData/
+  184  ls .vscode-server/data/CachedProfilesData/__default__profile__/
+  185  ls .vscode-server/data/CachedProfilesData/__default__profile__/extensions.user.cache 
+  186  ls .vscode-server/data/CachedProfilesData/__default__profile__/extensions.user.cache
+  187  cat .vscode-server/data/CachedProfilesData/__default__profile__/extensions.user.cache
+  188  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  189  clear
+  190  c
+  191  module show c
+  192  ccc_mpinfo
+  193  sbatch run_ncv_feature_pipeline.sh
+  194  ccc_mpp -u hlegrand
+  195  sshell -c2
+  196  ccc_mpp -u hlegrand
+  197  sshell -c2
+  198  python cox_test.py 
+  199  python preprocess_clinical_for_cox.py 
+  200  python cox_model.py 
+  201  python cox_test.py 
+  202  python cox_model.py 
+  203  python cox_test.py 
+  204  python cox_model.py 
+  205  module load r
+  206  R
+  207  python read_folds_cv.py 
+  208  python preprocess_clinical_for_cox.py 
+  209  python cox_model.py 
+  210  python cox_test.py 
+  211  python cox_model.py 
+  212  ls /env/cnrgh/proj/math_stats/scratch/legoff
+  213  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchmark
+  214  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/resources/
+  215  cat /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/rank_data.conf.R 
+  216  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/data/
+  217  cat /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/cv_results.sh 
+  218  cat /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/populate.sh
+  219  cat /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/README.md 
+  220  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/
+  221  ls /env/cnrgh/proj/math_stats/scratch/legoff/
+  222  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchbatch
+  223  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchbatchCLI
+  224  cat /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/measures.conf.R 
+  225  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  226  module load python
+  227  source venv/bin/activate
+  228  sshell -c2
+  229  python cox_nested_cv.py 
+  230  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchbatchCLI
+  231  cat /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/measures.conf.R 
+  232  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  233  rm test.py
+  234  touch iniate_session.sh
+  235  ls
+  236  chmod +x iniate_session.sh 
+  237  ./iniate_session.sh 
+  238  nano iniate_session.sh 
+  239  module load python
+  240  cd /env/cnrgh/proj/math_stats/scratch/hlegrand
+  241  source venv/bin/activate
+  242  sshell -c2
+  243  sshell -c2
+  244  module load python
+  245  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  246  source venv/bin/activate
+  247  clear
+  248  python read_folds_cv.py 
+  249  python cox_nested_cv.py 
+  250  ls /env/cnrgh/proj/math_stats/scratch/legoff/
+  251  ls /env/cnrgh/proj/math_stats/scratch/legoff/RGCCA/
+  252  ls /env/cnrgh/proj/math_stats/scratch/legoff/RGCCA/algorithms/
+  253  ls /env/cnrgh/proj/math_stats/scratch/legoff/benchmark/R/
+  254  python read_folds_cv.py 
+  255  clear
+  256  module load python
+  257  source venv/bin/activate
+  258  python read_vincent_results.py 
+  259  python read_folds_cv.py 
+  260  python cox_nested_cv.py 
+  261  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  262  module load r
+  263  ls
+  264  R
+  265  sshell -c2
+  266  sshell -c2
+  267  python read_vincent_results.py 
+  268  python cox_nested_cv.py 
+  269  module load python
+  270  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  271  source venv/bin/activate
+  272  sshell -c2
+  273  source venv/bin/activate
+  274  sshell -c2
+  275  python read_vincent_results.py 
+  276  python cox_nested_cv.py 
+  277  python compare_results.py 
+  278  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_seq_mod_surv.R 
+  279  sshell -c2
+  280  module load python
+  281  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  282  source venv/bin/activate
+  283  sshell -c2
+  284  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  285  source venv/bin/activate
+  286  sshell -c2
+  287  ls
+  288  pip freeze > requirements.txt
+  289  python -m venv venv_sksurv_dev
+  290  source venv_sksurv_dev/bin/activate
+  291  pip install -r requirements.txt
+  292  pip uninstall scikit-survival
+  293  git clone https://github.com/sebp/scikit-survival.git
+  294  cd scikit-survival/
+  295  pip install -U pip setuptools wheel cython numpy
+  296  git checkout -b get_deviance
+  297  git submodule update --init
+  298  pip install -e .
+  299  python ../test_sksurv_modified.py 
+  300  python cox_nested_cv.py 
+  301  python ../test_sksurv_modified.py 
+  302  python cox_nested_cv.py 
+  303  python compare_results.py 
+  304  cd CustOmics/
+  305  python ncv_customics_cox.py 
+  306  module load python
+  307  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  308  source venv/bin/activate
+  309  sshell -c2
+  310  sshell -c2
+  311  python cox_nested_cv.py 
+  312  cd CustOmics/
+  313  python ncv_customics_cox.py 
+  314  python cox_nested_cv.py 
+  315  python compare_results.py 
+  316  cd CustOmics/
+  317  python ncv_customics_cox.py 
+  318  cd ../
+  319  rm -r scikit-survival/
+  320  clear
+  321  sshell -c2
+  322  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  323  source venv/bin/activate
+  324  sshell -c2
+  325  pip freeze > requirements.txt
+  326  python -m venv venv_sksurv_dev
+  327  source venv_sksurv_dev/bin/activate
+  328  pip install -r requirements.txt
+  329  pip uninstall scikit-survival
+  330  git clone https://github.com/sebp/scikit-survival.git
+  331  pip install -U pip setuptools wheel cython numpy
+  332  git checkout -b get_deviance
+  333  git submodule update --init
+  334  pip install -e .
+  335  python ../test_sksurv_modified.py 
+  336  python ../test_sksurv_modified.py 
+  337  python compare_results.py 
+  338  module load python
+  339  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  340  source venv/bin/activate
+  341  sshell -c2
+  342  sshell -c2
+  343  python compare_results.py 
+  344  cd scikit-survival/
+  345  rm -fr .git
+  346  rm -r scikit-survival/
+  347  rm -r venv_sksurv_dev/
+  348  python cox_nested_cv.py 
+  349  python cox_model/cox_nested_cv.py 
+  350  git init --initial-branch=main --object-format=sha1
+  351  [200~git config --local user.name "Hugo LEGRAND"
+  352  git config --local user.email "hugo.legrand@cnrgh.fr"~
+  353  git config --global --add safe.directory /env/export/v_cng_n07_scratch/v_scratch_math_stats/hlegrand
+  354  git config --local user.name "Hugo LEGRAND"
+  355  git config --local user.email "hugo.legrand@cnrgh.fr"
+  356  rm -rf CustOmics/.git
+  357  git add .
+  358  ls
+  359  cd ../
+  360  git commit -m "initial commit"
+  361  git remote add origin git@gitlab.ibfj-evry.fr:hlegrand/transfer_learning_customics.git
+  362  git push --set-upstream origin main
+  363  git rm --cached -r CustOmics/
+  364  git add CustOmics/
+  365  git rm --cached -r CustOmics/splits/
+  366  git commit -m "fix Customics .git (submodules) to see files"
+  367  git push
+  368  cd CustOmics/
+  369  clear
+  370  python ncv_customics_cox.py 
+  371  git status
+  372  python cox_nested_cv.py 
+  373  python compare_results.py 
+  374  cd CustOmics/
+  375  python ncv_customics_cox.py 
+  376  module load python
+  377  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  378  source venv/bin/activate
+  379  sshell -c2
+  380  history | grep sbatch
+  381  history | grep ccc
+  382  git status
+  383  sbatch run_ncv_customics_cox.sh
+  384  ccc_mpp -u hlegrand
+  385  ssh-keygen -t ed25519
+  386  cat /env/cnrgh/home/hlegrand/.ssh/id_ed25519.pub 
+  387  cd CustOmics/
+  388  python ncv_custcox_multiple_alphas.py
+  389  cd CustOmics/
+  390  python ncv_custcox_multiple_alphas.py
+  391  ssh-keygen -t ed25519
+  392  cat /env/cnrgh/home/hlegrand/.ssh/id_ed25519.pub 
+  393  module load python 
+  394  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  395  source venv/bin/activate
+  396  sbatch run_cox_nested.sh
+  397  sbatch run_in_customics ncv_custcox_multiple_aplhas.py
+  398  sbatch run_in_customics.sh ncv_custcox_multiple_aplhas.py
+  399  history | grep ccc
+  400  ccc_mpp -u hlegrand
+  401  sshell -c2
+  402  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  403  ls
+  404  pip install optuna
+  405  module load python
+  406  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  407  source venv/bin/activate
+  408  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  409  python cox_model/compare_alpha.py 
+  410  module load r
+  411  R cox_model/compare_alpha.R
+  412  Rscript --vanilla cox_model/compare_alpha.R
+  413  Rscript  cox_model/compare_alpha.R
+  414  history | grep ccc
+  415  ccc_mpinfo
+  416  ccc_mpp
+  417  ls
+  418  pip install optuna
+  419  module load python
+  420  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  421  source venv/bin/activate
+  422  ccc_mpp
+  423  history | grep ccc
+  424  sshell -c2
+  425  module load python
+  426  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  427  source venv/bin/activate
+  428  python cox_model/analyse_alpha.py 
+  429  clear
+  430  history | grep ccc
+  431  ccc_mpp
+  432  module load python
+  433  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  434  source venv/bin/activate
+  435  sshell -c2
+  436  source venv/bin/activate
+  437  sshell -c2
+  438  python cox_model/analyse_alpha.py 
+  439  python cox_model/compare_alpha.py 
+  440  ls
+  441  clear
+  442  git clone https://github.com/sebp/scikit-survival.git
+  443  clear
+  444  history | grep ccc
+  445  ccc_mpp
+  446  module load python
+  447  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  448  sshell -c2
+  449  sshell -c2
+  450  python cox_model/analyse_alpha.py 
+  451  ls
+  452  clear
+  453  git clone https://github.com/sebp/scikit-survival.git
+  454  python test_sksurv_dev.py 
+  455  pip install pyreadr pandas numpy matplotlib scikit-learn scikit-survival
+  456  source venv/bin/activate
+  457  source venv_sksurv_dev/bin/activate
+  458  cd scikit-survival/
+  459  pip install -e . --no-build-isolation
+  460  cd ../
+  461  python cox_model/compare_alpha.py 
+  462  module load r
+  463  Rscript  cox_model/compare_alpha.R
+  464  /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_seq_mod_surv.R
+  465  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_seq_mod_surv.R
+  466  cp /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_seq_mod_surv.R cox_model/
+  467  Rscript  cox_model/compare_preds.R
+  468  python cox_model/compare_preds.py
+  469  pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
+  470  pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
+  471  pip uninstall scikit-survival
+  472  cd scikit-survival/
+  473  pip install -e .
+  474  cd ../
+  475  python cox_model/compare_alpha.py 
+  476  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  477  git add utils/vvh_cv.py 
+  478  git commit -m "add -2 factor to vvh"
+  479  git add cox_model/ 
+  480  git commit -m "add comparison code between R and python"
+  481  git status
+  482  git add CustOmics/
+  483  git commit -m "add nested cross validation customics + cox"
+  484  git push
+  485  history | grep ccc
+  486  ccc_mpp
+  487  module load python
+  488  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  489  source venv/bin/activate
+  490  history | grep "python -m"
+  491  python -m venv venv_sksurv_dev
+  492  source venv_sksurv_dev/bin/activate
+  493  pip install -r requirements.txt
+  494  pip uninstall scikit-survival
+  495  cd scikit-survival/
+  496  pip install -U pip setuptools wheel cython numpy
+  497  git submodule update --init
+  498  pip install -e .
+  499  cd ../
+  500  pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
+  501  sshell -c2
+  502  module load python
+  503  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  504  source venv_sksurv_dev/bin/activate
+  505  sshell -c2
+  506  Rscript cox_model/compare_alpha.R 
+  507  python cox/cox_nested_cv.py
+  508  module load python
+  509  module load r
+  510  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  511  source venv_sksurv_dev/bin/activate
+  512  sshell -c2
+  513  sshell -c2
+  514  module load python
+  515  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  516  source venv_sksurv_dev/bin/activate
+  517  sshell -c2
+  518  Rscript cox_model/compare_alpha.R 
+  519  python cox/cox_nested_cv.py
+  520  python cox_model/compare_preds.R
+  521  module load r
+  522  ls /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/
+  523  cat learner_utils.R
+  524  grep -r "Dint" /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/
+  525  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_utils.R 
+  526  python cox_model/compare_preds.py 
+  527  Rscript cox_model/compare_preds.R
+  528  python cox/cox_nested_cv.py
+  529  module load python
+  530  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  531  source venv_sksurv_dev/bin/activate
+  532  module load r
+  533  sshell -c2
+  534  history | grep pip
+  535  module load r
+  536  module load python
+  537  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  538  source venv_sksurv_dev/bin/activate
+  539  sshell -c2
+  540  source venv_sksurv_dev/bin/activate
+  541  sshell -c2
+  542  python results_analysis/compare_results.py 
+  543  python cox_model/cox_nested_cv.py 
+  544  Rscript cox_model/metrics_compare.R
+  545  python metrics_compare.py
+  546  python cox_model/metrics_compare.py 
+  547  module load python 
+  548  module load r
+  549  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  550  source venv_sksurv_dev/bin/activate
+  551  sshell -c2
+  552  sshell -c2
+  553  python cox_model/metrics_compare.py 
+  554  python cox_model/cox_nested_cv.py 
+  555  python results_analysis/compare_results.py 
+  556  cat "/env/export/v_cng_n07_scratch/v_scratch_math_stats/legoff/benchmark/measures.conf.R"
+  557  Rscript cox_model/metrics_compare.R
+  558  sshell -c2
+  559  python results_analysis/compare_results.py 
+  560  cat "/env/export/v_cng_n07_scratch/v_scratch_math_stats/legoff/benchmark/measures.conf.R"
+  561  python cox_model/cox_nested_cv.py 
+  562  Rscript cox_model/metrics_compare.R
+  563  cd scikit-survival/
+  564  history | grep pip
+  565  pip install -e . --no-build-isolation
+  566  cd ../
+  567  python cox_model/metrics_compare.py 
+  568  module load python
+  569  module load r
+  570  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  571  source venv_sksurv_dev/bin/activate
+  572  sshell -c2
+  573  python cox_model/difference_comparison.py 
+  574  module load python
+  575  module load R
+  576  module load r
+  577  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  578  source venv_sksurv_dev/bin/activate
+  579  sshell -c2
+  580  python cox_model/difference_comparison.py 
+  581  python cox_model/compare_preds.py
+  582  Rscript cox_model/compare_preds.R
+  583  python cox_model/difference_comparison.py 
+  584  python cox_model/compare_preds.py 
+  585  module load python
+  586  module load r
+  587  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  588  source venv_sksurv_dev/bin/activate
+  589  sshell -c2
+  590  ls
+  591  Rscript cox_model/compare_preds.R
+  592  python cox_model/difference_comparison.py 
+  593  module load python 
+  594  module load r
+  595  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  596  source venv_sksurv_dev/bin/activate
+  597  sshell -c2
+  598  module load python
+  599  module load r
+  600  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  601  source venv_sksurv_dev/bin/activate
+  602  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  603  source venv_sksurv_dev/bin/activate
+  604  cd CustOmics/
+  605  pip install optuna
+  606  python ncv_custcox_optuna.py 
+  607  python ncv_custcox_multiple_alphas.py 
+  608  python test_refactor_custcox.py 
+  609  cd CustOmics/
+  610  python ncv_custcox_optuna.py 
+  611  cd CustOmics/
+  612  python test_refactor_custcox.py 
+  613  cd CustOmics/
+  614  python ncv_custcox_optuna.py 
+  615  python test_refactor_custcox.py 
+  616  cd CustOmics/
+  617  python test_refactor_custcox.py 
+  618  module load python 
+  619  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  620  source venv_sksurv_dev/bin/activate
+  621  sshell -c2
+  622  module load python 
+  623  module load r
+  624  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  625  source venv_sksurv_dev/bin/activate
+  626  sshell -c2
+  627  module load python 
+  628  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  629  source venv_sksurv_dev/bin/activate
+  630  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  631  sbatch run_in_customics.sh "ncv_custcox_multiple_alphas.py"
+  632  sshell -c2
+  633  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  634  sbatch run_in_customics.sh "ncv_custcox_multiple_alphas.py"
+  635  sshell -c2
+  636  history | grep ccc
+  637  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  638  ccc_mpp
+  639  module load python
+  640  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  641  ccc_mpp
+  642  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  643  cd CustOmics/
+  644  python test_train_source.py 
+  645  ccc_mpp
+  646  ccc_mpinfo
+  647  cd ../
+  648  sbatch run_in_customics.sh test_train_source.py
+  649  sshell -c2 --mem-per-cpu=10g
+  650  ls
+  651  cd CustOmics/
+  652  python ncv_custcox_multiple_alphas.py 
+  653  python test_train_source.py
+  654  cd CustOmics/
+  655  python test_train_source.py
+  656  python ncv_custcox_multiple_alphas.py 
+  657  cd CustOmics/
+  658  python test_train_source.py
+  659  mprof run test_train_source.py
+  660  mprof plot
+  661  python test_train_target.py
+  662  cd CustOmics/
+  663  python test_train_target.py
+  664  python test_refactor_custcox.py
+  665  cd CustOmics/
+  666  python test_refactor_custcox.py
+  667  cd CustOmics/
+  668  python evaluate_transfer_zero_shot.py 
+  669  module load python
+  670  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  671  source venv_sksurv_dev/bin/activate
+  672  sshell -c2 --mem-per-cpu=8g
+  673  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  674  sbatch run_in_customics.sh "ncv_custcox_multiple_alphas.py"
+  675  history | grep ccc
+  676  ccc_mpp
+  677  ccc_mpp
+  678  module load python
+  679  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  680  source venv_sksurv_dev/bin/activate
+  681  sbatch run_in_customics.sh test_train_source.py
+  682  sshell -c2 --mem-per-cpu=2G
+  683  sshell -c2 --mem-per-cpu=5G
+  684  sshell -c2 --mem-per-cpu=8G
+  685  sbatch run_in_customics.sh test_refactor_custcox.py
+  686  sshell -c2
+  687  cd CustOmics/
+  688  python test_refactor_custcox.py 
+  689  sbatch run_in_customics.sh test_refactor_custcox.py
+  690  sshell -c2
+  691  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  692  source venv_sksurv_dev/bin/activate
+  693  python preprocess_data/preprocess_clinical_for_cox.py 
+  694  python cox_model/cox_nested_cv.py 
+  695  python results_analysis/compare_results.py 
+  696  python preprocess_data/preprocess_all_clinical_cox.py 
+  697  module load python 
+  698  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  699  source venv_sksurv_dev/bin/activate
+  700  python preprocess_data/preprocess_all_clinical_cox.py 
+  701  python cox_model/cox_ncv_all_cancer.py 
+  702  python results_analysis/compare_results.py 
+  703  python results_analysis/compare_all_clinical.py 
+  704  cd CustOmics/
+  705  python test_refactor_custcox.py 
+  706  cd CustOmics/
+  707  python ncv_custcox_optu_arg.py 
+  708  cd CustOmics/
+  709  python ncv_custox_clinical.py 
+  710  module load python
+  711  ls
+  712  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  713  source venv_sksurv_dev/bin/activate
+  714  sshell -c2
+  715  sbatch run_in_customics.sh ncv_custcox_optu_arg.py
+  716  sshell -c2 --mem-per-cpu=8G
+  717  sbatch run_in_customics.sh test_refactor_custcox.py
+  718  module load python
+  719  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  720  source venv_sksurv_dev/bin/activate
+  721  sshell -c2
+  722  python results_analysis/compare_all_clinical.py 
+  723  python results_analysis/compare_two_results.py 
+  724  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "Cox vs Custcox"
+  725  python results_analysis/compare_all_clinical.py 
+  726  python cox_model/difference_comparison.py 
+  727  sbatch scripts/custcox_gridsearch.sh
+  728  squeue
+  729  squeue
+  730  python results_analysis/compare_two_results.py --ref results/ncv_custcox_clinical_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "Cox vs Custcox"
+  731  python cox_model/difference_comparison.py 
+  732  python results_analysis/compare_all_clinical.py 
+  733  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "Cox vs Custcox"
+  734  python results_analysis/compare_all_clinical.py 
+  735  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "Cox vs Custcox"
+  736  python test_train_target.py
+  737  python test_refactor_custcox.py
+  738  cd CustOmics/
+  739  python test_refactor_custcox.py
+  740  cd CustOmics/
+  741  python evaluate_transfer_zero_shot.py 
+  742  sshell -c2 --mem-per-cpu=8g
+  743  sbatch run_in_customics.sh ncv_custcox_multiple_alphas.py
+  744  sbatch run_in_customics.sh "ncv_custcox_multiple_alphas.py"
+  745  history | grep ccc
+  746  sbatch run_in_customics.sh test_train_source.py
+  747  sshell -c2 --mem-per-cpu=2G
+  748  sshell -c2 --mem-per-cpu=5G
+  749  sshell -c2 --mem-per-cpu=8G
+  750  sbatch run_in_customics.sh test_refactor_custcox.py
+  751  cd CustOmics/
+  752  python test_refactor_custcox.py 
+  753  sbatch run_in_customics.sh test_refactor_custcox.py
+  754  python preprocess_data/preprocess_clinical_for_cox.py 
+  755  python cox_model/cox_nested_cv.py 
+  756  python results_analysis/compare_results.py 
+  757  python preprocess_data/preprocess_all_clinical_cox.py 
+  758  module load python 
+  759  python preprocess_data/preprocess_all_clinical_cox.py 
+  760  python cox_model/cox_ncv_all_cancer.py 
+  761  python results_analysis/compare_results.py 
+  762  python results_analysis/compare_all_clinical.py 
+  763  cd CustOmics/
+  764  python test_refactor_custcox.py 
+  765  cd CustOmics/
+  766  python ncv_custcox_optu_arg.py 
+  767  cd CustOmics/
+  768  python ncv_custox_clinical.py 
+  769  sbatch run_in_customics.sh ncv_custcox_optu_arg.py
+  770  sshell -c2 --mem-per-cpu=8G
+  771  sbatch run_in_customics.sh test_refactor_custcox.py
+  772  module load python
+  773  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  774  source venv_sksurv_dev/bin/activate
+  775  scancel 374180
+  776  sbatch run_custcox_optuna.sh
+  777  sbatch run_custcox_gridsearch.sh
+  778  ccc_mpp
+  779  ccc_mpstat
+  780  scontrol
+  781  show
+  782  clear
+  783  sbatch scripts/tl_custcox_source.sh
+  784  ls
+  785  sbatch scripts/tl_custcox_target.sh
+  786  sbatch scripts/custcox_gridsearch.sh
+  787  sbatch cox_clinical_all.sh
+  788  ccc_mpinfo
+  789  squeue 
+  790  sshell -c2
+  791  sbatch scripts/cox_clinical_all.sh
+  792  squeue
+  793  squeue -u hlegrand
+  794  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna/gridsearch"
+  795  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch"
+  796  python results_analysis/compare_two_results.py --ref results/ncv_custcox_supervised_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "supervised_unsupervised"
+  797  module load pyth
+  798  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  799  source venv_sksurv_dev/bin/activate
+  800  sshell -c2
+  801  squeue
+  802  clear
+  803  cd CustOmics/
+  804  ls
+  805  python tests/test_customics.py 
+  806  python test_customics.py 
+  807  python tcga_customics.py 
+  808  ls
+  809  module load python
+  810  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  811  source venv_sksurv_dev/bin/activate
+  812  sshell -c2
+  813  sshell -c2
+  814  cd CustOmics/
+  815  python ncv_custcox_optu_arg.py --use_saved_folds --inner_splits 5 --n_trials 20
+  816  python ncv_custcox_optu_arg.py --use_saved_folds --inner_splits 5 
+  817  module load python
+  818  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  819  source venv_sksurv_dev/bin/activate
+  820  sshell -c2
+  821  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  822  python results_analysis/compare_all_clinical.py 
+  823  python cox_model/cox_nested_cv.py 
+  824  source venv_sksurv_dev/bin/activate
+  825  sshell -c2
+  826  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  827  python preprocess_data/preprocess_clinical_for_cox.py 
+  828  python cox_model/cox_nested_cv.py 
+  829  python results_analysis/compare_all_clinical.py 
+  830  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  831  source venv_sksurv_dev/bin/activate
+  832  sshell -c2
+  833  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  834  python preprocess_data/preprocess_clinical_for_cox.py 
+  835  squeue -u hlegrand
+  836  python cox_model/cox_nested_cv.py 
+  837  python results_analysis/compare_all_clinical.py 
+  838  ls
+  839  module load python
+  840  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  841  source venv_sksurv_dev/bin/activate
+  842  squeue
+  843  sbatch scripts/custcox_optuna.sh
+  844  sshell -c2
+  845  clear
+  846  cd CustOmics/
+  847  ls
+  848  python tests/test_customics.py 
+  849  python test_customics.py 
+  850  python tcga_customics.py 
+  851  ls
+  852  module load python
+  853  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  854  source venv_sksurv_dev/bin/activate
+  855  ccc_mpinfo
+  856  sshell -c2
+  857  sbatch scripts/custcox_optuna.sh
+  858  sbatch scripts/cox_clinical_all.sh
+  859  squeue
+  860  squeue -u hlegrand
+  861  python tcga_customics.py 
+  862  squeue -u hlegrand
+  863  squeue
+  864  clear
+  865  cd ../
+  866  sbatch scripts/test_gpu.sh
+  867  python test_customics.py 
+  868  python tcga_customics.py 
+  869  sshell -c2
+  870  sshell -c2
+  871  python ncv_custcox_optu_arg.py --use_saved_folds --inner_splits 5 --n_trials 20
+  872  python ncv_custcox_optu_arg.py --use_saved_folds --inner_splits 5 
+  873  sshell -c2
+  874  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  875  python results_analysis/compare_all_clinical.py 
+  876  python cox_model/cox_nested_cv.py 
+  877  sshell -c2
+  878  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  879  python preprocess_data/preprocess_clinical_for_cox.py 
+  880  python cox_model/cox_nested_cv.py 
+  881  python results_analysis/compare_all_clinical.py 
+  882  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  883  sshell -c2
+  884  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_COAD.csv --new results/ncv_custcox_mult_alpha_COAD.csv --graph "optuna_gridsearch" --boxplot
+  885  python preprocess_data/preprocess_clinical_for_cox.py 
+  886  python cox_model/cox_nested_cv.py 
+  887  python results_analysis/compare_all_clinical.py 
+  888  sshell -c2
+  889  python tests/test_customics.py 
+  890  python test_customics.py 
+  891  python tcga_customics.py 
+  892  sshell -c2
+  893  sbatch scripts/cox_clinical_all.sh
+  894  module load python
+  895  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  896  source venv_sksurv_dev/bin/activate
+  897  scancel 406036
+  898  clear
+  899  cd CustOmics/
+  900  sshell -c4
+  901  cd ../
+  902  scancel 407286
+  903  sbatch --nodelist=inti[037-039] scripts/test_gpu.sh
+  904  sbatch --nodelist=inti037 scripts/test_gpu.sh
+  905  squeue -hlegrand
+  906  squeue 
+  907  squeue
+  908  sbatch scripts/test_gpu.sh
+  909  scancel 407569
+  910  scancel 408173
+  911  scancel 407665
+  912  scancel 408166
+  913  sbatch scripts/custcox_optuna_limited.sh
+  914  scancel 406133
+  915  sbatch scripts/custcox_optuna.sh
+  916  ccc_mpinfo
+  917  python --v
+  918  python 
+  919  module avail python
+  920  squeue -u hlegrand
+  921  scancel 408425
+  922  ls
+  923  python --v
+  924  python 
+  925  module avail python
+  926  scancel 408425
+  927  ls
+  928  python results_analysis/compare_all_clinical.py 
+  929  scancel 413935
+  930  scancel 415068
+  931  sbatch scripts/custcox_optuna_limited.sh
+  932  squeue -u hlegrand
+  933  clear
+  934  cd CustOmics/
+  935  sshell -c4
+  936  cd ../
+  937  scancel 407286
+  938  sbatch --nodelist=inti[037-039] scripts/test_gpu.sh
+  939  sbatch --nodelist=inti037 scripts/test_gpu.sh
+  940  sbatch scripts/test_gpu.sh
+  941  scancel 407569
+  942  scancel 408173
+  943  scancel 407665
+  944  scancel 408166
+  945  scancel 406133
+  946  sbatch scripts/custcox_optuna.sh
+  947  ccc_mpinf
+  948  python --v
+  949  python 
+  950  module avail python
+  951  scancel 408425
+  952  ls
+  953  module load python
+  954  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  955  source venv_sksurv_dev/bin/activate
+  956  squeue -hlegrand
+  957  scancel 413376
+  958  sbatch scripts/custcox_optuna_limited.sh
+  959  sbatch scripts/cox_clinical_all.sh
+  960  sshell -c2
+  961  scancel 415092
+  962  squeue
+  963  squeue 
+  964  ccc_mpinfo
+  965  sbatch scripts/ncv_run_outer.sh
+  966  squeue -u hlegrand
+  967  python results_analysis/aggregate_folds_optuna.py 
+  968  ccc_mpinfo
+  969  cd CustOmics/
+  970  python ncv_custcox_optu_arg.py --use_saved_folds --limit_epochs 10 --inner_splits 3
+  971  python ncv_custcox_optu_arg.py --use_saved_folds --limit_epochs 10 --inner_splits 3 --n_threads 1
+  972  ls
+  973  module load python
+  974  source venv_sksurv_dev/bin/activate
+  975  squeue -hlegrand
+  976  scancel 413376
+  977  sbatch scripts/cox_clinical_all.sh
+  978  sshell -c2
+  979  scancel 415092
+  980  squeue
+  981  squeue 
+  982  sbatch scripts/ncv_run_outer.sh
+  983  python results_analysis/aggregate_folds_optuna.py 
+  984  module load python 
+  985  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  986  sbatch scripts/optuna_multi.sh
+  987  ccc_mpinfo
+  988  sbatch scripts/custcox_optuna_limited.sh
+  989  squeue -u hlegrand
+  990  sbatch scripts/custcox_optuna_limited.sh
+  991  sbatch scripts/cox_clinical_all.sh
+  992  scancel 415092
+  993  sbatch scripts/ncv_run_outer.sh
+  994  module load python
+  995  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+  996  source venv_sksurv_dev/bin/activate
+  997  ssh legrandh@topaze.ccc.cea.fr
+  998  module avail sql
+  999  squeue
+ 1000  sbatch scripts/optuna_multi.sh
+ 1001  ccc_mpinfo
+ 1002  squeue -u hlegrand
+ 1003  squeue 
+ 1004  sshell -c2
+ 1005  python results_analysis/compare_all_clinical.py 
+ 1006  squeue 
+ 1007  history | grep ridge
+ 1008  module load python 
+ 1009  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1010  source venv_sksurv_dev/bin/activate
+ 1011  sbatch scripts/cox_clinical_all.sh
+ 1012  squeue -u hlegrand
+ 1013  sshell -c2
+ 1014  module load python
+ 1015  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1016  source venv_sksurv_dev/bin/activate
+ 1017  sshell -c2
+ 1018  python cox_model/difference_comparison.py 
+ 1019  cd CustOmics/
+ 1020  python tcga_customics.py 
+ 1021  cd CustOmics/
+ 1022  python tcga_customics.py 
+ 1023  squeue
+ 1024  module load python 
+ 1025  sbatch scripts/optuna_multi.sh
+ 1026  sbatch scripts/custcox_optuna_limited.sh
+ 1027  sbatch scripts/custcox_optuna_limited.sh
+ 1028  sbatch scripts/cox_clinical_all.sh
+ 1029  scancel 415092
+ 1030  ssh legrandh@topaze.ccc.cea.fr
+ 1031  module avail sql
+ 1032  squeue
+ 1033  sbatch scripts/optuna_multi.sh
+ 1034  module load python
+ 1035  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1036  source venv_sksurv_dev/bin/activate
+ 1037  history  | grep sbatch
+ 1038  ccc_mpinfo
+ 1039  scancel 476072
+ 1040  scancel 476072_[0-31]
+ 1041  sbatch scripts/ncv_run_outer.sh
+ 1042  htop
+ 1043  sshare
+ 1044  squeue -u hlegrand
+ 1045  squeue 
+ 1046  sshell -c2
+ 1047  python results_analysis/compare_all_clinical.py --plot boxplot mad
+ 1048  squeue -u hlegrand
+ 1049  sbatch scripts/optuna_multi.sh
+ 1050  sbatch scripts/custcox_optuna_limited.sh
+ 1051  sbatch scripts/custcox_optuna_limited.sh
+ 1052  sbatch scripts/cox_clinical_all.sh
+ 1053  scancel 415092
+ 1054  sbatch scripts/ncv_run_outer.sh
+ 1055  ssh legrandh@topaze.ccc.cea.fr
+ 1056  module avail sql
+ 1057  squeue
+ 1058  sbatch scripts/optuna_multi.sh
+ 1059  python results_analysis/compare_all_clinical.py 
+ 1060  history | grep ridge
+ 1061  module load python 
+ 1062  sbatch scripts/cox_clinical_all.sh
+ 1063  python cox_model/difference_comparison.py 
+ 1064  cd CustOmics/
+ 1065  python tcga_customics.py 
+ 1066  cd CustOmics/
+ 1067  python tcga_customics.py 
+ 1068  squeue
+ 1069  module load python 
+ 1070  sbatch scripts/optuna_multi.sh
+ 1071  sbatch scripts/custcox_optuna_limited.sh
+ 1072  sbatch scripts/custcox_optuna_limited.sh
+ 1073  sbatch scripts/cox_clinical_all.sh
+ 1074  scancel 415092
+ 1075  ssh legrandh@topaze.ccc.cea.fr
+ 1076  module avail sql
+ 1077  squeue
+ 1078  sbatch scripts/optuna_multi.sh
+ 1079  history  | grep sbatch
+ 1080  scancel 476072
+ 1081  scancel 476072_[0-31]
+ 1082  sbatch scripts/ncv_run_outer.sh
+ 1083  htop
+ 1084  sshare
+ 1085  module load python
+ 1086  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1087  source venv_sksurv_dev/bin/activate
+ 1088  history | grep node
+ 1089  scancel 496957
+ 1090  squeue 
+ 1091  ccc_mpinfo --nodelist=inti[000-006]
+ 1092  scontrol show node inti000
+ 1093  scancel 497527 
+ 1094  scontrol show node inti[000-006]
+ 1095  squeue -n inti[000-006]
+ 1096  scancel 499133
+ 1097  scancel 502218
+ 1098  sshell -c2
+ 1099  scancel 504860
+ 1100  scancel 506368
+ 1101  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1102  squeue --nodelist=inti[000-006]
+ 1103  squeue -u hlegrand
+ 1104  scancel 504860
+ 1105  scancel 506368
+ 1106  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1107  squeue --nodelist=inti[000-006]
+ 1108  module load python
+ 1109  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1110  source venv_sksurv_dev/bin/activate
+ 1111  sbatch --nodelist=inti[000-006] scripts/relaunch_optuna_load.sh
+ 1112  squeue 
+ 1113  sbatch scripts/combine_outer_optuna.sh
+ 1114  scancel 538450
+ 1115  sbatch scripts/combine_results_outer.sh
+ 1116  squeue -u hlegrand
+ 1117  sshell -c2
+ 1118  du -sh venv_sksurv_dev/
+ 1119  du -sh CustOmics/
+ 1120  du -sh scikit-survival/
+ 1121  du -sh data/
+ 1122  man rsync
+ 1123  rsync -v
+ 1124  rsync -V
+ 1125  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1126  du -sh venv_sksurv_dev/
+ 1127  sshell -c2
+ 1128  cat ~/.ssh/config
+ 1129  nano ~/.ssh/config
+ 1130  rsync -avzn --chmod=Dg+s --chown=:fg0062 CustOmics/ topaze:~/CustOmics 
+ 1131  rsync -avzn --chmod=Dg+s --chown=:fg0062 CustOmics/ topaze:~/CustOmics --exclude='__pycache__' --exclude='toy_data' --exclude='splits' --exclude='figures'
+ 1132  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/ topaze:~/CustOmics --exclude='__pycache__' --exclude='toy_data' --exclude='splits' --exclude='figures'
+ 1133  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/ topaze:/ccc/work/cont007/fg0062/legrandh --exclude='__pycache__' --exclude='toy_data' --exclude='splits' --exclude='figures'
+ 1134  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/ topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude='__pycache__' --exclude='toy_data' --exclude='splits' --exclude='figures'
+ 1135  module load python
+ 1136  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1137  source venv_sksurv_dev/bin/activate
+ 1138  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1139  clear
+ 1140  history | grep ssh
+ 1141  ssh legrandh@topaze.ccc.cea.fr
+ 1142  du -sh data/
+ 1143  man rsync
+ 1144  rsync -v
+ 1145  rsync -V
+ 1146  module load python
+ 1147  cd /env/cnrgh/proj/math_stats/scratch/hlegrand
+ 1148  source venv_sksurv_dev/bin/activate
+ 1149  rsync -avz --chmod=Dg+s --chown=:fg0062 scripts_ccc/ topaze:/ccc/work/cont007/fg0062/legrandh/scripts_ccc
+ 1150  rsync -avz --chmod=Dg+s --chown=:fg0062 utils/ topaze:/ccc/work/cont007/fg0062/legrandh/utils/
+ 1151  rsync -avz --chmod=Dg+s --chown=:fg0062 utils/ topaze:/ccc/work/cont007/fg0062/legrandh/utils/
+ 1152  pip list --format=freeze | cut -d= -f1 > requirements_test.txt
+ 1153  cd CustOmics/
+ 1154  cd ../utils/
+ 1155  grep -R -h "^import \|^from " . | sort -u
+ 1156  cd ../CustOmics/
+ 1157  cd ../
+ 1158  mkdir wheels
+ 1159  pip download -r requirements_minimal.txt -d wheels
+ 1160  rsync -avz --chmod=Dg+s --chown=:fg0062 requirements_minimal.txt  topaze:/ccc/work/cont007/fg0062/legrandh/requirements.txt
+ 1161  rsync -avz --chmod=Dg+s --chown=:fg0062 scikit-survival/  topaze:/ccc/work/cont007/fg0062/legrandh/scikit-survival/
+ 1162  python -c "import pandas; print(pandas.__file__)"
+ 1163  rsync -avz --chmod=Dg+s --chown=:fg0062 data/dict_pancancer_preprocessed.pickle   topaze:/ccc/work/cont007/fg0062/legrandh/data/dict_pancancer_preprocessed.pickle
+ 1164  ccc_mpinfo
+ 1165  ls
+ 1166  pip3 list
+ 1167  python -c "import torch, numpy, pandas, scipy, sklearn; \
+ 1168  print('torch', torch.__version__); \
+ 1169  print('numpy', numpy.__version__, numpy.__file__); \
+ 1170  print('pandas', pandas.__file__); \
+ 1171  print('scipy', scipy.__file__); \
+ 1172  print('sklearn', sklearn.__file__)"
+ 1173  sshell -c2
+ 1174  du -sh scikit-survival/
+ 1175  du -sh data/
+ 1176  man rsync
+ 1177  rsync -v
+ 1178  rsync -V
+ 1179  module load python
+ 1180  ssh topaze
+ 1181  ls
+ 1182  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1183  ccc_mpinfo
+ 1184  scancel 543229
+ 1185  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1186  squeue -u hlegrand
+ 1187  history | grep compare_two
+ 1188  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_COAD.csv --graph "optuna_cox" --boxplot
+ 1189  sacct -u $USER -S 2026-06-19 --format=JobID,JobName,State,Start,End,Elapsed
+ 1190  ssh topaze
+ 1191  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1192  ccc_mpinfo
+ 1193  scancel 543229
+ 1194  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1195  squeue -u hlegrand
+ 1196  history | grep compare_two
+ 1197  sacct -u $USER -S 2026-06-19 --format=JobID,JobName,State,Start,End,Elapsed
+ 1198  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_COAD.csv --graph "optuna_cox" --boxplot
+ 1199  ls
+ 1200  pip install --no-index  --find-links=wheels --ignore-installed -r requirements.txt
+ 1201  source venv_sksurv_dev/
+ 1202  source venv_sksurv_dev/bin/activate
+ 1203  pip download -r requirements_minimal.txt -d wheels
+ 1204  ls wheels/
+ 1205  l
+ 1206  source test_venv/bin/activate
+ 1207  cd ../
+ 1208  pip install --no-index  --find-links=wheels --ignore-installed -r requirements_minimal.txt 
+ 1209  cd CustOmics/
+ 1210  python test_gpu.py 
+ 1211  module avail python
+ 1212  rsync -v
+ 1213  rsync -V
+ 1214  ssh topaze
+ 1215  ccc_mpinfo
+ 1216  scancel 543229
+ 1217  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1218  module load python
+ 1219  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1220  source venv_sksurv_dev/bin/activate
+ 1221  sbatch scripts/relaunch_specific_optuna_load.sh
+ 1222  squeue
+ 1223  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1224  sbatch scripts/combine_results_outer.sh
+ 1225  squeue -u hlegrand
+ 1226  rm -rf test_venv/
+ 1227  python -m venv venv_numpy1
+ 1228  source venv_numpy1/bin/activate
+ 1229  ls
+ 1230  pip install "numpy<2"
+ 1231  python -c "import numpy; print(numpy.__version__)"
+ 1232  pip install -r requirements_minimal.txt 
+ 1233  sshell -c2
+ 1234  ls
+ 1235  python -c "import numpy; print(numpy.__version__)"
+ 1236  pip install "numpy<2"
+ 1237  pip install -r requirements_minimal.txt 
+ 1238  rm -rf wheels/
+ 1239  history | grep wheels
+ 1240  mkdir wheels
+ 1241  pip download -r requirements_minimal.txt -d wheels/
+ 1242  rsync -avz --chmod=Dg+s --chown=:fg0062 wheels/  topaze:/ccc/work/cont007/fg0062/legrandh/wheels/
+ 1243  rsync -avz --chmod=Dg+s --chown=:fg0062 requirements_minimal.txt  topaze:/ccc/work/cont007/fg0062/legrandh/requirements.txt
+ 1244  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data"
+ 1245  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1246  sshell -c2
+ 1247  history | grep compare
+ 1248  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_COAD.csv --graph "optuna_cox" --boxplot
+ 1249  ccc_mpinfo 
+ 1250  ccc_mpinfo --node=inti000
+ 1251  ccc_mpinfo -p normal
+ 1252  ccc_mpinfo -p normal | grep nodes
+ 1253  ccc_mpinfo | grep normal
+ 1254  ccc_mpinfo
+ 1255  squeue
+ 1256  source venv_sksurv_dev/
+ 1257  source venv_sksurv_dev/bin/activate
+ 1258  pip install plotly
+ 1259  python results_analysis/time_multi_outer.py 
+ 1260  cp ~/timeline.png ./results/timeline_multi_outer.png
+ 1261  source venv_sksurv_dev/bin/activate
+ 1262  ls
+ 1263  cd CustOmics/
+ 1264  python analyze_optuna_figs.py 
+ 1265  python -c "import numpy; print(numpy.__version__)"
+ 1266  pip install -r requirements_minimal.txt 
+ 1267  module load python
+ 1268  ls
+ 1269  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1270  source venv_numpy1/bin/activate
+ 1271  pip install "numpy<2"
+ 1272  history | grep sbatch
+ 1273  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1274  sshell -c2
+ 1275  squeue -u hlegrand
+ 1276  ssh topaze
+ 1277  history | grep sbatch
+ 1278  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1279  sshell -c2
+ 1280  ssh topaze
+ 1281  cd CustOmics/
+ 1282  python analyze_optuna_figs.py 
+ 1283  squeue
+ 1284  squeue -u hlegrand
+ 1285  ssh topaze
+ 1286  squeue
+ 1287  cd CustOmics/
+ 1288  squeue -u hlegrand
+ 1289  python analyze_optuna_figs.py 
+ 1290  pip install "numpy<2"
+ 1291  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1292  sshell -c2
+ 1293  ssh topaze
+ 1294  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1295  sshell -c2
+ 1296  ssh topaze
+ 1297  ssh topaze
+ 1298  cd CustOmics/
+ 1299  squeue
+ 1300  python analyze_optuna_figs.py 
+ 1301  ccc_mpinfo
+ 1302  history sbatch
+ 1303  cd ../
+ 1304  ls
+ 1305  history | grep sbatch
+ 1306  sbatch scripts/relaunch_specific_optuna_load.sh
+ 1307  squeue -u hlegrand
+ 1308  history | grep compare_two
+ 1309  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_clinical_COAD.csv --graph "optuna_cox" --boxplot
+ 1310  squeue -u hlegrand
+ 1311  ccc_mpinfo --node=inti000
+ 1312  ccc_mpinfo -p normal
+ 1313  ccc_mpinfo -p normal | grep nodes
+ 1314  ccc_mpinfo | grep normal
+ 1315  ccc_mpinfo
+ 1316  source venv_sksurv_dev/
+ 1317  pip install plotly
+ 1318  python results_analysis/time_multi_outer.py 
+ 1319  cp ~/timeline.png ./results/timeline_multi_outer.png
+ 1320  ls
+ 1321  cd CustOmics/
+ 1322  python analyze_optuna_figs.py 
+ 1323  python -c "import numpy; print(numpy.__version__)"
+ 1324  pip install -r requirements_minimal.txt 
+ 1325  ls
+ 1326  source venv_numpy1/bin/activate
+ 1327  pip install "numpy<2"
+ 1328  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1329  ssh topaze
+ 1330  ccc_mpinfo 
+ 1331  module load python
+ 1332  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1333  source venv_sksurv_dev/bin/activate
+ 1334  squeue
+ 1335  sbatch --nodelist=inti[000-003, 005-006] scripts/combine_outer_optuna.sh
+ 1336  history | grep sbatch
+ 1337  sbatch scripts/combine_results_outer.sh
+ 1338  scancel 586973
+ 1339  sshell -c2
+ 1340  scancel 587038
+ 1341  scancel 587073
+ 1342  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1343  squeue -u hlegrand
+ 1344  squeue
+ 1345  squeue -u hlegrand
+ 1346  history | grep wheel
+ 1347  pip download -r requirements_minimal.txt -d wheels/
+ 1348  history | grep rsync
+ 1349  rsync -avz --chmod=Dg+s --chown=:fg0062 requirements_minimal.txt  topaze:/ccc/work/cont007/fg0062/legrandh/requirements.txt
+ 1350  ls
+ 1351  ls
+ 1352  history$
+ 1353  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_clinical_COAD.csv --graph "optuna_cox_clinical" --boxplot
+ 1354  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_COAD.csv --graph "optuna_cox" --boxplot
+ 1355  sbatch scripts/combine_results_outer.sh
+ 1356  squeue -u hlegrand
+ 1357  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_LUAD.csv --new results/ncv_custcox_optuna_paral_LUAD.csv --graph "optuna_cox_LUAD" --boxplot
+ 1358  ssh topaze
+ 1359  ccc_mpinfo | grep normal
+ 1360  ccc_mpinfo
+ 1361  source venv_sksurv_dev/
+ 1362  pip install plotly
+ 1363  python results_analysis/time_multi_outer.py 
+ 1364  cp ~/timeline.png ./results/timeline_multi_outer.png
+ 1365  cd CustOmics/
+ 1366  python analyze_optuna_figs.py 
+ 1367  python -c "import numpy; print(numpy.__version__)"
+ 1368  pip install "numpy<2"
+ 1369  sbatch --nodelist=inti[000-006] scripts/combine_outer_optuna.sh
+ 1370  ssh topaze
+ 1371  sbatch --nodelist=inti[000-003, 005-006] scripts/combine_outer_optuna.sh
+ 1372  sbatch scripts/combine_results_outer.sh
+ 1373  scancel 586973
+ 1374  scancel 587038
+ 1375  scancel 587073
+ 1376  history | grep sacct
+ 1377  ccc_mpinfo 
+ 1378  module load python
+ 1379  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1380  source venv_sksurv_dev/bin/activate
+ 1381  pip list
+ 1382  pip show numba
+ 1383  ls
+ 1384  source venv_numpy1/bin/activate
+ 1385  pip show coverage
+ 1386  pip install -r requirements_minimal.txt 
+ 1387  squeue
+ 1388  chmod +x scripts/detect_and_launch_missing.sh 
+ 1389  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1390  sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$FOLDS_FILE"
+ 1391  sed -n "$((1 + 1))p" missing_folds_20260624_152501.txt 
+ 1392  sed -n "$((2 + 1))p" missing_folds_20260624_152501.txt 
+ 1393  sed -n "$((3 + 1))p" missing_folds_20260624_152501.txt 
+ 1394  sed -n "$((5 + 1))p" missing_folds_20260624_152501.txt
+ 1395  ./scripts/detect_and_launch_missing.sh 
+ 1396  sshell -c2
+ 1397  history | grep sbatch
+ 1398  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1399  squeue -u hlegrand
+ 1400  ./scripts/detect_and_launch_missing.sh 
+ 1401  sshell -c2
+ 1402  history | grep sbatch
+ 1403  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1404  squeue -u hlegrand
+ 1405  squeue -u
+ 1406  squeue
+ 1407  module load pytho
+ 1408  module load python
+ 1409  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1410  source venv_sksurv_dev/bin/activate
+ 1411  clear
+ 1412  squeue -u $USER
+ 1413  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1414  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1415  module load python
+ 1416  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1417  source venv_sksurv_dev/bin/activate
+ 1418  cd CustOmics/
+ 1419  squeue -u hlegrand
+ 1420  python analyze_optuna_figs.py 
+ 1421  squeue -u $USER
+ 1422  history | grep sbatch
+ 1423  sshell -c2
+ 1424  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1425  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1426  squeue
+ 1427  squeue -u hlegrand
+ 1428  squeue -u $USER
+ 1429  module load python
+ 1430  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1431  source venv_sksurv_dev/bin/activate
+ 1432  squeue -u $USER
+ 1433  history | grep sbatch
+ 1434  sshell -c2
+ 1435  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1436  history | grep compare
+ 1437  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_clinical_COAD.csv --graph "optuna_cox_clinical" --boxplot
+ 1438  cd CustOmics/
+ 1439  python analyze_optuna_figs.py 
+ 1440  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1441  cd ../
+ 1442  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1443  squeue
+ 1444  ccc_mpinfo
+ 1445  squeue -u hlegrand
+ 1446  sacct
+ 1447  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1448  module load python 
+ 1449  ls
+ 1450  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1451  source venv_sksurv_dev/bin/activate
+ 1452  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1453  python analyze_optuna_figs.py 
+ 1454  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1455  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1456  squeue
+ 1457  ccc_mpinfo
+ 1458  sacct
+ 1459  history | grep compare
+ 1460  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_clinical_COAD.csv --graph "optuna_cox_clinical" --boxplot
+ 1461  sbatch scripts/relaunch_optuna_load.sh
+ 1462  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_LUAD.csv --new results/ncv_custcox_optuna_paral_clinical_LUAD.csv --graph "LUAD_optuna_cox_clinical" --boxplot
+ 1463  python analyze_optuna_figs.py --cancer LUAD --name_suffix clinical_
+ 1464  python analyze_optuna_figs.py --cancer COAD --name_suffix clinical_
+ 1465  ls figures/
+ 1466  cd ../
+ 1467  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_clinical_COAD.csv --graph "COAD_optuna_cox_clinical" --boxplot
+ 1468  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_COAD.csv --graph "COAD_optuna_cox" --boxplot
+ 1469  sbatch scripts/combine_results_outer.sh
+ 1470  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_LUAD.csv --new results/ncv_custcox_optuna_paral_LUAD.csv --graph "LUAD_optuna_cox" --boxplot
+ 1471  squeue -u hlegrand
+ 1472  cd CustOmics/
+ 1473  python analyze_optuna_figs.py --cancer COAD 
+ 1474  pip install umap-learn
+ 1475  cd CustOmics/
+ 1476  python analyse_latent_space_save_model.py 
+ 1477  python analyse_latent_space.py 
+ 1478  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1479  pip install umap-learn
+ 1480  python analyse_latent_space_save_model.py 
+ 1481  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1482  cd CustOmics/
+ 1483  python analyse_latent_space.py 
+ 1484  python analyse_latent_space_statistics.py 
+ 1485  python analyse_latent_geometry.py 
+ 1486  squeue -u $USER
+ 1487  ccc_mpinfo
+ 1488  ssh topaze
+ 1489  history | grep sbatch
+ 1490  ./scripts/detect_and_launch_missing.sh 
+ 1491  history | grep sbatch
+ 1492  squeue -u
+ 1493  squeue
+ 1494  module load pytho
+ 1495  clear
+ 1496  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1497  cd CustOmics/
+ 1498  python analyze_optuna_figs.py 
+ 1499  history | grep sbatch
+ 1500  squeue
+ 1501  module load python
+ 1502  ls
+ 1503  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1504  source venv_sksurv_dev/bin/activate
+ 1505  source scripts/combine_results_outer.sh 
+ 1506  ccc_mpinfo
+ 1507  scancel 738395
+ 1508  squeue -u hlegrand
+ 1509  sbatch scripts/relaunch_optuna_load.sh
+ 1510  sbatch scripts/combine_results_outer.sh
+ 1511  sancel 745997
+ 1512  scancel 745997
+ 1513  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1514  squeue -u $USER
+ 1515  sshell -c2
+ 1516  sbatch scripts/combine_results_outer.sh
+ 1517  squeue -u $USER
+ 1518  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_custcox_optuna_paral_supervised_COAD.csv --graph "COAD_supervised_opt_cox" --boxplot
+ 1519  cd CustOmics/
+ 1520  python analyse_latent_space.py 
+ 1521  python analyse_latent_space_statistics.py 
+ 1522  python analyse_latent_geometry.py 
+ 1523  ssh topaze
+ 1524  squeue -u
+ 1525  squeue
+ 1526  module load pytho
+ 1527  clear
+ 1528  cd CustOmics/
+ 1529  python analyze_optuna_figs.py 
+ 1530  squeue
+ 1531  source scripts/combine_results_outer.sh 
+ 1532  scancel 738395
+ 1533  squeue -u hlegrand
+ 1534  sbatch scripts/relaunch_optuna_load.sh
+ 1535  sbatch scripts/combine_results_outer.sh
+ 1536  sancel 745997
+ 1537  scancel 745997
+ 1538  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1539  module load python
+ 1540  ls
+ 1541  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1542  source venv_sksurv_dev/bin/activate
+ 1543  scancel 831937
+ 1544  ./scripts/detect_and_launch_missing.sh 
+ 1545  sshell -c2
+ 1546  scancel 855276
+ 1547  scancel 861332
+ 1548  history | grep sbatch
+ 1549  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1550  ccc_mpinfo
+ 1551  scancel 863951
+ 1552  sbatch scripts/tl_source_optu_multi.sh
+ 1553  squeue -u $USER
+ 1554  cd CustOmics/
+ 1555  python test_gpu.py 
+ 1556  sbatch scripts/tl_source_optu_multi.sh
+ 1557  scancel 871996
+ 1558  cd CustOmics/
+ 1559  python test_gpu.py 
+ 1560  ssh topaze
+ 1561  python --cancer COAD --n_trials_per_worker 1 --validation loss --cv_strategy loco --n_folds_loco 2
+ 1562  cd CustOmics/
+ 1563  python tl_custcox_source_multi_study.py --cancer COAD --n_trials_per_worker 1 --validation loss --cv_strategy loco --n_folds_loco 2
+ 1564  cd CustOmics/
+ 1565  python tl_custcox_source_multi_study.py --cancer COAD --n_trials_per_worker 1 --validation loss --cv_strategy loco --n_folds_loco 2
+ 1566  squeue -u $USER
+ 1567  scancel 865339
+ 1568  sbatch scripts/combine_results_outer.sh
+ 1569  sancel 745997
+ 1570  scancel 745997
+ 1571  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1572  scancel 831937
+ 1573  ./scripts/detect_and_launch_missing.sh 
+ 1574  scancel 855276
+ 1575  scancel 861332
+ 1576  history | grep sbatch
+ 1577  scancel 863951
+ 1578  sbatch scripts/tl_source_optu_multi.sh
+ 1579  scancel 864041
+ 1580  ls
+ 1581  module load python
+ 1582  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1583  source venv_sksurv_dev/bin/activate
+ 1584  scancel 868754
+ 1585  scancel 871544
+ 1586  sshell -c2
+ 1587  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1588  sshell -c2 --mem-per-cpu=10G
+ 1589  sshell -c2 --mem-per-cpu=10G --nodelist=inti[000-003]
+ 1590  squeue -u $USER
+ 1591  ccc_mpinfo
+ 1592  sshell -c2 --mem-per-cpu=10G --nodelist=inti33
+ 1593  sshell -c2 --mem-per-cpu=10G --node=inti33
+ 1594  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034]
+ 1595  ssh topaze
+ 1596  module load python
+ 1597  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1598  source venv_sksurv_dev/bin/activate
+ 1599  cd CustOmics/
+ 1600  python tl_custcox_source_multi_study.py --cancer COAD --n_trials_per_worker 1 --validation loss --cv_strategy loco --n_folds_loco 2
+ 1601  pip install captum
+ 1602  ssh topaze
+ 1603  module load python
+ 1604  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1605  source venv_sksurv_dev/bin/activate
+ 1606  cd CustOmics/
+ 1607  python tl_custcox_source_multi_study.py --cancer COAD --n_trials_per_worker 1 --validation loss --cv_strategy loco --n_folds_loco 2
+ 1608  python tl_custcox_source_multi_study.py --cancer COAD --n_trials_per_worker 1 --validation loss --cv_strategy loco --n_folds_loco 1
+ 1609  scancel 863951
+ 1610  sbatch scripts/tl_source_optu_multi.sh
+ 1611  scancel 864041
+ 1612  ls
+ 1613  scancel 868754
+ 1614  scancel 871544
+ 1615  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1616  sshell -c2 --mem-per-cpu=10G
+ 1617  sshell -c2 --mem-per-cpu=10G --nodelist=inti[000-003]
+ 1618  ccc_mpinfo
+ 1619  sshell -c2 --mem-per-cpu=10G --nodelist=inti33
+ 1620  sshell -c2 --mem-per-cpu=10G --node=inti33
+ 1621  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034]
+ 1622  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1623  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1624  module load python
+ 1625  source venv_sksurv_dev/bin/activate
+ 1626  sbatch --nodelist="inti[000-003,005-006]" scripts/retrain_one_outer_optuna.sh 47
+ 1627  sbatch --nodelist="inti[000-003,005-006]" scripts/retrain_one_outer_optuna.sh 48
+ 1628  sbatch --nodelist="inti[000-003,005-006]" scripts/retrain_one_outer_optuna.sh 49
+ 1629  sbatch scripts/run_in_customics.sh analyse_multiomics_latent
+ 1630  pip install captum
+ 1631  sshell -c2
+ 1632  sbatch scripts/run_in_customics.sh analyse_multiomics_latent.py
+ 1633  squeue -u $USER
+ 1634  ssh topaze
+ 1635  sshell -c2 --mem-per-cpu=10G --nodelist=inti[000-003]
+ 1636  ccc_mpinfo
+ 1637  sshell -c2 --mem-per-cpu=10G --nodelist=inti33
+ 1638  sshell -c2 --mem-per-cpu=10G --node=inti33
+ 1639  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1640  squeue
+ 1641  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034]
+ 1642  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034] --time=04:00:00
+ 1643  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1644  source venv_sksurv_dev/bin/activate
+ 1645  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1646  squeue -u $USER
+ 1647  pip wheel . -w wheels
+ 1648  rsync -avz --chmod=Dg+s --chown=:fg0062 wheels_sksurv/  topaze:/ccc/work/cont007/fg0062/legrandh/wheels_sksurv/
+ 1649  squeue
+ 1650  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034]
+ 1651  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034] --time=04:00:00
+ 1652  source venv_sksurv_dev/bin/activate
+ 1653  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1654  squeue -u $USER
+ 1655  pip wheel . -w wheels
+ 1656  rsync -avz --chmod=Dg+s --chown=:fg0062 wheels_sksurv/  topaze:/ccc/work/cont007/fg0062/legrandh/wheels_sksurv/
+ 1657  pyenv versions
+ 1658  python3.12
+ 1659  module avail python
+ 1660  modue load python/3.12
+ 1661  module load python/3.12
+ 1662  scl
+ 1663  scl enable python312 bash
+ 1664  ls /etc/scl/conf/python312
+ 1665  ls /etc/scl/conf/
+ 1666  ls /etc/scl/conf/gcc-toolset-12
+ 1667  ls /etc/scl/conf/gcc-toolset-12 
+ 1668  ls /usr/bin/python*
+ 1669  ls /opt/python
+ 1670  export PATH=/opt/python/cp312-cp312/bin:$PATH
+ 1671  which python
+ 1672  python -V
+ 1673  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1674  cd $HOME
+ 1675  ls test
+ 1676  mkdir create_wheel
+ 1677  cd create_wheel/
+ 1678  cp /env/cnrgh/proj/math_stats/scratch/hlegrand/requirements_minimal.txt .
+ 1679  nano requirements_minimal.txt 
+ 1680  which pip
+ 1681  pip download -r requirements_minimal.txt -d wheels
+ 1682  cd scikit-survival/
+ 1683  pip wheel . -w ../wheels/
+ 1684  cd ../
+ 1685  ls
+ 1686  apptainer shell devlab-el9.sif
+ 1687  apptainer shell $APPTAINER_IMGDIR/env/devlab-el9.sif
+ 1688  apptainer shell $APPTAINER_IMGDIR/sys/devlab-el9.sif
+ 1689  ssh topaze
+ 1690  sshell -c2
+ 1691  sbatch scripts/run_in_customics.sh analyse_multiomics_latent.py
+ 1692  ssh topaze
+ 1693  sshell -c2 --mem-per-cpu=10G --nodelist=inti[000-003]
+ 1694  sshell -c2 --mem-per-cpu=10G --nodelist=inti33
+ 1695  sshell -c2 --mem-per-cpu=10G --node=inti33
+ 1696  sacct -u $USER -S 2026-06-18 --format=JobID,JobName,State,Start,End,Elapsed
+ 1697  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034]
+ 1698  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034] --time=04:00:00
+ 1699  source venv_sksurv_dev/bin/activate
+ 1700  pip wheel . -w wheels
+ 1701  rsync -avz --chmod=Dg+s --chown=:fg0062 wheels_sksurv/  topaze:/ccc/work/cont007/fg0062/legrandh/wheels_sksurv/
+ 1702  cp /env/cnrgh/proj/math_stats/scratch/hlegrand/requirements_minimal.txt ./create_wheel/
+ 1703  cd create_wheel/
+ 1704  jobify cp -r /env/cnrgh/proj/math_stats/scratch/hlegrand/scikit-survival/ ./create_wheel/scikit-survival/
+ 1705  mkdir scikit-survival
+ 1706  jobify cp -r /env/cnrgh/proj/math_stats/scratch/hlegrand/scikit-survival/ ./scikit-survival/
+ 1707  ls scikit-survival/
+ 1708  mv scikit-survival/scikit-survival/ scikit-survival/
+ 1709  ls scikit-survival/scikit-survival/
+ 1710  cd scikit-survival/
+ 1711  mv scikit-survival/* .
+ 1712  rm scikit-survival/
+ 1713  rm -r scikit-survival/
+ 1714  ls -a scikit-survival/
+ 1715  mv scikit-survival/.[!.]* nom_dossier/..?* . 2>/dev/null
+ 1716  rm -rf scikit-survival/
+ 1717  cd ../
+ 1718  nano requirements_minimal.txt 
+ 1719  ls wheels/
+ 1720  rsync -avz --chmod=Dg+s --chown=:fg0062 wheels/  topaze:/ccc/work/cont007/fg0062/legrandh/wheels_sksurv/
+ 1721  rsync -avz --chmod=Dg+s --chown=:fg0062 requirements_minimal.txt  topaze:/ccc/work/cont007/fg0062/legrandh/requirements_sksurv.txt
+ 1722  history | grep "pip install -e"
+ 1723  ldd --version
+ 1724  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1725  ls
+ 1726  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1727  ccc_mpinfo
+ 1728  rsync -avz --chmod=Dg+s --chown=:fg0062 data/dict_pancancer_union_mutation.pickle   topaze:/ccc/work/cont007/fg0062/legrandh/data/dict_pancancer_union_mutation.pickle
+ 1729  rsync -avz --chmod=Dg+s --chown=:fg0062 data/clinical/   topaze:/ccc/work/cont007/fg0062/legrandh/data/clinical/
+ 1730  rsync -avz --chmod=Dg+s --chown=:fg0062 data/splits.json    topaze:/ccc/work/cont007/fg0062/legrandh/data/splits.json
+ 1731  history | grep rsync
+ 1732  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__"
+ 1733  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1734  ./scripts/detect_and_launch_missing.sh 
+ 1735  squeue -u $USER
+ 1736  squeue
+ 1737  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034]
+ 1738  sshell -c2 --mem-per-cpu=10G --nodelist=inti[033-034] --time=04:00:00
+ 1739  sshell help
+ 1740  man sshell
+ 1741  man ccc_mprun
+ 1742  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1743  module load python
+ 1744  source venv_sksurv_dev/bin/activate
+ 1745  cd scikit-survival/
+ 1746  pip wheel . -w wheels
+ 1747  cd ../
+ 1748  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1749  squeue -u $USER
+ 1750  jobify --apptainer shell:devlab-el9.sif
+ 1751  jobify --apptainer shell:$APPTAINER_IMGDIR/sys/devlab-el9.sif
+ 1752  jobify --apptainer shell:../sys/devlab-el9.sif
+ 1753  sshell -c2
+ 1754  history | grep compare_two
+ 1755  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_HNSC.csv --new results/ncv_custcox_optuna_paral_HNSC.csv --graph "HNSC_opt_cox" --boxplot
+ 1756  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 1757  squeue -u $USER
+ 1758  squeue -u $USER
+ 1759  python utils_scripts/clear_journal.py --cancer LUAD --dry_run
+ 1760  python utils_scripts/clear_journal.py --cancer LUAD --dry-run
+ 1761  python utils_scripts/clear_all_journal.py --cancer LUAD --dry-run
+ 1762  rsync -avz --chmod=Dg+s --chown=:fg0062 utils_scripts/   topaze:/ccc/work/cont007/fg0062/legrandh/utils_scripts
+ 1763  python utils_scripts/clear_all_journal.py  --dry-run
+ 1764  sshell help
+ 1765  man sshell
+ 1766  man ccc_mprun
+ 1767  cd scikit-survival/
+ 1768  pip wheel . -w wheels
+ 1769  cd ../
+ 1770  jobify --apptainer shell:devlab-el9.sif
+ 1771  jobify --apptainer shell:$APPTAINER_IMGDIR/sys/devlab-el9.sif
+ 1772  jobify --apptainer shell:../sys/devlab-el9.sif
+ 1773  history | grep sacct
+ 1774  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1775  module load python
+ 1776  source venv_sksurv_dev/bin/activate
+ 1777  sbatch scripts/a
+ 1778  sbatch scripts/combine_results_outer.sh
+ 1779  sshell -c2
+ 1780  history | grep sbatch
+ 1781  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1782  ccc_mpinfo
+ 1783  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1784  module avail pegasus
+ 1785  module avail glost
+ 1786  squeue -u $USER
+ 1787  ssh topaze
+ 1788  cd CustOmics/
+ 1789  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 5
+ 1790  mprof plot
+ 1791  du -sh ../data/dict_pancancer_union_mutation.pickle 
+ 1792  du -sh ../data/dict_pancancer_union_mutation.pickle 
+ 1793  cd CustOmics/
+ 1794  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 1
+ 1795  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 2
+ 1796  mprof plot
+ 1797  du -sh ../data/dict_pancancer_union_mutation.pickle 
+ 1798  cd CustOmics/
+ 1799  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 1
+ 1800  cd preprocess_data/
+ 1801  python separate_union_cancer.py 
+ 1802  cd Cus
+ 1803  cd ../CustOmics/
+ 1804  mprof run optuna_multi_study_1_outer.py --cancer LUAD--outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 2
+ 1805  mprof run optuna_multi_study_1_outer.py --cancer LUAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 1
+ 1806  mprof run optuna_multi_study_1_outer.py --cancer LUAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 2
+ 1807  mprof run optuna_multi_study_1_outer.py --cancer BRCA --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 2
+ 1808  mprof plot
+ 1809  squeue -u $USER
+ 1810  module avail pegasus
+ 1811  module avail glost
+ 1812  ssh topaze
+ 1813  cd CustOmics/
+ 1814  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 5
+ 1815  mprof plot
+ 1816  du -sh ../data/dict_pancancer_union_mutation.pickle 
+ 1817  history | grep sacct
+ 1818  module load python
+ 1819  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1820  source venv_sksurv_dev/bin/activate
+ 1821  history | grep rsync
+ 1822  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 1823  rsync -avz --chmod=Dg+s --chown=:fg0062 data/union_separated_cancer/    topaze:/ccc/work/cont007/fg0062/legrandh/data/union_separated_cancer
+ 1824  sacct -u $USER -S 2026-07-02 --format=JobID,JobName,State,Start,End,Elapse
+ 1825  history | grep sbatch
+ 1826  ccc_mstat -u
+ 1827  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1828  squeue -u $USER
+ 1829  module avail glost
+ 1830  ssh topaze
+ 1831  ccc_mpinfo
+ 1832  module load python
+ 1833  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1834  ld
+ 1835  ls
+ 1836  source venv_sksurv_dev/bin/activate
+ 1837  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1838  squeue -u $USER
+ 1839  sshell -c2
+ 1840  ld
+ 1841  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1842  sshell -c2
+ 1843  history | grep compare_two
+ 1844  module load python
+ 1845  ls
+ 1846  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1847  source venv_sksurv_dev/bin/activate
+ 1848  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_LUAD.csv --new results/ncv_custcox_optuna_paral_supervised_LUAD.csv --graph "LUAD_supervised_opt_cox" --boxplot
+ 1849  sbatch scripts/combine_outer_optuna.sh
+ 1850  scancel 1000764
+ 1851  sbatch scripts/combine_results_outer.sh
+ 1852  scancel 1100764
+ 1853  ccc_mpinfo
+ 1854  squeue -u $USER
+ 1855  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_LUAD.csv --new results/ncv_custcox_optuna_paral_supervised_LUAD.csv --graph "LUAD_supervised_opt_cox" --boxplot
+ 1856  squeue -u $USER
+ 1857  history | grep compare_all
+ 1858  python results_analysis/compare_all_clinical.py --plot boxplot --results-dir 
+ 1859  python results_analysis/compare_all_clinical.py --plot boxplot --results-dir results_tgcc/ --filename ncv_custcox_optuna_paral
+ 1860  python results_analysis/compare_all_clinical.py --plot boxplot --results-dir results_tgcc/ --filename ncv_custcox_optuna_paral_
+ 1861  squeue -u $USER
+ 1862  mprof run optuna_multi_study_1_outer.py --cancer BRCA --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 2
+ 1863  mprof plot
+ 1864  module avail pegasus
+ 1865  module avail glost
+ 1866  ssh topaze
+ 1867  cd CustOmics/
+ 1868  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 5
+ 1869  mprof plot
+ 1870  du -sh ../data/dict_pancancer_union_mutation.pickle 
+ 1871  history | grep sacct
+ 1872  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 1873  rsync -avz --chmod=Dg+s --chown=:fg0062 data/union_separated_cancer/    topaze:/ccc/work/cont007/fg0062/legrandh/data/union_separated_cancer
+ 1874  ccc_mstat -u
+ 1875  module avail glost
+ 1876  ssh topaze
+ 1877  ld
+ 1878  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1879  source venv_sksurv_dev/bin/activate
+ 1880  module load python
+ 1881  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 1882  sacct -u $USER -S 2026-07-02 --format=JobID,JobName,State,Start,End,Elapse
+ 1883  history | grep rsync
+ 1884  rsync -avz --chmod=Dg+s --chown=:fg0062 results_analysis/aggregate_folds_optuna.py     topaze:/ccc/work/cont007/fg0062/legrandh/results_analysis/aggregate_folds_optuna.py
+ 1885  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"
+ 1886  ls results_tgcc/
+ 1887  cd results
+ 1888  cd results_tgcc/
+ 1889  mv results/ .
+ 1890  mv results/* .
+ 1891  ls
+ 1892  rm -rf results/
+ 1893  cd ../
+ 1894  scancel 1101131
+ 1895  history | grep sbatch
+ 1896  ccc_mstat
+ 1897  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1898  squeue
+ 1899  ccc_mpinfo
+ 1900  squeue -u $USER
+ 1901  sshare
+ 1902  sshell -c2
+ 1903  lls
+ 1904  ls
+ 1905  ssh topaze
+ 1906  ssh topaze
+ 1907  history | grep tl_custcox_target
+ 1908  squeue -u $USER
+ 1909  python -V
+ 1910  cd CustOmics/
+ 1911  source ../venv_sksurv_dev/bin/activate
+ 1912  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0
+ 1913  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0 --limit_epoch 10
+ 1914  history | grep rsync
+ 1915  history | grep rsync
+ 1916  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"
+ 1917  history | grep multiple
+ 1918  history | grep compare
+ 1919  history | grep basename
+ 1920  python results_analysis/multiple_method_compare_all.py --source name=vincent_r type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 1921  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 1922  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 1923  squeue -u $USER
+ 1924  cd CustOmics/
+ 1925  module load python
+ 1926  source ../venv_sksurv_dev/
+ 1927  source ../venv_sksurv_dev/bin/activate
+ 1928  python tl_custcox_target_eval_all_1_outer.py --cancer COAD --output_dir results --outer_fold 0 --limit_epoch 10
+ 1929  cat ~.zshrc
+ 1930  cat ~/.zshrc
+ 1931  cat ~/.bashrc 
+ 1932  cat ~/.bashprofile
+ 1933  cat ~/.bash_profile
+ 1934  cat ~/.bash_logout
+ 1935  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0
+ 1936  squeue -u $USER
+ 1937  ls
+ 1938  ssh topaze
+ 1939  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 1940  scancel 1118030
+ 1941  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1942  source venv_sksurv_dev/bin/activate
+ 1943  module load python
+ 1944  squeue -u $USER
+ 1945  history | grep sbatch
+ 1946  sshell -c4 --nodelist="inti[000-003,005-006]"
+ 1947  sshell -c2
+ 1948  history | grep multiple
+ 1949  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --baseline vincent_r --plot boxplot
+ 1950  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --baseline vincent_r --plot boxplot
+ 1951  ssh topaze
+ 1952  scancel 1101131
+ 1953  ccc_mstat
+ 1954  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 1955  squeue
+ 1956  lls
+ 1957  ssh topaze
+ 1958  ssh topaze
+ 1959  history | grep tl_custcox_target
+ 1960  python -V
+ 1961  cd CustOmics/
+ 1962  source ../venv_sksurv_dev/bin/activate
+ 1963  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0
+ 1964  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0 --limit_epoch 10
+ 1965  history | grep multiple
+ 1966  history | grep compare
+ 1967  history | grep basename
+ 1968  python results_analysis/multiple_method_compare_all.py --source name=vincent_r type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 1969  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 1970  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 1971  cd CustOmics/
+ 1972  source ../venv_sksurv_dev/
+ 1973  source ../venv_sksurv_dev/bin/activate
+ 1974  python tl_custcox_target_eval_all_1_outer.py --cancer COAD --output_dir results --outer_fold 0 --limit_epoch 10
+ 1975  cat ~.zshrc
+ 1976  cat ~/.zshrc
+ 1977  cat ~/.bashrc 
+ 1978  cat ~/.bashprofile
+ 1979  cat ~/.bash_profile
+ 1980  cat ~/.bash_logout
+ 1981  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0
+ 1982  ssh topaze
+ 1983  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 1984  scancel 1118030
+ 1985  sshell -c4 --nodelist="inti[000-003,005-006]"
+ 1986  sshare
+ 1987  clear
+ 1988  module load python
+ 1989  ls
+ 1990  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 1991  source venv_sksurv_dev/bin/activate
+ 1992  history | grep sbatch
+ 1993  scancel 1220266
+ 1994  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_load_all.sh
+ 1995  scancel 1220331
+ 1996  sbatch scripts/tl_source_load_all.sh
+ 1997  ccc_mpinfo
+ 1998  scancel 1244286
+ 1999  scancel 1244685
+ 2000  squeue -u $USER
+ 2001  history | grep rsync
+ 2002  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"
+ 2003  sshell -c2
+ 2004  sbatch scripts/tl_evaluate_transfer_zero_shot.sh
+ 2005  ssh topaze
+ 2006  squeue -u $USER
+ 2007  ssh topaze
+ 2008  history | grep compare_two
+ 2009  sbatch scripts/tl_evaluate_transfer_zero_shot.sh
+ 2010  squeue -u $USER
+ 2011  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new CustOmics/results/ncv_zeroshot_COAD_results.csv  --graph "cox_tl_zero_shot_COAD" --boxplot
+ 2012  squeue -u $USER
+ 2013  history | grep compare_two
+ 2014  sbatch scripts/tl_evaluate_transfer_zero_shot.sh
+ 2015  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new CustOmics/results/ncv_zeroshot_COAD_results.csv  --graph "cox_tl_zero_shot_COAD" --boxplot
+ 2016  history | grep analyze_
+ 2017  cd CustOmics/
+ 2018  python analyze_optuna_figs.py --cancer COAD
+ 2019  python optuna_multi_study_1_outer.py 
+ 2020  python optuna_multi_study_1_outer.py --outer_fold 0 
+ 2021  python analyze_optuna_figs.py --cancer COAD --skip_importance
+ 2022  squeue -u $USER
+ 2023  history | grep rsync
+ 2024  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_journal/ results_tgcc/optuna_journal/ --exclude="folds"
+ 2025  history | grep basename
+ 2026  python results_analysis/multiple_method_compare_all.py --source name=vincent_r type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 2027  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 2028  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_ --baseline vincent_r --plot boxplot
+ 2029  cd CustOmics/
+ 2030  source ../venv_sksurv_dev/
+ 2031  source ../venv_sksurv_dev/bin/activate
+ 2032  python tl_custcox_target_eval_all_1_outer.py --cancer COAD --output_dir results --outer_fold 0 --limit_epoch 10
+ 2033  cat ~.zshrc
+ 2034  cat ~/.zshrc
+ 2035  cat ~/.bashrc 
+ 2036  cat ~/.bashprofile
+ 2037  cat ~/.bash_profile
+ 2038  cat ~/.bash_logout
+ 2039  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0
+ 2040  ssh topaze
+ 2041  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 2042  scancel 1118030
+ 2043  sshell -c4 --nodelist="inti[000-003,005-006]"
+ 2044  clear
+ 2045  scancel 1220266
+ 2046  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_load_all.sh
+ 2047  scancel 1220331
+ 2048  scancel 1244286
+ 2049  scancel 1244685
+ 2050  history | grep rsync
+ 2051  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"
+ 2052  ssh topaze
+ 2053  module load python
+ 2054  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2055  source venv_sksurv_dev/bin/activate
+ 2056  ls
+ 2057  history | grep  rsync
+ 2058  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2059  sbatch scripts/tl_source_load_all.sh
+ 2060  sbatch scripts/tl_evaluate_transfer_zero_shot.sh
+ 2061  sshare
+ 2062  history | grep sbatch
+ 2063  scancel 1304539
+ 2064  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2065  squeue
+ 2066  sshell -c2
+ 2067  cd ../
+ 2068  cd hlegrand/
+ 2069  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_journal/ results_tgcc/optuna_journal/ --exclude="folds"
+ 2070  ccc_mpinfo
+ 2071  sbatch scripts/run_in_customics.sh analyse_optuna_all_cancer.py
+ 2072  squeue -u $USER
+ 2073  ssh topaze
+ 2074  ssh topaze
+ 2075  history | grep compare
+ 2076  history | grep compare_two
+ 2077  python results_analysis/compare_two_results.py --ref results/outer_cv_results_vvh_COAD.csv --new results/ncv_finetune_optuna_paral_COAD.csv  --graph "cox_tl_finetune_COAD" --boxplot
+ 2078  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_COAD.csv  results/ncv_custcox_optuna_paral_COAD.csv results/ncv_custcox_clinical_COAD.csv results/ncv_custcox_supervised_COAD.csv CustOmics/results/ncv_zeroshot_COAD_results.csv results/ncv_finetune_optuna_paral_COAD.csv --labels "Cox" "CustCox "CustCox Clinical" "CustCox Supervised" "TL Zero Shot" "TL Finetune"  --graph "COAD_all_methods" --boxplot
+ 2079  "
+ 2080  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_COAD.csv  results/ncv_custcox_optuna_paral_COAD.csv results/ncv_custcox_clinical_COAD.csv results/ncv_custcox_supervised_COAD.csv CustOmics/results/ncv_zeroshot_COAD_results.csv results/ncv_finetune_optuna_paral_COAD.csv --labels "Cox" "CustCox" "CustCox Clinical" "CustCox Supervised" "TL Zero Shot" "TL Finetune"  --graph "COAD_all_methods" --boxplot
+ 2081  jobify python results_analysis/aggregate_folds_optuna.py 
+ 2082  python results_analysis/aggregate_folds_optuna.py 
+ 2083  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_COAD.csv  results/ncv_custcox_optuna_paral_COAD.csv results/ncv_custcox_clinical_COAD.csv results/ncv_custcox_supervised_COAD.csv CustOmics/results/ncv_zeroshot_COAD_results.csv results/ncv_finetune_optuna_paral_COAD.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Zero Shot" "TL Finetune"  --graph "COAD_all_methods" --boxplot
+ 2084  history | grep compare_two
+ 2085  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_COAD.csv --new results/ncv_finetune_optuna_paral_COAD.csv  --graph "cox_tl_finetune_COAD" --boxplot
+ 2086  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_COAD.csv --new results/ncv_finetune_optuna_paral_COAD.csv  --graph "cox_tl_finetune_COAD" --boxplot --ttest
+ 2087  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_COAD.csv --new results/ncv_custcox_optuna_paral_supervised_COAD.csv  --graph "COAD_supervised_normal" --ttest
+ 2088  python tl_custcox_target_multi_study_1_outer.py --cancer COAD --output_dir results --outer_fold 0
+ 2089  ssh topaze
+ 2090  scancel 1118030
+ 2091  sshell -c4 --nodelist="inti[000-003,005-006]"
+ 2092  clear
+ 2093  scancel 1220266
+ 2094  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_load_all.sh
+ 2095  scancel 1220331
+ 2096  scancel 1244286
+ 2097  scancel 1244685
+ 2098  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"
+ 2099  ssh topaze
+ 2100  ls
+ 2101  history | grep  rsync
+ 2102  sbatch scripts/tl_source_load_all.sh
+ 2103  sbatch scripts/tl_evaluate_transfer_zero_shot.sh
+ 2104  scancel 1304539
+ 2105  squeue
+ 2106  cd ../
+ 2107  cd hlegrand/
+ 2108  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_journal/ results_tgcc/optuna_journal/ --exclude="folds"
+ 2109  ssh topaze
+ 2110  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2111  module load python
+ 2112  source venv_sksurv_dev/bin/activate
+ 2113  jobify python results_analysis/aggregate_folds_optuna.py 
+ 2114  history | grep sacct
+ 2115  sacct -u $USER -S 2026-07-09 --format=JobID,JobName,State,Start,End,Elapse
+ 2116  history | grep run_in
+ 2117  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 2118  sbatch scripts/run_in_customics.sh analyse_optuna_all_cancer.py
+ 2119  sshell -c2
+ 2120  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2121  scancel 1339095
+ 2122  scancel 1339449
+ 2123  ccc_mpinfo
+ 2124  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2125  sshare
+ 2126  history | grep rsync
+ 2127  history | grep sbqtch
+ 2128  history | grep sbatch
+ 2129  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 2130  sbatch  scripts/tl_source_optu_multi.sh
+ 2131  squeue -u $USER
+ 2132  history | grep aggregate
+ 2133  history | grep compare_multiple
+ 2134  module load python 
+ 2135  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2136  source venv_sksurv_dev/bin/activate
+ 2137  cp -r CustOmics/tl_ckpt/ results/tl_folds/
+ 2138  jobify python results_analysis/aggregate_folds_optuna.py --name_suffix clinical_
+ 2139  cp -r CustOmics/tl_ckpt/ results/tl_folds/
+ 2140  jobify python results_analysis/aggregate_folds_optuna.py --name_suffix clinical_
+ 2141  cp -r CustOmics/tl_ckpt/*  results/tl_folds/
+ 2142  python results_analysis/aggregate_folds_optuna.py --name_suffix clinical_
+ 2143  python results_analysis/aggregate_folds_optuna.py --name_suffix supervised_
+ 2144  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_COAD.csv  results/ncv_custcox_optuna_paral_COAD.csv results/ncv_custcox_clinical_COAD.csv results/ncv_custcox_supervised_COAD.csv CustOmics/results/ncv_zeroshot_COAD_results.csv results/ncv_finetune_optuna_paral_COAD.csv results/ncv_finetune_optuna_paral_clinical_COAD.csv results/ncv_finetune_optuna_paral_supervised_COAD.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Zero Shot" "TL Finetune" "TL FT Clin" "TL FT Supervised" --graph "COAD_all_methods" --boxplot
+ 2145  history | grep rsync
+ 2146  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"*
+ 2147  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/results results_tgcc/ --exclude="folds"
+ 2148  history | grep multiple
+ 2149  history | grep python_custcox_supervised
+ 2150  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_ --baseline vincent_r --plot boxplot
+ 2151  python results_analysis/barplot_nzero_coefs.py type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_
+ 2152  python results_analysis/barplot_nzero_coefs.py --type=file --dir=results_tgcc/results --basename=ncv_custcox_optuna_paral_clinical_
+ 2153  history | grep sbatch
+ 2154  squeue -u $
+ 2155  squeue -u $USER
+ 2156  sbatch scripts/tl_source_load_all.sh
+ 2157  ssh topaze
+ 2158  squeue -u $USER
+ 2159  jobify python results_analysis/aggregate_folds_optuna.py 
+ 2160  history | grep sacct
+ 2161  sacct -u $USER -S 2026-07-09 --format=JobID,JobName,State,Start,End,Elapse
+ 2162  history | grep run_in
+ 2163  sbatch scripts/run_in_customics.sh analyse_optuna_all_cancer.py
+ 2164  scancel 1339095
+ 2165  scancel 1339449
+ 2166  history | grep sbqtch
+ 2167  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_source_optu_multi.sh
+ 2168  sbatch  scripts/tl_source_optu_multi.sh
+ 2169  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 2170  module load python 
+ 2171  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2172  source venv_sksurv_dev/bin/activate
+ 2173  sshell -c2
+ 2174  ccc_mpinfo
+ 2175  sshare
+ 2176  history | grep rsync
+ 2177  history | grep sbatch
+ 2178  scancel 1339263
+ 2179  scancel 1349263
+ 2180  scancel 1349283
+ 2181  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2182  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2183  squeue -u $USER
+ 2184  ssh topaze
+ 2185  ssh topaze
+ 2186  history | grep aggregate
+ 2187  module load python 
+ 2188  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2189  source venv_sksurv_dev/bin/activate
+ 2190  python results_analysis/aggregate_folds_optuna.py --cancer KIRC
+ 2191  python results_analysis/aggregate_folds_optuna.py --cancer STAD
+ 2192  history | grep ridge
+ 2193  python results_analysis/compare_multiple_1_cancer.py         --source name=vincent_r type=ref path=/path/ref_results.csv learner_id=glmnet_ref         --source name=python type=file dir=/path/results basename=outer_cv_results_vvh_         --source name=python_ridge type=file dir=/path/results basename=outer_cv_results_vvh_ridge_         --baseline vincent_r      --plot boxplot
+ 2194  history | grep compare_multiple_1
+ 2195  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_COAD.csv results/outer_cv_results_vvh_ridge_COAD.csv --labels "CoxNet" "Cox Ridge" --graph "COAD_vvh_net_ridge" --boxplot
+ 2196  history | grep compare_multiple_1
+ 2197  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_clinical_KIRC.csv results_tgcc/results/ncv_custcox_supervised_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Finetune" --graph "KIRC_all_methods" --boxplot
+ 2198  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Finetune" --graph "KIRC_all_methods" --boxplot
+ 2199  squeue -u $USER
+ 2200  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 2201  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_STAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_STAD.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_STAD.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_STAD.csv results/ncv_finetune_optuna_paral_STAD.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Finetune" --graph "STAD_all_methods" --boxplot
+ 2202  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_STAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_STAD.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_STAD.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_STAD.csv results/ncv_finetune_optuna_paral_STAD.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Finetune" --graph "STAD_all_methods" --boxplot
+ 2203  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2204  ls
+ 2205  history | grep rsync
+ 2206  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/tl_ckpt results_tgcc/ --exclude="folds"
+ 2207  cd CustOmics/
+ 2208  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --add_clinical --ridge --name_suffix cliniridge_
+ 2209  cd ../
+ 2210  python results_analysis/aggregate_folds_optuna.py --cancer LAML
+ 2211  python results_analysis/aggregate_folds_optuna.py --cancer SKCM
+ 2212  python results_analysis/aggregate_folds_optuna.py --cancer ESCA
+ 2213  python results_analysis/aggregate_folds_optuna.py --cancer PAAD
+ 2214  python results_analysis/aggregate_folds_optuna.py --cancer SARC
+ 2215  python results_analysis/aggregate_folds_optuna.py --cancer LIHC
+ 2216  python results_analysis/aggregate_folds_optuna.py --cancer KIRP
+ 2217  python results_analysis/aggregate_folds_optuna.py --cancer COAD
+ 2218  python results_analysis/aggregate_folds_optuna.py --cancer OV
+ 2219  history | grep multiple_method
+ 2220  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_--source name=tl_finetune type=file dir=results/ basename=ncv_finetune_optuna_paral_ --baseline vincent_r --plot boxplot
+ 2221  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_STAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_STAD.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_STAD.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_STAD.csv results/ncv_finetune_optuna_paral_STAD.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Finetune" --graph "STAD_all_methods" --boxplot
+ 2222  module load python
+ 2223  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2224  source venv_sksurv_dev/bin/activate
+ 2225  cd CustOmics/
+ 2226  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --nb_features 10000
+ 2227  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --nb_features 100000
+ 2228  sshell -c2
+ 2229  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --nb_features 100000
+ 2230  sshell -c2
+ 2231  history | grep sbatch
+ 2232  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2233  module load python
+ 2234  source venv_sksurv_dev/bin/activate
+ 2235  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 2236  squeue -u $USER
+ 2237  scancel 1349263
+ 2238  scancel 1349283
+ 2239  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2240  ssh topaze
+ 2241  sshare
+ 2242  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 2243  module load python 
+ 2244  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2245  source venv_sksurv_dev/bin/activate
+ 2246  history | grep sbatch
+ 2247  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2248  squeue -u $USER
+ 2249  sshell -c2
+ 2250  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2251  sshell -c2
+ 2252  history | grep aggregate
+ 2253  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/tl_ckpt results_tgcc/ --exclude="folds"
+ 2254  python results_analysis/aggregate_folds_optuna.py --cancer BRCA
+ 2255  python results_analysis/aggregate_folds_optuna.py --cancer HNSC
+ 2256  python results_analysis/aggregate_folds_optuna.py --cancer LUAD
+ 2257  python results_analysis/aggregate_folds_optuna.py --cancer LGG
+ 2258  python results_analysis/aggregate_folds_optuna.py --cancer LUSC
+ 2259  python results_analysis/aggregate_folds_optuna.py --cancer UCEC
+ 2260  history | grep multiple_compare
+ 2261  history | grep multiple_method
+ 2262  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_--source name=tl_finetune type=file dir=results/ basename=ncv_finetune_optuna_paral_ --baseline vincent_r --plot boxplot
+ 2263  python results_analysis/aggregate_folds_optuna.py --cancer BLCA
+ 2264  python results_analysis/multiple_method_compare_all.py --source name=r_cox type=ref path=results/ref_results.csv learner_id=glmnet_ref --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_ --source name=tl_finetune type=file dir=results/ basename=ncv_finetune_optuna_paral_ --baseline vincent_r --plot boxplot
+ 2265  squeue -u $USER
+ 2266  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --nb_features 10000
+ 2267  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --nb_features 100000
+ 2268  python optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --inner_splits 5 --n_trials_per_worker 1 --use_saved_folds --nb_features 100000
+ 2269  history | grep sbatch
+ 2270  module load python
+ 2271  source venv_sksurv_dev/bin/activate
+ 2272  scancel 1349263
+ 2273  scancel 1349283
+ 2274  ssh topaze
+ 2275  sacct -u $USER -S 2026-07-06 --format=JobID,JobName,State,Start,End,Elapse
+ 2276  source venv_sksurv_dev/bin/activate
+ 2277  history | grep sbatch
+ 2278  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2279  sacct -u $USER -S 2026-07-16 --format=JobID,JobName,State,Start,End,Elapse
+ 2280  module load python 
+ 2281  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2282  source venv/bin/activate
+ 2283  df -T
+ 2284  df -T .
+ 2285  pip list
+ 2286  sshare
+ 2287  history | grep rsync
+ 2288  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2289  sshell -c2
+ 2290  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 2291  squeue -u $USER
+ 2292  ssh topaze
+ 2293  history | grep compare_multiple
+ 2294  module load python
+ 2295  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2296  source venv_sksurv_dev/bin/activate
+ 2297  ls
+ 2298  python results_analysis/aggregate_folds_optuna.py --cancer COAD --name_suffix clinridge
+ 2299  python results_analysis/aggregate_folds_optuna.py --cancer HNSC --name_suffix clinridge
+ 2300  python results_analysis/aggregate_folds_optuna.py --cancer LGG --name_suffix clinridge
+ 2301  python results_analysis/aggregate_folds_optuna.py --cancer SKCM --name_suffix clinridge
+ 2302  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_COAD.csv  results/ncv_custcox_optuna_paral_COAD.csv results/ncv_custcox_clinical_COAD.csv results/ncv_custcox_optuna_paral_clinridge_COAD.csv  results/ncv_custcox_supervised_COAD.csv CustOmics/results/ncv_zeroshot_COAD_results.csv results/ncv_finetune_optuna_paral_COAD.csv results/ncv_finetune_optuna_paral_clinical_COAD.csv results/ncv_finetune_optuna_paral_supervised_COAD.csv --labels "Cox" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" "TL Zero Shot" "TL Finetune" "TL FT Clin" "TL FT Supervised" --graph "COAD_all_methods" --boxplot
+ 2303  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_HNSC.csv  results/ncv_custcox_optuna_paral_HNSC.csv results/ncv_custcox_optuna_paral_clinical_HNSC.csv results/ncv_custcox_optuna_paral_clinridge_HNSC.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_HNSC.csv --labels "Cox" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" --graph "HNSC_all_methods" --boxplot
+ 2304  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_HNSC.csv  results/ncv_custcox_optuna_paral_HNSC.csv results/ncv_custcox_optuna_paral_clinical_HNSC.csv results/ncv_custcox_optuna_paral_clinridge_HNSC.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_HNSC.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" --graph "HNSC_all_methods" --boxplot
+ 2305  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_SKCM.csv  results/ncv_custcox_optuna_paral_SKCM.csv results/ncv_custcox_optuna_paral_clinical_SKCM.csv results/ncv_custcox_optuna_paral_clinridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_SKCM.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" --graph "HNSC_all_methods" --boxplot
+ 2306  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_SKCM.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_SKCM.csv results/ncv_custcox_optuna_paral_clinridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_SKCM.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" --graph "HNSC_all_methods" --boxplot
+ 2307  history | grep rsync
+ 2308  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2309  sshell -c2
+ 2310  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_SKCM.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_SKCM.csv results/ncv_custcox_optuna_paral_clinridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_SKCM.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" --graph "HNSC_all_methods" --boxplot
+ 2311  history | grep rsync
+ 2312  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2313  sshare
+ 2314  history | grep mprof
+ 2315  module load python 
+ 2316  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2317  source venv_sksurv_dev/bin/activate
+ 2318  cd CustOmics/
+ 2319  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 5
+ 2320  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2321  source venv_sksurv_dev/bin/activate
+ 2322  mprof run optuna_multi_study_1_outer.py --cancer COAD --outer_fold 0 --n_trials_per_worker 1 --use_saved_folds --inner_splits 5
+ 2323  cd CustOmics/
+ 2324  cd latent_space_analysis/
+ 2325  module load python 
+ 2326  source ../../venv_sksurv_dev/
+ 2327  source ../../venv_sksurv_dev/bin/activate
+ 2328  python tl_source_analysis.py 
+ 2329  squeue -u $USER
+ 2330  pip list
+ 2331  sshare
+ 2332  history | grep rsync
+ 2333  ssh topaze
+ 2334  sacct -u $USER -S 2026-07-17 --format=JobID,JobName,State,Start,End,Elapse
+ 2335  ls
+ 2336  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2337  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2338  history | grep combine_outer
+ 2339  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 2340  ccc_mpinfo
+ 2341  squeue
+ 2342  squeue -u $USER
+ 2343  sshell -c2
+ 2344  sshell -c2
+ 2345  python results_analysis/aggregate_folds_optuna.py --cancer COAD --name_suffix supclinridge_
+ 2346  history | grep compare_mu
+ 2347  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_SKCM.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_SKCM.csv results/ncv_custcox_optuna_paral_clinridge_SKCM.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_SKCM.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" --graph "SKCM_all_methods" --boxplot
+ 2348  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_COAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_COAD.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_COAD.csv results/ncv_custcox_optuna_paral_clinridge_COAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_COAD.csv results/ncv_finetune_optuna_paral_supclinridge_COAD.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" "CC SupClinRidge --graph "COAD_supclinridge" --boxplot
+ 2349  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_COAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_COAD.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_COAD.csv results/ncv_custcox_optuna_paral_clinridge_COAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_COAD.csv results/ncv_finetune_optuna_paral_supclinridge_COAD.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" "CC SupClinRidge" --graph "COAD_supclinridge" --boxplot
+ 2350  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 2351  sshare
+ 2352  squeue -u $USER
+ 2353  ssh topaze
+ 2354  python results_analysis/aggregate_folds_optuna.py --cancer COAD --name_suffix supclinridge_
+ 2355  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_COAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_COAD.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_COAD.csv results/ncv_custcox_optuna_paral_clinridge_COAD.csv  results_tgcc/results/ncv_custcox_optuna_paral_supervised_COAD.csv results/ncv_finetune_optuna_paral_supclinridge_COAD.csv --labels "Cox Ridge" "CustCox" "CC Clinical" "CC ClinRidge" "CC Supervised" "CC SupClinRidge" --graph "COAD_supclinridge" --boxplot
+ 2356  pip list
+ 2357  sshare
+ 2358  ssh topaze
+ 2359  sacct -u $USER -S 2026-07-17 --format=JobID,JobName,State,Start,End,Elapse
+ 2360  ls
+ 2361  history | grep combine_outer
+ 2362  squeue
+ 2363  module load python
+ 2364  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2365  source ../../venv_sksurv_dev/bin/activate
+ 2366  source venv_sksurv_dev/bin/activate
+ 2367  history | grep aggregate
+ 2368  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 2369  ccc_mpinfo
+ 2370  history | grep rsync
+ 2371  scancel 1365101
+ 2372  squeue -u $USER
+ 2373  sshell -c2
+ 2374  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2375  ssh topaze
+ 2376  pip list
+ 2377  sshare
+ 2378  ssh topaze
+ 2379  sacct -u $USER -S 2026-07-17 --format=JobID,JobName,State,Start,End,Elapse
+ 2380  history | grep combine_outer
+ 2381  squeue
+ 2382  source ../../venv_sksurv_dev/bin/activate
+ 2383  history | grep aggregate
+ 2384  sbatch --nodelist="inti[000-003,005-006]" scripts/combine_outer_optuna.sh
+ 2385  ccc_mpinfo
+ 2386  history | grep rsync
+ 2387  scancel 1365101
+ 2388  sshell -c2
+ 2389  module load python
+ 2390  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2391  source venv_sksurv_dev/bin/activate
+ 2392  ls
+ 2393  history | grep sbatch
+ 2394  scancel 1369980
+ 2395  scancel 1370040
+ 2396  scancel 1370136
+ 2397  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2398  scancel 1370298
+ 2399  squeue -u $USER
+ 2400  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2401  squeue -u $USER
+ 2402  history | grep analyse_latent_space
+ 2403  cd Cus
+ 2404  module load python
+ 2405  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2406  source venv_sksurv_dev/bin/activate
+ 2407  cd CustOmics/
+ 2408  python analyse_latent_space.py
+ 2409  python analyse_latent_space_statistics.py.py
+ 2410  python analyse_latent_space_statistics.py
+ 2411  history | grep analyse_optuna_all_cancer
+ 2412  history | grep rsync
+ 2413  scancel 1365101
+ 2414  ls
+ 2415  history | grep sbatch
+ 2416  scancel 1369980
+ 2417  scancel 1370040
+ 2418  scancel 1370136
+ 2419  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2420  scancel 1370298
+ 2421  sshell -c2
+ 2422  cd ../
+ 2423  module load python
+ 2424  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2425  source venv_sksurv_dev/bin/activate
+ 2426  sbatch scripts/run_in_customics.sh analyse_optuna_all_cancer.py
+ 2427  history | grep target_eval
+ 2428  history | grep sacct
+ 2429  sbatch scripts/tl_target_eval_all.sh
+ 2430  sacct -u $USER -S 2026-07-22 --format=JobID,JobName,State,Start,End,Elapse
+ 2431  history | grep rsyn
+ 2432  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2433  ccc_msub scripts/test_pool_python.sh 
+ 2434  scancel 1381140
+ 2435  ccc_mpinfp
+ 2436  ccc_mpinfo
+ 2437  squeue -u $USER
+ 2438  ssh topaze
+ 2439  htop -u $USER
+ 2440  ssh topaze
+ 2441  htop -u $USER
+ 2442  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix multiarchi_
+ 2443  history | grep compare_multiple
+ 2444  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv results/ncv_finetune_optuna_paral_multiarchi_KIRC.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Finetune" "TL FT MultiArchi" --graph "KIRC_multiarchi" --boxplot
+ 2445  history | grep sbatch
+ 2446  sacct -u $USER -S 2026-07-22 --format=JobID,JobName,State,Start,End,Elapse
+ 2447  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2448  squeue -u $USER
+ 2449  ssh topaze
+ 2450  sbatch scripts/tl_target_eval_all.sh
+ 2451  history | grep rsyn
+ 2452  scancel 1381140
+ 2453  ccc_mpinfp
+ 2454  ccc_mpinfo
+ 2455  ssh topaze
+ 2456  module load python
+ 2457  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2458  source venv_sksurv_dev/bin/activate
+ 2459  ccc_msub scripts/test_pool_python.sh 
+ 2460  ssh inti000
+ 2461  scancel 1386493
+ 2462  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2463  history | grep sacct
+ 2464  sacct -u $USER -S 2026-07-22 --format=JobID,JobName,State,Start,End,Elapse
+ 2465  history | grep aggregate
+ 2466  sshell -c2
+ 2467  scancel 1386813
+ 2468  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2469  sshare
+ 2470  squeue -u $USER
+ 2471  module load python
+ 2472  squeue -u $USER
+ 2473  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2474  history | grep rsync
+ 2475  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/optuna_multi_study_1_outer.py   topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_multi_study_1_outer.py
+ 2476  ssh topaze
+ 2477  module load python 
+ 2478  source venv_sksurv_dev/bin/activate
+ 2479  ls
+ 2480  cd CustOmics/
+ 2481  python analyse_optuna_tl_source.py 
+ 2482  python analyse_optuna_tl_source.py --skip_importance
+ 2483  ssh topaze
+ 2484  sbatch scripts/tl_target_eval_all.sh
+ 2485  scancel 1381140
+ 2486  ccc_mpinfp
+ 2487  ccc_mpinfo
+ 2488  ssh topaze
+ 2489  module load python
+ 2490  source venv_sksurv_dev/bin/activate
+ 2491  ccc_msub scripts/test_pool_python.sh 
+ 2492  ssh inti000
+ 2493  scancel 1386493
+ 2494  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2495  history | grep sacct
+ 2496  sacct -u $USER -S 2026-07-22 --format=JobID,JobName,State,Start,End,Elapse
+ 2497  history | grep aggregate
+ 2498  scancel 1386813
+ 2499  sbatch --nodelist="inti[000-003,005-006]" scripts/tl_target_optu_multi_outer.sh
+ 2500  sshare
+ 2501  module load python
+ 2502  history | grep rsync
+ 2503  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/optuna_multi_study_1_outer.py   topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_multi_study_1_outer.py
+ 2504  ssh topaze
+ 2505  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2506  history | grep rsyn
+ 2507  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_journal/ results_tgcc/optuna_journal/ --exclude="folds"
+ 2508  cat results_tgcc/optuna_journal/journal_tl_loss_source_COAD.log
+ 2509  history | grep sbatch
+ 2510  scancel 1400438
+ 2511  sbatch --nodelist="inti[000-003,005-006]" scripts/mtl_multi_outer.sh
+ 2512  squeue -u $USER
+ 2513  sshell -c2
+ 2514  history | grep rsync
+ 2515  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/optuna_multi_study_1_outer.py   topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_multi_study_1_outer.py
+ 2516  ssh topaze
+ 2517  history | grep rsyn
+ 2518  rsync -avz --chmod=Dg+s --chown=:fg0062 topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics/optuna_journal/ results_tgcc/optuna_journal/ --exclude="folds"
+ 2519  cat results_tgcc/optuna_journal/journal_tl_loss_source_COAD.log
+ 2520  scancel 1400438
+ 2521  sbatch --nodelist="inti[000-003,005-006]" scripts/mtl_multi_outer.sh
+ 2522  sshell -c2
+ 2523  history | grep sacct
+ 2524  sacct -u $USER -S 2026-07-22 --format=JobID,JobName,State,Start,End,Elapse
+ 2525  sacct -u $USER -S 2026-06-22 --format=JobID,JobName,State,Start,End,Elapse | grep tl_tar
+ 2526  module load python
+ 2527  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2528  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2529  sacct -u $USER -S 2026-06-22 --format=JobID,JobName,State,Start,End,Elapse | grep tl_sour
+ 2530  sbatch tl_source_optu_multi.sh BLCA
+ 2531  sbatch scripts/tl_source_optu_multi.sh BLCA
+ 2532  history | grep sbatch
+ 2533  scancel 1409135
+ 2534  chmod +x scripts/tl_source_run_all_cancer.sh 
+ 2535  ./scripts/tl_source_run_all_cancer.sh 
+ 2536  ccc_mpinfo
+ 2537  squeue
+ 2538  squeue -u $USER
+ 2539  ssh topaze
+ 2540  history | grep multiple_methode
+ 2541  history | grep multiple_method
+ 2542  python results_analysis/multiple_method_compare_all.py --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_ --source name=tl_finetune type=file dir=results/ basename=ncv_finetune_optuna_paral_ --baseline python_cox --plot boxplot
+ 2543  squeue -u $USER
+ 2544  chmod +x scripts/tl_source_run_all_cancer.sh 
+ 2545  squeue
+ 2546  ssh topaze
+ 2547  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse 
+ 2548  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2549  ./scripts/tl_source_run_all_cancer.sh 
+ 2550  ccc_mpinfo
+ 2551  squeue -u $USER
+ 2552  module load python 
+ 2553  source venv_sksurv_dev/bin/activate
+ 2554  sshell -c2
+ 2555  squeue -u $USER
+ 2556  cd CustOmics/
+ 2557  history | grep analyse_optuna_tl_source.py 
+ 2558  python analyse_optuna_tl_source.py --skip_importance --journal_dir optuna_journal/
+ 2559  ssh topaze
+ 2560  ccc_mpinfo
+ 2561  module load python 
+ 2562  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2563  module load python
+ 2564  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse 
+ 2565  source venv_sksurv_dev/bin/activate
+ 2566  sshell -c2
+ 2567  ./scripts/tl_source_run_all_cancer.sh 
+ 2568  sshare
+ 2569  squeue -u $USER
+ 2570  ssh topaze
+ 2571  ssh topaze
+ 2572  python analyse_optuna_tl_source.py --skip_importance --journal_dir optuna_journal/
+ 2573  squeue -u $USER
+ 2574  sshare
+ 2575  ccc_mpinfo
+ 2576  ccc_mpp -u $USER
+ 2577  sshell -c2
+ 2578  sacct -u $USER -S 2026-07-22 --format=JobID,JobName,State,Start,End,Elapse
+ 2579  sacct -u $USER -S 2026-06-22 --format=JobID,JobName,State,Start,End,Elapse | grep tl_tar
+ 2580  rsync -avz --chmod=Dg+s --chown=:fg0062 CustOmics/  topaze:/ccc/work/cont007/fg0062/legrandh/CustOmics --exclude="figures" --exclude="splits" --exclude="toy_data" --exclude="__pycache__" --exclude="optuna_journal"
+ 2581  sacct -u $USER -S 2026-06-22 --format=JobID,JobName,State,Start,End,Elapse | grep tl_sour
+ 2582  sbatch tl_source_optu_multi.sh BLCA
+ 2583  sbatch scripts/tl_source_optu_multi.sh BLCA
+ 2584  history | grep sbatch
+ 2585  scancel 1409135
+ 2586  chmod +x scripts/tl_source_run_all_cancer.sh 
+ 2587  ./scripts/tl_source_run_all_cancer.sh 
+ 2588  ssh topaze
+ 2589  history | grep multiple_methode
+ 2590  history | grep multiple_method
+ 2591  python results_analysis/multiple_method_compare_all.py --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_ --source name=tl_finetune type=file dir=results/ basename=ncv_finetune_optuna_paral_ --baseline python_cox --plot boxplot
+ 2592  chmod +x scripts/tl_source_run_all_cancer.sh 
+ 2593  ssh topaze
+ 2594  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse 
+ 2595  ./scripts/tl_source_run_all_cancer.sh 
+ 2596  module load python 
+ 2597  sshell -c2
+ 2598  cd CustOmics/
+ 2599  history | grep analyse_optuna_tl_source.py 
+ 2600  python analyse_optuna_tl_source.py --skip_importance --journal_dir optuna_journal/
+ 2601  ssh topaze
+ 2602  module load python 
+ 2603  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse 
+ 2604  sshell -c2
+ 2605  ./scripts/tl_source_run_all_cancer.sh 
+ 2606  ssh topaze
+ 2607  ssh topaze
+ 2608  python analyse_optuna_tl_source.py --skip_importance --journal_dir optuna_journal/
+ 2609  ccc_mpp -u $USER
+ 2610  module load python
+ 2611  ls
+ 2612  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2613  source venv_sksurv_dev/bin/activate
+ 2614  sreport
+ 2615  sreport cluster AccountUtilizationByUser User=$USER -t Hours start=2026-04-01
+ 2616  sreport cluster AccountUtilizationByUser User=$USER -t Hours start=2026-05-01
+ 2617  sreport -a cluster AccountUtilizationByUser User=$USER -t Hours start=2026-05-01
+ 2618  sreport -a cluster AccountUtilizationByUser User=$USER Start=2026-05-01
+ 2619  sreport -a cluster UserUtilizationByAccount User=$USER Start=2026-05-01
+ 2620  history | grep sreport
+ 2621  sacct -u $USER -o JobID,JobName,Elapsed,NCPUs,CPUTime
+ 2622  sreport cluster Utilization User=$USER Start=2026-05-01
+ 2623  ccc_mpinfo -h
+ 2624  ccc_mpinfo -h -p normal
+ 2625  squeue 
+ 2626  ccc_mpinfo 
+ 2627  squeue
+ 2628  scancel 1484727
+ 2629  scancel 1484653
+ 2630  sshare
+ 2631  scancel 1485169
+ 2632  scancel 1485167
+ 2633  ccc_mpinfo
+ 2634  sacct -u $USER --format=TotalCPU --parsable2 --noheader | awk '
+ 2635  {
+ 2636      split($1, a, "-")
+ 2637      if (length(a) == 2) {
+ 2638          days = a[1]
+ 2639          time = a[2]
+ 2640      } else {
+ 2641          days = 0
+ 2642          time = a[1]
+ 2643      }
+ 2644      split(time, t, ":")
+ 2645      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2646  }
+ 2647  END {
+ 2648      printf("Temps CPU total : %d jours %02d:%02d:%02d\n",
+ 2649             int(sec/86400),
+ 2650             int((sec%86400)/3600),
+ 2651             int((sec%3600)/60),
+ 2652             sec%60)
+ 2653  }'
+ 2654  sacct -u $USER --format=TotalCPU --parsable2 --noheader
+ 2655  history | grep sacct
+ 2656  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse
+ 2657  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse,TotalCPU
+ 2658  sacct -S 2026-05-01 -u $USER --format=TotalCPU --parsable2 --noheader | awk '
+ 2659  {
+ 2660      split($1, a, "-")
+ 2661      if (length(a) == 2) {
+ 2662          days = a[1]
+ 2663          time = a[2]
+ 2664      } else {
+ 2665          days = 0
+ 2666          time = a[1]
+ 2667      }
+ 2668      split(time, t, ":")
+ 2669      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2670  }
+ 2671  END {
+ 2672      printf("Temps CPU total : %d jours %02d:%02d:%02d\n",
+ 2673             int(sec/86400),
+ 2674             int((sec%86400)/3600),
+ 2675             int((sec%3600)/60),
+ 2676             sec%60)
+ 2677  }'
+ 2678  sacct -u $USER -X -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse,TotalCPU
+ 2679  sacct -u $USER --format=JobID,TotalCPU --noheader | awk '
+ 2680  $1 !~ /\./ {
+ 2681      cpu = $2
+ 2682      days = 0
+ 2683      if (cpu ~ /-/) {
+ 2684          split(cpu, d, "-")
+ 2685          days = d[1]
+ 2686          cpu = d[2]
+ 2687      }
+ 2688      split(cpu, t, ":")
+ 2689      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2690  }
+ 2691  END {
+ 2692      days = int(sec/86400)
+ 2693      sec %= 86400
+ 2694      hours = int(sec/3600)
+ 2695      sec %= 3600
+ 2696      mins = int(sec/60)
+ 2697      secs = sec%60
+ 2698      printf("CPU total : %d-%02d:%02d:%02d\n",
+ 2699             days, hours, mins, secs)
+ 2700  }'
+ 2701  sacct -S 2026-05-01 -u $USER --format=JobID,TotalCPU --noheader | awk '
+ 2702  $1 !~ /\./ {
+ 2703      cpu = $2
+ 2704      days = 0
+ 2705      if (cpu ~ /-/) {
+ 2706          split(cpu, d, "-")
+ 2707          days = d[1]
+ 2708          cpu = d[2]
+ 2709      }
+ 2710      split(cpu, t, ":")
+ 2711      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2712  }
+ 2713  END {
+ 2714      days = int(sec/86400)
+ 2715      sec %= 86400
+ 2716      hours = int(sec/3600)
+ 2717      sec %= 3600
+ 2718      mins = int(sec/60)
+ 2719      secs = sec%60
+ 2720      printf("CPU total : %d-%02d:%02d:%02d\n",
+ 2721             days, hours, mins, secs)
+ 2722  }'
+ 2723  sacct --format=JobID,ConsumedEnergyRaw
+ 2724  sbatch scripts/tl_target_optu_multi_outer.sh
+ 2725  squeue -u $USER
+ 2726  ssh topaze
+ 2727  history | grep compare_all
+ 2728  sbatch scripts/tl_target_optu_multi_outer.sh
+ 2729  ssh topaze
+ 2730  history | grep compare_all
+ 2731  history | grep compare_multiple
+ 2732  python results_analysis/aggregate_folds_optuna.py --name_suffix clinridge --cancer KIRC
+ 2733  python results_analysis/aggregate_folds_optuna.py --name_suffix clinridge_ --cancer KIRC
+ 2734  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL ClinRidge" --graph "KIRC_clinridge" --boxplot
+ 2735  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_clinridge_KIRC.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL ClinRidge" --graph "KIRC_clinridge" --boxplot
+ 2736  python results_analysis/aggregate_folds_optuna.py --name_suffix clinridge_ --cancer KIRP
+ 2737  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRP.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL ClinRidge" --graph "KIRP_clinridge" --boxplot
+ 2738  squeue -u $USER
+ 2739  python results_analysis/aggregate_folds_optuna.py --name_suffix supclinridge_ --cancer KIRP
+ 2740  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRP.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL ClinRidge" "TL SupClinRidge" --graph "KIRP_clinridge" --boxplot
+ 2741  python results_analysis/aggregate_folds_optuna.py --name_suffix supridge_ --cancer KIRP
+ 2742  python results_analysis/aggregate_folds_optuna.py --name_suffix suridge_ --cancer KIRP
+ 2743  python results_analysis/aggregate_folds_optuna.py --name_suffix ridge_ --cancer KIRP
+ 2744  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRP.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_supridge_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL SupRidge" "TL ClinRidge" "TL SupClinRidge"--graph "KIRP_clinridge" --boxplot
+ 2745  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRP.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRP.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_supridge_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL SupRidge" "TL ClinRidge" "TL SupClinRidge" --graph "KIRP_clinridge" --boxplot
+ 2746  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL ClinRidge" --graph "KIRC_clinridge" --boxplot
+ 2747  squeue -u $USER
+ 2748  python results_analysis/aggregate_folds_optuna.py --name_suffix ridge_ --cancer KIRC
+ 2749  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL ClinRidge"--graph "KIRC_clinridge" --boxplot
+ 2750  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL ClinRidge" --graph "KIRC_clinridge" --boxplot
+ 2751  python results_analysis/aggregate_folds_optuna.py --name_suffix clinridge_ --cancer KIRC
+ 2752  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRC.csv  results_tgcc/results/ncv_custcox_optuna_paral_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_KIRC.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_KIRC.csv  --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL ClinRidge" --graph "KIRC_clinridge" --boxplot
+ 2753  squeue -u $USER
+ 2754  python results_analysis/aggregate_folds_optuna.py --name_suffix ridge_ --cancer ESCA
+ 2755  python results_analysis/aggregate_folds_optuna.py --name_suffix clinridge_ --cancer ESCA
+ 2756  python results_analysis/aggregate_folds_optuna.py --name_suffix supclinridge_ --cancer ESCA
+ 2757  python results_analysis/aggregate_folds_optuna.py --name_suffix supridge_ --cancer ESCA
+ 2758  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_KIRP.csv  results_tgcc/results/ncv_custcox_optuna_paral_ESCA.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_ESCA.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_ESCA.csv results/ncv_finetune_optuna_paral_ridge_ESCA.csv results/ncv_finetune_optuna_paral_supridge_ESCA.csv results/ncv_finetune_optuna_paral_clinridge_ESCA.csv results/ncv_finetune_optuna_paral_supclinridge_ESCA.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL SupRidge" "TL ClinRidge" "TL SupClinRidge" --graph "ESCA_clinridge" --boxplot
+ 2759  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results_tgcc/results/ncv_custcox_optuna_paral_ESCA.csv results_tgcc/results/ncv_custcox_optuna_paral_clinical_ESCA.csv results_tgcc/results/ncv_custcox_optuna_paral_supervised_ESCA.csv results/ncv_finetune_optuna_paral_ridge_ESCA.csv results/ncv_finetune_optuna_paral_supridge_ESCA.csv results/ncv_finetune_optuna_paral_clinridge_ESCA.csv results/ncv_finetune_optuna_paral_supclinridge_ESCA.csv --labels "Cox" "CustCox" "CC Clinical" "CC Supervised" "TL Ridge" "TL SupRidge" "TL ClinRidge" "TL SupClinRidge" --graph "ESCA_clinridge" --boxplot
+ 2760  squeue -u $USER
+ 2761      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2762  }
+ 2763  END {
+ 2764      printf("Temps CPU total : %d jours %02d:%02d:%02d\n",
+ 2765             int(sec/86400),
+ 2766             int((sec%86400)/3600),
+ 2767             int((sec%3600)/60),
+ 2768             sec%60)
+ 2769  }'
+ 2770  sacct -u $USER -X -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse,TotalCPU
+ 2771  sacct -u $USER --format=JobID,TotalCPU --noheader | awk '
+ 2772  $1 !~ /\./ {
+ 2773      cpu = $2
+ 2774      days = 0
+ 2775      if (cpu ~ /-/) {
+ 2776          split(cpu, d, "-")
+ 2777          days = d[1]
+ 2778          cpu = d[2]
+ 2779      }
+ 2780      split(cpu, t, ":")
+ 2781      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2782  }
+ 2783  END {
+ 2784      days = int(sec/86400)
+ 2785      sec %= 86400
+ 2786      hours = int(sec/3600)
+ 2787      sec %= 3600
+ 2788      mins = int(sec/60)
+ 2789      secs = sec%60
+ 2790      printf("CPU total : %d-%02d:%02d:%02d\n",
+ 2791             days, hours, mins, secs)
+ 2792  }'
+ 2793  sacct -S 2026-05-01 -u $USER --format=JobID,TotalCPU --noheader | awk '
+ 2794  $1 !~ /\./ {
+ 2795      cpu = $2
+ 2796      days = 0
+ 2797      if (cpu ~ /-/) {
+ 2798          split(cpu, d, "-")
+ 2799          days = d[1]
+ 2800          cpu = d[2]
+ 2801      }
+ 2802      split(cpu, t, ":")
+ 2803      sec += days*86400 + t[1]*3600 + t[2]*60 + t[3]
+ 2804  }
+ 2805  END {
+ 2806      days = int(sec/86400)
+ 2807      sec %= 86400
+ 2808      hours = int(sec/3600)
+ 2809      sec %= 3600
+ 2810      mins = int(sec/60)
+ 2811      secs = sec%60
+ 2812      printf("CPU total : %d-%02d:%02d:%02d\n",
+ 2813             days, hours, mins, secs)
+ 2814  }'
+ 2815  sacct --format=JobID,ConsumedEnergyRaw
+ 2816  ssh topaze
+ 2817  history | grep sacct
+ 2818  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse
+ 2819  sshaer
+ 2820  module load python
+ 2821  history | grep cd
+ 2822  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2823  scancel 1493875
+ 2824  history | grep rsync
+ 2825  source venv_sksurv_dev/bin/activate
+ 2826  sbatch scripts/tl_target_eval_all.sh
+ 2827  sshare
+ 2828  scancel 1494936
+ 2829  ccc_mpinfo
+ 2830  sbatch scripts/tl_target_optu_multi_outer.sh
+ 2831  sshell -c2
+ 2832  squeue -u $USER
+ 2833  ssh topaze
+ 2834  history | grep sacct
+ 2835  sacct -u $USER -S 2026-07-28 --format=JobID,JobName,State,Start,End,Elapse
+ 2836  sshaer
+ 2837  module load python
+ 2838  history | grep cd
+ 2839  scancel 1493875
+ 2840  history | grep rsync
+ 2841  source venv_sksurv_dev/bin/activate
+ 2842  sbatch scripts/tl_target_eval_all.sh
+ 2843  scancel 1494936
+ 2844  sshell -c2
+ 2845  ccc_mpinfo
+ 2846  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2847  sshare
+ 2848  sbatch scripts/tl_target_optu_multi_outer.sh
+ 2849  squeue -u $USER
+ 2850  ssh topaze
+ 2851  sbatch scripts/tl_target_eval_all.sh
+ 2852  scancel 1494936
+ 2853  sshell -c2
+ 2854  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2855  sbatch scripts/tl_target_optu_multi_outer.sh
+ 2856  ssh topaze
+ 2857  history | grep sacct
+ 2858  sacct -u $USER -S 2026-08-03 --format=JobID,JobName,State,Start,End,Elapse
+ 2859  sshare
+ 2860  squeue -u $USER
+ 2861  squeue
+ 2862  ccc_mpinfo
+ 2863  squeue
+ 2864  ccc_mpinfo
+ 2865  module load python
+ 2866  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2867  python cox_model/difference_comparison.py
+ 2868  source venv_sksurv_dev/bin/activate
+ 2869  history | grep multiple_method
+ 2870  squeue
+ 2871  sshare
+ 2872  history | grep difference_comparison
+ 2873  sshell -c2
+ 2874  ccc_mpinfo
+ 2875  history | grep sbatch combine
+ 2876  history | grep sbatch 
+ 2877  history | grep combine
+ 2878  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2879  sbatch scripts/combine_outer_optuna.sh
+ 2880  squeue -u $USER
+ 2881  ssh topaze
+ 2882  history | grep multiple_method
+ 2883  squeue
+ 2884  sshare
+ 2885  history | grep difference_comparison
+ 2886  sshell -c2
+ 2887  ccc_mpinfo
+ 2888  history | grep sbatch combine
+ 2889  history | grep sbatch 
+ 2890  history | grep combine
+ 2891  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2892  sbatch scripts/combine_outer_optuna.sh
+ 2893  squeue -u $USER
+ 2894  ssh topaze
+ 2895  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix ridge_
+ 2896  python results_analysis/aggregate_folds_optuna.py --cancer KIRP --name_suffix ridge
+ 2897  history | grep aggregate
+ 2898  python results_analysis/aggregate_folds_optuna.py --name_suffix ridge_ --cancer KIRC
+ 2899  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix clinridge_
+ 2900  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix supclinridge_
+ 2901  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix supridge_
+ 2902  python results_analysis/aggregate_folds_optuna.py --cancer KIRP --name_suffix supridge_
+ 2903  python results_analysis/aggregate_folds_optuna.py --cancer KIRP --name_suffix clinridge_
+ 2904  python results_analysis/aggregate_folds_optuna.py --cancer KIRP --name_suffix supclinridge_
+ 2905  python results_analysis/aggregate_folds_optuna.py --cancer KIRP --name_suffix ridge_
+ 2906  history | grep compare_multiple
+ 2907  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results/ncv_custcox_optuna_paral_ridge_KIRP.csv results/ncv_custcox_optuna_paral_clinridge_KIRP.csv results/ncv_custcox_optuna_paral_supridge_KIRP.csv results/ncv_custcox_optuna_paral_supclinridge_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_supridge_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC Supridge" "CC SupClinRidge" "TL Ridge" "TL SupRidge" "TL ClinRidge" "TL SupClinRidge" --graph "KIRP_allridge" --boxplot
+ 2908  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results/ncv_custcox_optuna_paral_ridge_KIRP.csv results/ncv_custcox_optuna_paral_clinridge_KIRP.csv results/ncv_custcox_optuna_paral_supridge_KIRP.csv results/ncv_custcox_optuna_paral_supclinridge_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_suprclinridge_KIRP.csv results/ncv_finetune_optuna_paral_clinsupridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC Supridge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "KIRP_allridge" --boxplot
+ 2909  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results/ncv_custcox_optuna_paral_ridge_KIRP.csv results/ncv_custcox_optuna_paral_clinridge_KIRP.csv results/ncv_custcox_optuna_paral_supridge_KIRP.csv results/ncv_custcox_optuna_paral_supclinridge_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC Supridge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "KIRP_allridge" --boxplot
+ 2910  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results/ncv_custcox_optuna_paral_ridge_KIRP.csv results/ncv_custcox_optuna_paral_clinridge_KIRP.csv_ results/ncv_custcox_optuna_paral_supclinridge_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_clinridge_KIRC.csv results/ncv_finetune_optuna_paral_supridge_KIRC.csv results/ncv_finetune_optuna_paral_supclinridge_KIRC.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "KIRP_allridge" --boxplot
+ 2911  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRC.csv  results/ncv_custcox_optuna_paral_ridge_KIRC.csv results/ncv_custcox_optuna_paral_clinridge_KIRC.csv_ results/ncv_custcox_optuna_paral_supclinridge_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_clinridge_KIRC.csv results/ncv_finetune_optuna_paral_supridge_KIRC.csv results/ncv_finetune_optuna_paral_supclinridge_KIRC.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "KIRC_allridge" --boxplot
+ 2912  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRC.csv  results/ncv_custcox_optuna_paral_ridge_KIRC.csv results/ncv_custcox_optuna_paral_clinridge_KIRC.csv results/ncv_custcox_optuna_paral_supclinridge_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_clinridge_KIRC.csv results/ncv_finetune_optuna_paral_supridge_KIRC.csv results/ncv_finetune_optuna_paral_supclinridge_KIRC.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "KIRC_allridge" --boxplot
+ 2913  history | grep compare_two
+ 2914  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_finetune_optuna_paral_ridge_KIRP.csv  --graph "KIRP_tl_ridge" --ttest
+ 2915  python results_analysis/ttest_cancer_suffixes.py --cancer KIRP --data-dir ./results --summary
+ 2916  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRP --data-dir ./results --summary
+ 2917  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRP --data-dir ./results --summary --plot
+ 2918  squeue -u $USER
+ 2919  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRP --data-dir ./results --summary --plot
+ 2920  cd CustOmics/
+ 2921  history | grep analyse_optuna_all_cancer
+ 2922  sbatch scripts/run_in_customics.sh analyse_optuna_all_cancer.py --name_suffix ridge
+ 2923  python analyse_optuna_all_cancer.py --name_suffix ridge
+ 2924  cd ../
+ 2925  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRP --data-dir ./results --summary --plot --fdr
+ 2926  squeue -u $USER
+ 2927  squeue
+ 2928  history | grep difference_comparison
+ 2929  ccc_mpinfo
+ 2930  history | grep sbatch combine
+ 2931  history | grep sbatch 
+ 2932  history | grep combine
+ 2933  ssh topaze
+ 2934  sacct -u $USER -S 2026-08-03 --format=JobID,JobName,State,Start,End,Elapse
+ 2935  sshare
+ 2936  module load python
+ 2937  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2938  source venv_sksurv_dev/bin/activate
+ 2939  ls
+ 2940  sbatch scripts/combine_outer_optuna.sh
+ 2941  sbatch scripts/tl_source_load_all.sh
+ 2942  scancel 1507684
+ 2943  sbatch scripts/tl_source_optu_multi.sh BLCA
+ 2944  squeue -u $USER
+ 2945  sshell -c2
+ 2946  sshell -c2
+ 2947  history | grep aggregate
+ 2948  history | grep compare_multiple
+ 2949  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix supridge_
+ 2950  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRC.csv  results/ncv_custcox_optuna_paral_ridge_KIRC.csv results/ncv_custcox_optuna_paral_clinridge_KIRC.csv results/ncv_custcox_optuna_paral_supridge_KIRC.csv results/ncv_custcox_optuna_paral_supclinridge_KIRC.csv results/ncv_finetune_optuna_paral_ridge_KIRC.csv results/ncv_finetune_optuna_paral_clinridge_KIRC.csv results/ncv_finetune_optuna_paral_supridge_KIRC.csv results/ncv_finetune_optuna_paral_supclinridge_KIRC.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC SupRidge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "KIRC_allridge" --boxplot
+ 2951  python results_analysis/ttest_all_method_1_cancer.py KIRC
+ 2952  history | grep  results_analysis/ttest_all_method_1_cancer.py
+ 2953  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRC --data-dir ./results --summary --plot --fdr
+ 2954  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix supclinridge_
+ 2955  python results_analysis/aggregate_folds_optuna.py --cancer ESCA --name_suffix supclinridge_
+ 2956  python results_analysis/aggregate_folds_optuna.py --cancer ESCA --name_suffix clinridge_
+ 2957  python results_analysis/aggregate_folds_optuna.py --cancer ESCA --name_suffix ridge_
+ 2958  python results_analysis/aggregate_folds_optuna.py --cancer ESCA --name_suffix supridge_
+ 2959  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_ESCA.csv  results/ncv_custcox_optuna_paral_ridge_ESCA.csv results/ncv_custcox_optuna_paral_clinridge_ESCA.csv results/ncv_custcox_optuna_paral_supridge_ESCA.csv results/ncv_custcox_optuna_paral_supclinridge_ESCA.csv results/ncv_finetune_optuna_paral_ridge_ESCA.csv results/ncv_finetune_optuna_paral_clinridge_ESCA.csv results/ncv_finetune_optuna_paral_supridge_ESCA.csv results/ncv_finetune_optuna_paral_supclinridge_ESCA.csv --labels "Cox" "CustCox Ridge" "CC Clinridge" "CC SupRidge" "CC SupClinRidge" "TL Ridge" "TL ClinRidge" "TL SupRidge" "TL SupClinRidge" --graph "ESCA_allridge" --boxplot
+ 2960  python results_analysis/ttest_all_method_1_cancer.py --cancer ESCA --data-dir ./results --summary --plot --fdr
+ 2961  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRC --data-dir ./results --summary --plot --fdr
+ 2962  cd CustOmics/
+ 2963  python analyse_latent_space_save_model.py --cancer KIRP
+ 2964  history | grep analyse_latent_krujskal_ftest_cox.py 
+ 2965  python analyse_latent_krujskal_ftest_cox.py 
+ 2966  sshell -c2
+ 2967  squeue -u $USER
+ 2968  ssh topaze
+ 2969  history | grep sbatch 
+ 2970  history | grep combine
+ 2971  ssh topaze
+ 2972  sshare
+ 2973  ls
+ 2974  sbatch scripts/tl_source_load_all.sh
+ 2975  scancel 1507684
+ 2976  sbatch scripts/tl_source_optu_multi.sh BLCA
+ 2977  module load python
+ 2978  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 2979  source venv_sksurv_dev/bin/activate
+ 2980  sbatch scripts/tl_target_optu_multi_outer.sh
+ 2981  sbatch scripts/combine_outer_optuna.sh
+ 2982  history | grep sacct
+ 2983  sacct -u $USER -S 2026-08-03 --format=JobID,JobName,State,Start,End,Elapse
+ 2984  sacct -u $USER -S 2026-08-03 --format=JobID,JobName,State,Start,End,Elapse | grep tl
+ 2985  history | grep sbatcg
+ 2986  history | grep sbatch
+ 2987  scancel 1519522
+ 2988  sbatch scripts/tl_source_optu_multi.sh KIRP
+ 2989  squeue -u $USER
+ 2990  sshell -c2
+ 2991  cd CustOmics/
+ 2992  python analyse_latent_krujskal_ftest_cox.py
+ 2993  python heatmap_tl_diff.py --results-dir results/ --output-dir ./
+ 2994  cd ../
+ 2995  ls
+ 2996  cd hlegrand/
+ 2997  python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir ./
+ 2998  history | grep sbatch
+ 2999  history | grep combine_results
+ 3000  sshell -c2
+ 3001  python analyse_latent_krujskal_ftest_cox.py
+ 3002  python heatmap_tl_diff.py --results-dir results/ --output-dir ./
+ 3003  cd ../
+ 3004  ls
+ 3005  cd hlegrand/
+ 3006  history | grep sbatch
+ 3007  history | grep combine_results
+ 3008  python results_analysis/aggregate_folds_optuna.py --cancer KIRC --name_suffix supclinridge_
+ 3009  python results_analysis/aggregate_folds_optuna.py --cancer UCEC --name_suffix supridge_
+ 3010  python results_analysis/aggregate_folds_optuna.py --cancer UCEC --name_suffix ridge_
+ 3011  python results_analysis/aggregate_folds_optuna.py --cancer UCEC --name_suffix clinridge_
+ 3012  python results_analysis/aggregate_folds_optuna.py --cancer UCEC --name_suffix supclinridge_
+ 3013  python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir ./
+ 3014  history | grep ttest
+ 3015  python results_analysis/ttest_all_method_1_cancer.py --cancer UCEC --data-dir ./results --summary --plot --fdr
+ 3016  squeue -u $USER
+ 3017  cd CustOmics/
+ 3018  history | grep analyse_latent_space_save_model.py 
+ 3019  python analyse_latent_space_save_model.py --cancer KIRP --name_suffix supridge
+ 3020  ssh topaze
+ 3021  history | grep sbatcg
+ 3022  history | grep sbatch
+ 3023  scancel 1519522
+ 3024  ccc_mpinfo
+ 3025  squeue 
+ 3026  module load python 
+ 3027  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3028  source venv_sksurv_dev/bin/activate
+ 3029  history | grep tl_source_optu_multi
+ 3030  sbatch scripts/tl_source_optu_multi.sh KIRP
+ 3031  squeue -u $USER
+ 3032  history | grep compare_multiple_1_cancer
+ 3033  history | grep aggregate
+ 3034  sshell -c2
+ 3035  cd CustOmics/latent_space_analysis/
+ 3036  python tl_source_analysis.py 
+ 3037  squeue  -u $USER
+ 3038  squeue  -u $USER
+ 3039  history | grep analyse_latent_space_save_model.py
+ 3040  cd CustOmics/
+ 3041  python analyse_latent_space_save_model.py --cancer KIRP --name_suffix supridge
+ 3042  python analyse_latent_space_save_model.py --cancer KIRP --name_suffix supridge_
+ 3043  history | grep analyse_latent_krujskal
+ 3044  python analyse_latent_krujskal_ftest_cox.py
+ 3045  history | grep sbatch
+ 3046  scancel 1519522
+ 3047  ccc_mpinfo
+ 3048  squeue 
+ 3049  history | grep tl_source_optu_multi
+ 3050  sbatch scripts/tl_source_optu_multi.sh KIRP
+ 3051  history | grep compare_multiple_1_cancer
+ 3052  history | grep aggregate
+ 3053  module load python 
+ 3054  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3055  source venv_sksurv_dev/bin/activate
+ 3056  ls
+ 3057  history | grep analyse_optuna_all_method
+ 3058  sbatch scripts/optuna_importance_all_methods.sh
+ 3059  squeue -u $USER
+ 3060  sshell -c2
+ 3061  history | grep combine_outer
+ 3062  sbatch scripts/combine_outer_optuna.sh
+ 3063  module load python 
+ 3064  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3065  source venv_sksurv_dev/bin/activate
+ 3066  sbatch scripts/optuna_importance_all_methods.sh
+ 3067  squeue -u $USER
+ 3068  history | grep multiple_method
+ 3069  history | grep compare_multiple
+ 3070  history | grep heatmap
+ 3071  sshell -c2
+ 3072  cd CustOmics
+ 3073  python analyse_latent_krujskal_ftest_cox.py
+ 3074  squeue -u $USER
+ 3075  module load python
+ 3076  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3077  source venv_sksurv_dev/bin/activate
+ 3078  sshell -c2
+ 3079  module load python
+ 3080  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3081  source venv_sksurv_dev/bin/activate
+ 3082  sshell -c2
+ 3083  ccc_mpinfo
+ 3084  source venv_sksurv_dev/bin/activate
+ 3085  sshell -c2
+ 3086  ccc_mpinfo
+ 3087  history | grep optuna_all_methods_all
+ 3088  cd ../
+ 3089  history | grep heatmap
+ 3090  python results_analysis/heatmap_cox_diff.py --results-dir results/ --output-dir ./
+ 3091  python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir ./
+ 3092  history | grep compare_multiple_1_cancer
+ 3093  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results/ncv_custcox_optuna_paral_ridge_KIRP.csv results/ncv_custcox_optuna_paral_clinridge_KIRP.csv results/ncv_custcox_optuna_paral_supridge_KIRP.csv results/ncv_custcox_optuna_paral_supclinridge_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CC" "CC clin" "CC sup" "CC clin sup" "TL CC" "TL CC clin" "TL CC sup" "TL CC clin sup" --graph "KIRP_allridge" --boxplot
+ 3094  python results_analysis/compare_multiple_1_cancer.py --files results/outer_cv_results_vvh_ridge_KIRP.csv  results/ncv_custcox_optuna_paral_ridge_KIRP.csv results/ncv_custcox_optuna_paral_clinridge_KIRP.csv results/ncv_custcox_optuna_paral_supridge_KIRP.csv results/ncv_custcox_optuna_paral_supclinridge_KIRP.csv results/ncv_finetune_optuna_paral_ridge_KIRP.csv results/ncv_finetune_optuna_paral_clinridge_KIRP.csv results/ncv_finetune_optuna_paral_supridge_KIRP.csv results/ncv_finetune_optuna_paral_supclinridge_KIRP.csv --labels "Cox" "CustCox" "CustCox clin" "CustCox sup" "CustCox clin sup" "TL CustCox" "TL CustCox clin" "TL CustCox sup" "TL CustCox clin sup" --graph "KIRP_allridge" --boxplot
+ 3095  history | grep ttest
+ 3096  python results_analysis/ttest_all_method_1_cancer.py --cancer KIRP --data-dir ./results --summary --plot --fdr
+ 3097  cd CustOmics/
+ 3098  python analyse_optuna_all_methods_all_cancer.py --results_dir ../results --use_cache
+ 3099  module load python
+ 3100  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3101  source venv_sksurv_dev/bin/activate
+ 3102  sshell _c2
+ 3103  sshell -c2
+ 3104  history | grep heatmap_
+ 3105  python results_analysis/heatmap_cox_diff.py --results-dir results/ --output-dir ./results_slide
+ 3106  cd CustOmics/
+ 3107  history | grep analyse_optuna_all_methods_all_cancer.py 
+ 3108  python analyse_optuna_all_methods_1_cancer.py
+ 3109  module load python
+ 3110  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3111  source venv_sksurv_dev/bin/activate
+ 3112  sshell -c2
+ 3113  module load python
+ 3114  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3115  source venv_sksurv_dev/bin/activate
+ 3116  history | grep multiple_method
+ 3117  history | grep multiple_method
+ 3118  module load python
+ 3119  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3120  source venv_sksurv_dev/bin/activate
+ 3121  xclip
+ 3122  history | grep compare_multi
+ 3123  sshell -c2
+ 3124  cd CustOmics/
+ 3125  python tl_custcox_target_eval_all_1_outer.py --cancer KIRP --outer_fold 0 --use_saved_folds --pretrain_ckpt loss_pretrained_model.pt --best_params_in loss_best_params_source.json --supervised --name_suffix supridge_ --ridge
+ 3126  history | grep compare_multi
+ 3127  module load python
+ 3128  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3129  source venv_sksurv_dev/bin/activate
+ 3130  sshell -c2
+ 3131  python tl_custcox_target_eval_all_1_outer.py --cancer KIRP --outer_fold 0 --use_saved_folds --pretrain_ckpt loss_pretrained_model.pt --best_params_in loss_best_params_source.json --supervised --name_suffix supridge_ --ridge --n_epochs_ft 1000
+ 3132  module load python
+ 3133  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3134  source venv_sksurv_dev/bin/activate
+ 3135  cd CustOmics/
+ 3136  sshell -c2
+ 3137  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3138  module load python
+ 3139  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3140  source venv_sksurv_dev/bin/activate
+ 3141  cd CustOmics/
+ 3142  sshell -c2
+ 3143  module load python
+ 3144  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3145  source venv_sksurv_dev/bin/activate
+ 3146  cd CustOmics/
+ 3147  jobify "python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge"
+ 3148  cd ../
+ 3149  sbatch scripts/run_in_customics.sh optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3150  cd CustOmics/
+ 3151  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3152  history | grep sbatch
+ 3153  cd ../
+ 3154  history | grep compare_two
+ 3155  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_scaled_ridge"
+ 3156  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_scaled_ridge" --boxplot
+ 3157  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_supridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaledsup_KIRP.csv --graph "KIRP_scaledsup_ridge" --boxplot
+ 3158  cd CustOmics/
+ 3159  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3160  sshell -c2
+ 3161  module load python
+ 3162  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3163  source venv_sksurv_dev/bin/activate
+ 3164  history | grep sbatch
+ 3165  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3166  python tl_custcox_target_eval_all_1_outer.py --cancer KIRP --outer_fold 0 --use_saved_folds --pretrain_ckpt loss_pretrained_model.pt --best_params_in loss_best_params_source.json --supervised --name_suffix supridge_ --ridge
+ 3167  history | grep compare_multi
+ 3168  python tl_custcox_target_eval_all_1_outer.py --cancer KIRP --outer_fold 0 --use_saved_folds --pretrain_ckpt loss_pretrained_model.pt --best_params_in loss_best_params_source.json --supervised --name_suffix supridge_ --ridge --n_epochs_ft 1000
+ 3169  cd CustOmics/
+ 3170  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3171  cd CustOmics/
+ 3172  cd CustOmics/
+ 3173  jobify "python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge"
+ 3174  cd ../
+ 3175  sbatch scripts/run_in_customics.sh optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3176  module load python
+ 3177  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3178  source venv_sksurv_dev/bin/activate
+ 3179  scancel 1720332
+ 3180  sbatch --nodelist="inti[000-003,005-006]" scripts/relaunch_optuna_load.sh
+ 3181  sbatch scripts/combine_results_outer.sh
+ 3182  squeue -u $USER
+ 3183  sshell -c2
+ 3184  sshell -c2
+ 3185  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 1 --supervised --name_suffix supridge_ --ridge
+ 3186  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 2 --supervised --name_suffix supridge_ --ridge
+ 3187  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3188  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 3 --supervised --name_suffix supridge_ --ridge
+ 3189  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 4 --supervised --name_suffix supridge_ --ridge
+ 3190  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 5 --supervised --name_suffix supridge_ --ridge
+ 3191  python optuna_load_all_study_1_outer.py --use_saved_folds  --cancer KIRP --outer_fold 5 --supervised --name_suffix supridge_ --ridge
+ 3192  python optuna_load_all_study_1_outer.py --use_saved_folds  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3193  python optuna_load_all_study_1_outer.py --use_saved_folds  --cancer KIRP --outer_fold 1 --supervised --name_suffix supridge_ --ridge
+ 3194  history | grep compare_two
+ 3195  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_scaled_ridge" --boxplot
+ 3196  squeue -u $USER
+ 3197  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_scaled_ridge" --boxplot
+ 3198  jobify "python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge"
+ 3199  sbatch scripts/run_in_customics.sh optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3200  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3201  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_scaled_ridge"
+ 3202  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_supridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaledsup_KIRP.csv --graph "KIRP_scaledsup_ridge" --boxplot
+ 3203  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3204  module load python
+ 3205  python tl_custcox_target_eval_all_1_outer.py --cancer KIRP --outer_fold 0 --use_saved_folds --pretrain_ckpt loss_pretrained_model.pt --best_params_in loss_best_params_source.json --supervised --name_suffix supridge_ --ridge
+ 3206  history | grep compare_multi
+ 3207  python tl_custcox_target_eval_all_1_outer.py --cancer KIRP --outer_fold 0 --use_saved_folds --pretrain_ckpt loss_pretrained_model.pt --best_params_in loss_best_params_source.json --supervised --name_suffix supridge_ --ridge --n_epochs_ft 1000
+ 3208  python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3209  jobify "python optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge"
+ 3210  sbatch scripts/run_in_customics.sh optuna_load_all_study_1_outer.py  --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3211  module load python
+ 3212  scancel 1720332
+ 3213  module load python 
+ 3214  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3215  source venv_sksurv_dev/bin/activate
+ 3216  cd CustOmics/
+ 3217  history grep sbatch
+ 3218  history |grep sbatch
+ 3219  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3220  cd ../
+ 3221  cd hlegrand/
+ 3222  history | grep sbatch
+ 3223  history | grep compare_two
+ 3224  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_ridge_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_scaled_ridge" --boxplot
+ 3225  sbatch --nodelist="inti[000-003,005-006]" scripts/relaunch_optuna_load.sh
+ 3226  squeue -u $USER
+ 3227  sbatch scripts/combine_results_outer.sh
+ 3228  sshell -c2
+ 3229  python missing_data_load_all.py  --use_saved_folds --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3230  python missing_data_load_all.py  --use_saved_folds --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge --missing_strategy drop
+ 3231  ls
+ 3232  module load python
+ 3233  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3234  source venv_sksurv_dev/bin/activate
+ 3235  cd CustOmics/
+ 3236  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3237  history | grep sbatch
+ 3238  cd ../
+ 3239  sbatch --nodelist="inti[000-003,005-006]" scripts/missing_all_folds.sh
+ 3240  squeue -u $USER
+ 3241  sbatch scripts/combine_results_outer.sh
+ 3242  sshell -c2
+ 3243  python missing_data_load_all.py  --use_saved_folds --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge
+ 3244  python missing_data_load_all.py  --use_saved_folds --cancer KIRP --outer_fold 0 --supervised --name_suffix supridge_ --ridge --missing_strategy drop
+ 3245  ls
+ 3246  cd CustOmics/
+ 3247  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3248  cd ../
+ 3249  module load python
+ 3250  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3251  source venv_sksurv_dev/bin/activate
+ 3252  history | grep sbatch
+ 3253  sbatch --nodelist="inti[000-003,005-006]" scripts/missing_all_folds.sh
+ 3254  ccc_mpinfo
+ 3255  sbatch  scripts/missing_all_folds.sh
+ 3256  squeue -u $USER
+ 3257  python results_analysis/read_logs_missing.py logs/missing_data/*.out -o results_from_logs.csv --pivot results_pivot.csv --expect-files 60
+ 3258  sbatch  scripts/missing_all_folds.sh
+ 3259  python results_analysis/missing_mod_compare.py --results results_pivot.csv --cox results/outer_cv_results_vvh_ridge_KIRP.csv --graph "missing_results"
+ 3260  python results_analysis/read_logs_missing.py logs/missing_data/*.out -o results_from_logs.csv --pivot results_pivot.csv --expect-files 60
+ 3261  python results_analysis/missing_mod_compare.py --results results_pivot.csv --cox results/outer_cv_results_vvh_ridge_KIRP.csv --graph "missing_results"
+ 3262  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3263  cd ../
+ 3264  history | grep sbatch
+ 3265  sbatch --nodelist="inti[000-003,005-006]" scripts/missing_all_folds.sh
+ 3266  ccc_mpinfo
+ 3267  module load python
+ 3268  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3269  source venv_sksurv_dev/bin/activate
+ 3270  sbatch  scripts/missing_all_folds.sh
+ 3271  scancel 1737992
+ 3272  sbatch  scripts/missing_load_all.sh
+ 3273  squeue -u $USER
+ 3274  sshell -c2
+ 3275  sshell -c2
+ 3276  git add .
+ 3277  git status
+ 3278  git commit -m "update"
+ 3279  cd CustOmics/
+ 3280  history | grep optuna_load_all_study_1_outer.py 
+ 3281  python search_ncv.py --cancer KIRP --outer_fold 0 --supervised --name_suffix testsupridge_ --ridge
+ 3282  sbatch  scripts/missing_load_all.sh
+ 3283  module load python
+ 3284  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3285  source venv_sksurv_dev/bin/activate
+ 3286  sshell -c2
+ 3287  history | grep sshell
+ 3288  squeue -u $USER
+ 3289  ccc_mpinfo
+ 3290  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3291  sshell -c2 
+ 3292  cd CustOmics/
+ 3293  python eval_ncv.py --cancer KIRP --outer_fold 0 --name_suffix ridge_ --ridge --optimizer adamw --weight_decay 0.1
+ 3294  python eval_ncv.py --cancer KIRP --outer_fold 0 --name_suffix ridge_ --ridge
+ 3295  history | grep compare_two
+ 3296  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_adam_KIRP.csv --new results/ncv_custcox_optuna_paral_adamw_KIRP.csv --graph "KIRP_adam_ridge" --boxplot
+ 3297  cd CustOmics/
+ 3298  history | grep optuna_load_all_study_1_outer.py 
+ 3299  python search_ncv.py --cancer KIRP --outer_fold 0 --supervised --name_suffix testsupridge_ --ridge
+ 3300  sbatch  scripts/missing_load_all.sh
+ 3301  history | grep sshell
+ 3302  sshell -c2 
+ 3303  module load python
+ 3304  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3305  source venv_sksurv_dev/bin/activate
+ 3306  squeue
+ 3307  ccc_mpinfo
+ 3308  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3309  history | grep sbatch
+ 3310  squeue -u $USER
+ 3311  sbatch scripts/combine_results_outer.sh
+ 3312  sshell -c2
+ 3313  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_ncv.sh
+ 3314  history | grep compare_two
+ 3315  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_adam_KIRP.csv --new results/ncv_custcox_optuna_paral_adamw_KIRP.csv --graph "KIRP_adam_ridge" --boxplot
+ 3316  cd CustOmics/
+ 3317  history | grep optuna_load_all_study_1_outer.py 
+ 3318  python search_ncv.py --cancer KIRP --outer_fold 0 --supervised --name_suffix testsupridge_ --ridge
+ 3319  sbatch  scripts/missing_load_all.sh
+ 3320  history | grep sshell
+ 3321  sshell -c2 
+ 3322  squeue
+ 3323  ccc_mpinfo
+ 3324  module load python
+ 3325  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3326  source venv_sksurv_dev/bin/activate
+ 3327  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_ncv.sh
+ 3328  sbatch scripts/combine_results_outer.sh
+ 3329  sshell -c2
+ 3330  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3331  history | grep sbatch
+ 3332  sbatch --nodelist="inti[000-003,005-006]" scripts/source_pretrain.sh
+ 3333  scancel 1764179
+ 3334  sbatch --nodelist="inti[000-003,005-006]" scripts/target_finetune.sh
+ 3335  squeue -u $USER
+ 3336  scancel 1764179
+ 3337  sbatch --nodelist="inti[000-003,005-006]" scripts/target_finetune.sh
+ 3338  squeue -u $USER
+ 3339  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_seq_mod_surv.R
+ 3340  ls /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/
+ 3341  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/
+ 3342  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/README.md 
+ 3343  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/DESCRIPTION 
+ 3344  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/inst/
+ 3345  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man
+ 3346  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/survjdr-package.Rd 
+ 3347  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/reexports.Rd.Rd 
+ 3348  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/reexports.Rd
+ 3349  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/*.Rd
+ 3350  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr
+ 3351  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/mlr3proba/
+ 3352  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/mlr3proba/DESCRIPTION 
+ 3353  cat /env/cnrgh/proj/math_stats/scratch/legoff/mlr3proba/DESCRIPTION 
+ 3354  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/
+ 3355  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/CoxDL/
+ 3356  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/
+ 3357  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/NAMESPACE 
+ 3358  module load R
+ 3359  module load r
+ 3360  r
+ 3361  R
+ 3362  squeue
+ 3363  ccc_mpinfo
+ 3364  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_ncv.sh
+ 3365  sbatch scripts/combine_results_outer.sh
+ 3366  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3367  scancel 1764179
+ 3368  sbatch --nodelist="inti[000-003,005-006]" scripts/target_finetune.sh
+ 3369  module load python
+ 3370  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3371  source venv_sksurv_dev/bin/activate
+ 3372  history | grep sbatch
+ 3373  sbatch --nodelist="inti[000-003,005-006]" scripts/source_pretrain.sh*
+ 3374  scancel 1767831
+ 3375  history | grep sacct
+ 3376  sacct -u $USER -S 2026-09-17 --format=JobID,JobName,State,Start,End,Elapse
+ 3377  sacct -u $USER -S 2026-09-16 --format=JobID,JobName,State,Start,End,Elapse
+ 3378  sshell -c2
+ 3379  sbatch --nodelist="inti[000-003,005-006]" scripts/source_pretrain.sh
+ 3380  squeue -u $USER
+ 3381  squeue -u $USER
+ 3382  git clone https://github.com/LiangSDNULab/PCLSurv.git
+ 3383  cd PCLSurv/
+ 3384  pip install faiss
+ 3385  pip install faiss-cpu
+ 3386  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 0
+ 3387  cd PCLSurv/
+ 3388  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 0
+ 3389  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 1
+ 3390  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 
+ 3391  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 2
+ 3392  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 3
+ 3393  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 4
+ 3394  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 5
+ 3395  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 6
+ 3396  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 7
+ 3397  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 8
+ 3398  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 9
+ 3399  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 10
+ 3400  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 10
+ 3401  cd PCLSurv/
+ 3402  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 0
+ 3403  python eval_pcl_surv.py --fixed_params_file pcl_surv_fixed_params.json --use_saved_folds --cancer KIRP --outer_fold 1
+ 3404  cd CustOmics/
+ 3405  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0
+ 3406  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 1
+ 3407  history | grep compare_two
+ 3408  python results_analysis/compare_two_results.py --ref results/ncv_cma_KIRP_pairwise.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_pairwise" --boxplot
+ 3409  python results_analysis/compare_two_results.py --ref results/ncv_cma_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token" --boxplot
+ 3410  ls
+ 3411  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0 --lambda_contrastive_modality
+ 3412  cd CustOmics/
+ 3413  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0 --lambda_contrastive_modality --name_suffix contrmod_
+ 3414  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0 --lambda_contrastive_modality 0.5 --name_suffix contrmod_
+ 3415  python results_analysis/compare_two_results.py --ref results/ncv_cma_contrmod_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token_cl" --boxplot
+ 3416  python results_analysis/compare_two_results.py --ref results/ncv_cma_contrmod_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token_cl" --boxplot
+ 3417  cd CustOmics/
+ 3418  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0 
+ 3419  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0  lambda_contrastive_clinical 0.5
+ 3420  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0  --lambda_contrastive_clinical 0.5
+ 3421  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0  --lambda_contrastive_clinical 0.5 --list_clinical_columns
+ 3422  python eval_ncv_cma.py --use_saved_folds --cancer KIRP --outer_fold 0  --lambda_contrastive_clinical 0.5 --clinical_stage_col stage_event_pathologic_stage_Stage.III_clinical
+ 3423  python results_analysis/compare_two_results.py --ref results/ncv_cma_cl_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token_cl_central" --boxplot
+ 3424  python results_analysis/compare_two_results.py --ref results/ncv_cma_clknn_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token_clknn_central" --boxplot
+ 3425  python results_analysis/compare_two_results.py --ref results/ncv_cma_2phases_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token_2phases" --boxplot
+ 3426  python results_analysis/compare_two_results.py --ref results/ncv_cma_KIRP_cls_token.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_cma_customics_cls_token" --boxplot
+ 3427  python utils_scripts/generate_dag.py 
+ 3428  python utils_scripts/generate_dag.py > tasks.dag
+ 3429  /env/cnrgh/proj/math_stats/scratch/hlegrand/venv_sksurv_dev/bin/python3 /env/cnrgh/proj/math_stats/scratch/hlegrand/CustOmics/search_target_finetune.py --cancer KIRP --use_saved_folds --pretrain_ckpt /env/cnrgh/proj/math_stats/scratch/hlegrand/CustOmics/KIRP_lossmiss30_pretrained_model.pt --best_params_in /env/cnrgh/proj/math_stats/scratch/hlegrand/CustOmics/KIRP_lossmiss30_best_params_source.json --ridge --name_suffix tlimp30_drop_ --modality_dropout --missing_rate 0.30 --missing_strategy drop --outer_fold 0 --inner_splits 5 --n_trials_per_worker 60
+ 3430  python results_analysis/compare_two_results.py --ref results/ncv_custcox_optuna_paral_adam_KIRP.csv --new results/ncv_custcox_optuna_paral_adamw_KIRP.csv --graph "KIRP_adam_ridge" --boxplot
+ 3431  cd CustOmics/
+ 3432  history | grep optuna_load_all_study_1_outer.py 
+ 3433  python search_ncv.py --cancer KIRP --outer_fold 0 --supervised --name_suffix testsupridge_ --ridge
+ 3434  sbatch  scripts/missing_load_all.sh
+ 3435  history | grep sshell
+ 3436  squeue
+ 3437  ccc_mpinfo
+ 3438  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_ncv.sh
+ 3439  sbatch --nodelist="inti[000-003,005-006]" scripts/source_pretrain.sh
+ 3440  scancel 1764179
+ 3441  sbatch --nodelist="inti[000-003,005-006]" scripts/target_finetune.sh
+ 3442  scancel 1764179
+ 3443  sbatch --nodelist="inti[000-003,005-006]" scripts/target_finetune.sh
+ 3444  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/learner_seq_mod_surv.R
+ 3445  ls /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/
+ 3446  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/R/
+ 3447  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/README.md 
+ 3448  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/DESCRIPTION 
+ 3449  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/inst/
+ 3450  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man
+ 3451  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/survjdr-package.Rd 
+ 3452  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/reexports.Rd.Rd 
+ 3453  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/reexports.Rd
+ 3454  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/man/*.Rd
+ 3455  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr
+ 3456  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/mlr3proba/
+ 3457  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/mlr3proba/DESCRIPTION 
+ 3458  cat /env/cnrgh/proj/math_stats/scratch/legoff/mlr3proba/DESCRIPTION 
+ 3459  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/
+ 3460  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/CoxDL/
+ 3461  ls -a /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/
+ 3462  cat /env/cnrgh/proj/math_stats/scratch/legoff/survjdr/NAMESPACE 
+ 3463  module load R
+ 3464  module load r
+ 3465  r
+ 3466  R
+ 3467  squeue
+ 3468  ccc_mpinfo
+ 3469  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_ncv.sh
+ 3470  scancel 1764179
+ 3471  sbatch --nodelist="inti[000-003,005-006]" scripts/target_finetune.sh
+ 3472  sbatch --nodelist="inti[000-003,005-006]" scripts/source_pretrain.sh*
+ 3473  scancel 1767831
+ 3474  history | grep sacct
+ 3475  sacct -u $USER -S 2026-09-17 --format=JobID,JobName,State,Start,End,Elapse
+ 3476  sacct -u $USER -S 2026-09-16 --format=JobID,JobName,State,Start,End,Elapse
+ 3477  sbatch --nodelist="inti[000-003,005-006]" scripts/source_pretrain.sh
+ 3478  module load python
+ 3479  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3480  source venv_sksurv_dev/bin/activate
+ 3481  ls
+ 3482  history | grep compare_two
+ 3483  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_pcl_surv.sh
+ 3484  python results_analysis/compare_two_results.py --ref results/ncv_pclsurv_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_customics_pcl" --boxplot
+ 3485  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3486  sshell -c2 --nodelist="inti[001]"
+ 3487  sshell -c2 --nodelist="inti[002]"
+ 3488  sshell -c2 --nodelist="inti[003]"
+ 3489  sshell -c2 
+ 3490  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_cma.sh
+ 3491  sbatch scripts/combine_results_outer.sh
+ 3492  sshell -c2
+ 3493  sbatch scripts/run_pmc.sh
+ 3494  history | grep sbatch
+ 3495  scancel 1776194
+ 3496  sbatch scripts/target_finetune.sh
+ 3497  squeue -u $USER
+ 3498  python results_analysis/missing_mod_finetune_compare.py 
+ 3499  history | grep missing_mod
+ 3500  python results_analysis/missing_mod_finetune_compare.py --cox results/outer_cv_results_vvh_ridge_KIRP.csv --graph "missing_finetune_results"
+ 3501  python search_ncv.py -h
+ 3502  module load python
+ 3503  ls
+ 3504  history | grep compare_two
+ 3505  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_pcl_surv.sh
+ 3506  python results_analysis/compare_two_results.py --ref results/ncv_pclsurv_KIRP.csv --new results/ncv_custcox_optuna_paral_scaled_KIRP.csv --graph "KIRP_customics_pcl" --boxplot
+ 3507  sshell -c2 --nodelist="inti[000-003,005-006]"
+ 3508  sshell -c2 --nodelist="inti[001]"
+ 3509  sshell -c2 --nodelist="inti[002]"
+ 3510  sshell -c2 --nodelist="inti[003]"
+ 3511  sshell -c2 
+ 3512  sbatch scripts/run_pmc.sh
+ 3513  scancel 1776194
+ 3514  module load python 
+ 3515  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3516  source venv_sksurv_dev/bin/activate
+ 3517  history | grep sacct
+ 3518  sacct -u $USER -S 2026-09-16 --format=JobID,JobName,State,Start,End,Elapse
+ 3519  sbatch scripts/target_finetune.sh
+ 3520  cd CustOmics/
+ 3521  python search_ncv.py -h
+ 3522  history | grep search_ncv
+ 3523  sbatch --nodelist="inti[000-003,005-006]" scripts/eval_fixed_cma.sh
+ 3524  cd ../
+ 3525  sbatch --nodelist="inti[000-003,005-006]" scripts/sans_tl/eval_fixed_cma.sh
+ 3526  squeue -u $USER
+ 3527  history | grep sbatch
+ 3528  sbatch scripts/combine_results_outer.sh
+ 3529  sshell -c2
+ 3530  sbatch --nodelist="inti[000-003,005-006]" scripts/sans_tl/eval_fixed_cma.sh
+ 3531  sbatch scripts/combine_results_outer.sh
+ 3532  sshell -c2
+ 3533  module load python
+ 3534  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3535  source venv_sksurv_dev/bin/activate
+ 3536  history  grep sbatch
+ 3537  history | grep sbatch
+ 3538  sbatch --nodelist="inti[000-003,005-006]" scripts/target/target_finetune.sh[B
+ 3539  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp70_70_
+ 3540  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop70_70_
+ 3541  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop70_50_
+ 3542  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop70_30_
+ 3543  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop50_30_
+ 3544  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop50_50_
+ 3545  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop50_70_
+ 3546  sbatch --nodelist="inti[000-003,005-006]" scripts/target/missing_target_finetune.sh
+ 3547  sbatch scripts/target/missing_target_finetune.sh
+ 3548  squeue -u $USER
+ 3549  history | grep missing_mod_finetune
+ 3550  python results_analysis/missing_mod_finetune_compare.py --cox results/outer_cv_results_vvh_ridge_KIRP.csv --graph "missing_finetune_results_test"
+ 3551  python results_analysis/cancer_specific/missing_mod_finetune_compare.py --cox results/outer_cv_results_vvh_ridge_KIRP.csv --graph "missing_finetune_results_test"
+ 3552  python results_analysis/missing_data/missing_mod_finetune_compare.py --cox results/outer_cv_results_vvh_ridge_KIRP.csv --graph "missing_finetune_results_test"
+ 3553  history | compare_multiple_1_cancer
+ 3554  history | grep compare_multiple_1_cancer
+ 3555  history | grep compare_two
+ 3556  history | grep ttest_all
+ 3557  history | grep missing_mod_compare
+ 3558  history | grep missing_mod_finetune
+ 3559  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop50_30_
+ 3560  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop50_50_
+ 3561  sbatch scripts/combine_results_outer.sh KIRP finetune tldrop50_70_
+ 3562  sbatch --nodelist="inti[000-003,005-006]" scripts/target/missing_target_finetune.sh
+ 3563  sbatch scripts/target/missing_target_finetune.sh
+ 3564  squeue -u $USER
+ 3565  module load python
+ 3566  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3567  source venv_sksurv_dev/bin/activate
+ 3568  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp50_70_
+ 3569  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp50_50_
+ 3570  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp50_30_
+ 3571  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp30_30_
+ 3572  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp30_50_
+ 3573  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp30_70_
+ 3574  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp70_70_
+ 3575  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp70_50_
+ 3576  sbatch scripts/combine_results_outer.sh KIRP finetune tlimp70_30_
+ 3577  sshell -c2
+ 3578  module load python
+ 3579  cd /env/cnrgh/proj/math_stats/scratch/hlegrand/
+ 3580  source venv_sksurv_dev/bin/activate
+ 3581  cd CustOmics/
+ 3582  python search_ncv.py -h
+ 3583  sshell -c2
+ 3584  history | grep compare_all_1_cancer
+ 3585  python results_analysis/cancer_specific/compare_all_1_cancer_sep.py --cancer KIRP --suffix ridge --graph out/kirp --boxplot
+ 3586  python results_analysis/cancer_specific/compare_all_1_cancer_sep.py --cancer KIRP --suffix ridge --graph figures/kirp --boxplot
+ 3587  python results_analysis/cancer_specific/compare_all_1_cancer_sep.py --cancer KIRP --suffix ridge --graph figures/KIRP --boxplot
+ 3588  history | grep multiple_1_cancer
+ 3589  history | grep ttest_all_method
+ 3590  history | grep heatmap_cox_diff
+ 3591  history | grep heatmap_tl_diff
+ 3592  history | grep analyse_optuna_all_method_all_cancer
+ 3593  history | grep sbatch optuna_importance
+ 3594  history | grep "sbatch optuna_importance"
+ 3595  history | grep optuna_importance
+ 3596  history | grep analyse_optuna_all_method
+ 3597  history | grep tl_source_analysis
+ 3598  history 
+ 3599  history | grep multiple_method_compare_all
+ 3600  python results_analysis/multiple_method_compare_all.py --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_ --baseline python_cox --plot boxplot
+ 3601  python results_analysis/all_cancer/multiple_method_compare_all.py --source name=python_cox type=file dir=results basename=outer_cv_results_vvh_ --source name=python_custcox type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_  --source name=python_custcox_supervised type=file dir=results_tgcc/results/ basename=ncv_custcox_optuna_paral_supervised_ --source name=python_custcox_clinical type=file dir=results_tgcc/results basename=ncv_custcox_optuna_paral_clinical_ --baseline python_cox --plot boxplot
+ 3602  history > doc/history.txt

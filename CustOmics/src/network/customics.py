@@ -56,7 +56,7 @@ class CustOMICS(nn.Module):
     """
     The main CustOMICS object that represents the main network for dealing with multi-source integration and multi-task learning
     """
-    def __init__(self, source_params, central_params, classif_params, surv_params, train_params, device, unsupervised, domain_params=None, linear_central_decoder=False
+    def __init__(self, source_params, central_params, classif_params, surv_params, train_params, device, unsupervised, domain_params=None, linear_central_decoder=False,
         optimizer="adam",
         weight_decay=0.0,
     ):
@@ -500,7 +500,7 @@ class CustOMICS(nn.Module):
     #         loss += domain_loss 
     #     return loss
 
-    def get_loss_eval(self, omics_val, clinical_df, label, event, surv_time):
+    def get_loss_eval(self, omics_val, clinical_df, label, event, surv_time, modality_mask_val=None):
         lt_samples_val = get_common_samples([df for df in omics_val.values()] + [clinical_df])
 
         encoded_clinical_df = clinical_df.copy()
@@ -517,24 +517,28 @@ class CustOMICS(nn.Module):
             event=event,
             surv_time=surv_time,
             domain_col="domain_label" if self.use_domain_adv else None,
+            modality_mask_df=modality_mask_val,
         )
         val_loader = DataLoader(dataset_val, batch_size=len(lt_samples_val), shuffle=False)
 
         self.eval_all()
         self.phase = 2
 
-        x, labels, os_time, os_event, domain_labels = next(iter(val_loader))
+        x, labels, os_time, os_event, domain_labels, observed_mask = next(iter(val_loader))
         for i in range(len(x)):
             x[i] = x[i].to(self.device)
 
-        z, loss = self._compute_loss(x, loss_eval=True)
+        modality_mask = observed_mask.to(self.device) if observed_mask is not None else None
 
-        if self.use_domain_adv:
-            domain_labels = domain_labels.to(self.device)
-            z_reversed = grad_reverse(z, self.lambda_domain)
-            domain_pred = self.domain_classifier(z_reversed)
-            domain_loss = nn.functional.cross_entropy(domain_pred, domain_labels)
-            loss += domain_loss
+        with torch.no_grad():
+            z, loss = self._compute_loss(x, loss_eval=True, modality_mask=modality_mask)
+
+            if self.use_domain_adv:
+                domain_labels = domain_labels.to(self.device)
+                z_reversed = grad_reverse(z, self.lambda_domain)
+                domain_pred = self.domain_classifier(z_reversed)
+                domain_loss = nn.functional.cross_entropy(domain_pred, domain_labels)
+                loss += domain_loss
 
         return loss
 

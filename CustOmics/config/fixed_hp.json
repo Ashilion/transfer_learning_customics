@@ -1,0 +1,17 @@
+{
+  "params": {
+    "lr": 0.001,
+    "beta": 0.01,
+    "dropout": 0.2,
+    "delta_min": 0.0001,
+    "lambda_surv": 5,
+    "patience": 10,
+    "hidden_dim_0": "(512, 128)",
+    "hidden_dim_1": "(512, 128)",
+    "hidden_dim_2": "(512, 128)",
+    "hidden_dim_3": "(512, 128)"
+  },
+
+  "best_alpha": 0.05,
+  "best_list_alpha": [0.001, 0.005, 0.01, 0.05, 0.1, 0.5]
+}

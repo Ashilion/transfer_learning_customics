@@ -298,7 +298,8 @@ def fit_transfer(model, ckpt_path, device,
                  omics_train, clinical_df, label, event, surv_time,
                  batch_size, n_epochs_central, n_epochs_all, task,
                  lr1, lr2, patience=None, min_delta=None,
-                 expand_load=False, track_loss_components= False):
+                 expand_load=False, track_loss_components=False,
+                 modality_mask_train=None, missing_strategy="impute"):
     if expand_load:
         model = load_pretrained_expand(model, ckpt_path, device)
     else:
@@ -314,7 +315,8 @@ def fit_transfer(model, ckpt_path, device,
         omics_val=None, batch_size=batch_size, n_epochs=n_epochs_central,
         verbose=True, task=task,
         patience=patience, min_delta=min_delta,
-        early_stopping_on="train", track_loss_components=track_loss_components
+        early_stopping_on="train", track_loss_components=track_loss_components,
+        modality_mask_train=modality_mask_train, missing_strategy=missing_strategy,
     )
     if track_loss_components:
         model.plot_loss_detailed_stacked(save_path="results/loss_detailed_A.png", log_scale=True)
@@ -328,7 +330,8 @@ def fit_transfer(model, ckpt_path, device,
         omics_val=None, batch_size=batch_size, n_epochs=n_epochs_all,
         verbose=True, task=task,
         patience=patience, min_delta=min_delta,
-        early_stopping_on="train", track_loss_components=track_loss_components
+        early_stopping_on="train", track_loss_components=track_loss_components,
+        modality_mask_train=modality_mask_train, missing_strategy=missing_strategy,
     )
     if track_loss_components:
         model.plot_loss_detailed_stacked(save_path="results/loss_detailed_B.png", log_scale=True)

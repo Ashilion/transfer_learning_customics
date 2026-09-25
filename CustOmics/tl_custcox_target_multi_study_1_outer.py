@@ -254,7 +254,7 @@ def make_objective(cfg):
                 omics_train, cfg["clinical_df"],
                 cfg["label"], cfg["event"], cfg["surv_time"],
                 cfg["batch_size"], n_epochs_central, n_epochs_all, cfg["task"],
-                lr1=lr, lr2=lr, patience=effective_patience, min_delta=delta_min,
+                lr1=lr, lr2=lr2, patience=effective_patience, min_delta=delta_min,
                 expand_load=expand_load
             )
             model.plot_loss_detailed(save_path="results/loss_detailed_B.png")
