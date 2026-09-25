@@ -22,12 +22,14 @@ source venv_sksurv_dev/bin/activate
 ```
 
 ## 1 cancer
-![kirp allridge](figures_doc/KIRP_allridge_boxplot.png)
+<img src="figures_doc/KIRP_allridge_boxplot.png" width="700">
+
 ``` shell
 python results_analysis/cancer_specific/compare_all_1_cancer_sep.py --cancer KIRP --suffix ridge --graph figures/KIRP/KIRP_sep --boxplot
 ```
 
-![kirp scaled](figures_doc/KIRP_scaled_boxplot.png)
+<img src="figures_doc/KIRP_scaled_boxplot.png" width="700">
+
 ``` shell
 python results_analysis/cancer_specific/compare_multiple_1_cancer.py 
 --files results/outer_cv_results_vvh_ridge_KIRP.csv  \
@@ -46,7 +48,8 @@ python results_analysis/cancer_specific/compare_multiple_1_cancer.py
 ```
 
 
-![kirp ttest](figures_doc/ttest_KIRP.png)
+<img src="figures_doc/ttest_KIRP.png" width="700">
+
 ``` shell
 python results_analysis/cancer_specific/ttest_all_method_1_cancer.py --cancer KIRP --data-dir ./results --summary --plot --fdr
 ```
@@ -54,13 +57,15 @@ python results_analysis/cancer_specific/ttest_all_method_1_cancer.py --cancer KI
 
 ## Multi Cancer
 
-![heatmap cox diff ](figures_doc/heatmap_cox_diff_c_index.png)
+<img src="figures_doc/heatmap_cox_diff_c_index.png" width="700">
+
 ``` shell
 python results_analysis/heatmap_cox_diff.py --results-dir results/ --output-dir ./figures/all_cancer/
 ```
 
 
-![heatmap tl diff ](figures_doc/heatmap_tl_diff_combined.png)
+<img src="figures_doc/heatmap_tl_diff_combined.png" width="700">
+
 ``` shell
 python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir ./figures/all_cancer/
 ```
@@ -69,13 +74,13 @@ python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir .
 
 ## Missing data
 
-<img src="figures_doc/missing_results_boxplot_cindex.png" width="500">
+<img src="figures_doc/missing_results_boxplot_cindex.png" width="700">
 
 ``` shell
 python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir ./figures/all_cancer/
 ```
 
-<img src="figures_doc/missing_finetune_results_test_grouped_boxplot_cindex.png" width="700">
+<img src="figures_doc/missing_finetune_results_test_grouped_boxplot_cindex.png" width="500">
 
 ``` shell
 python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir ./figures/all_cancer/
@@ -84,7 +89,7 @@ python results_analysis/heatmap_tl_diff.py --results-dir results/ --output-dir .
 
 ## Hyperparamètres
 
-<img src="figures_doc/best_params_comparison_sans_tl.png" width="400">
+<img src="figures_doc/best_params_comparison_sans_tl.png" width="500">
 
 <img src="figures_doc/param_importances_sans_tl.png" width="400">
 
@@ -102,9 +107,9 @@ python analysis/analyse_optuna_all_methods_1_cancer.py
 
 Se placer dans le dossier CustOmics pour les prochaines commandes
 
-![espace latent coloration](figures_doc/latent_cancer_type_coloring.png)
+<img src="figures_doc/latent_cancer_type_coloring.png" width="700">
 
-![espace latent coloration dann](figures_doc/latent_cancer_type_coloring_dann.png)
+<img src="figures_doc/latent_cancer_type_coloring_dann.png" width="700">
 
 ``` shell
 cd CustOmics/latent_space_analysis/
