@@ -36,3 +36,10 @@ Fichier [search_custcox_sans_tl.sh](../scripts/sans_tl/search_custcox_sans_tl.sh
 ``` shell
 sbatch scripts/sans_tl/search_custcox_sans_tl.sh
 ```
+
+
+Pour relancer seulement [eval_ncv.py](../CustOmics/eval_ncv.py) (par exemple si l'ensemble des trials n'ont pas été terminé mais qu'on veut quand même évaluer les meilleurs hyperparamètres avec les trials qui ont été fait)
+
+```shell
+sbatch scripts/sans_tl/eval_all_custcox_sans_tl.sh
+```

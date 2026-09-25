@@ -50,3 +50,9 @@ tous les cancers
 ``` shell
 sbatch scripts/source/tl_source_run_all_cancer.sh
 ```
+
+Pour relancer seulement [eval_source_pretrain.py](../CustOmics/eval_source_pretrain.py) (par exemple si l'ensemble des trials n'ont pas été terminé mais qu'on veut quand même évaluer les meilleurs hyperparamètres avec les trials qui ont été fait)
+
+``` shell
+sbatch scripts/source/tl_source_load_all.sh
+```

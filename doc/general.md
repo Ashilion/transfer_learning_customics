@@ -59,7 +59,7 @@ sbatch scripts/source/tl_source_load_all.sh
 ``` shell
 sbatch scripts/target/tl_target_optu_multi_outer.sh
 ```
-scripts données manquantes
+
 
 ---
 ### Regrouper les csv
