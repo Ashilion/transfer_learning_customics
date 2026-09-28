@@ -11,6 +11,11 @@ sbatch scripts/combine_results_outer.sh KIRP custcox supclinridge_
 
 # Avec TL
 sbatch scripts/combine_results_outer.sh KIRP finetune supclinridge_
+
+# Possibilité de spécifier input et output dir
+python aggregate_folds_optuna.py --cancer COAD --method finetune \
+        --input_dir results/folds_tl --output_dir results/tl
+
 ```
 
 ---
