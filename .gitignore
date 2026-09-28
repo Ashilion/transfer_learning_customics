@@ -32,3 +32,5 @@ CustOmics/models/
 PCLSurv/
 
 optuna_journal/
+
+scripts_ccc/
