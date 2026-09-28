@@ -4,7 +4,7 @@ Recharge l'étude Optuna produite par `search_target_finetune.py` pour un
 outer fold donné, refait le fine-tuning final sur l'outer train complet,
 puis calcule C-index / IBS sur l'outer test. Sauvegarde un CSV par fold.
 
-$
+Checkpoint / config source lus depuis --ckpt_dir, CSV écrit dans --output_dir.
 """
 import json
 import os
@@ -31,7 +31,7 @@ from pipeline_utils.missing_data import simulate_missing_modalities, apply_missi
 from pipeline_utils.checkpoints import TransferPaths
 from pipeline_utils.cli import (
     base_parser, add_cancer_arg, add_outer_cv_args, add_cox_args, add_transfer_paths_args,
-    add_missing_modality_args,
+    add_missing_modality_args, add_output_dir_arg,
 )
 from pipeline_utils.cox_cv import maybe_concat_clinical
 from pipeline_utils.data import load_cancer_data, load_clinical_test, build_omics_dict
@@ -43,6 +43,7 @@ def parse_args():
     parser = base_parser("Post-Optuna evaluation for TARGET fine-tuning (one outer fold).")
     add_cancer_arg(parser)
     add_transfer_paths_args(parser)
+    add_output_dir_arg(parser, default="../results/folds")
     add_outer_cv_args(parser, outer_fold_required=True)
     add_cox_args(parser)
     add_missing_modality_args(parser)
@@ -73,6 +74,8 @@ def main():
     print(f"  Limit Epochs   : {args.limit_epochs}")
     print(f"  Modality dropout : {args.modality_dropout}  |  mode : {args.md_mode}")
     print(f"  Missing rate   : {args.missing_rate}  |  strategy : {args.missing_strategy}")
+    print(f"  Ckpt dir       : {args.ckpt_dir}")
+    print(f"  Output dir     : {args.output_dir}")
     print(f"{'='*60}\n")
 
     study_name = f"ft_{args.name_suffix}{args.cancer}_fold{args.outer_fold}"
@@ -97,7 +100,7 @@ def main():
     print(f"  alpha={best_alpha:.6f}  score={best_score:.4f}")
     print(f"  lambda surv {lambda_surv}")
 
-    paths = TransferPaths(args.output_dir, args.cancer, args.pretrain_ckpt, args.best_params_in)
+    paths = TransferPaths(args.ckpt_dir, args.cancer, args.pretrain_ckpt, args.best_params_in)
 
     with open(paths.best_params, "r") as f:
         best_config = json.load(f)
@@ -233,7 +236,10 @@ def main():
         "missing_rate": args.missing_rate,
         "missing_strategy": args.missing_strategy,
     }]
-    out_path = f"{args.output_dir}/ncv_finetune_optuna_{args.name_suffix}{args.cancer}_fold{args.outer_fold}.csv"
+    out_path = os.path.join(
+        args.output_dir,
+        f"ncv_finetune_optuna_{args.name_suffix}{args.cancer}_fold{args.outer_fold}.csv",
+    )
     pd.DataFrame(result).to_csv(out_path, index=False)
     print(f"Result saved -> {out_path}")
 

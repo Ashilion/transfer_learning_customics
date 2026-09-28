@@ -126,24 +126,34 @@ def add_cox_args(parser, l1_ratio_default=0.01):
     return parser
 
 
+def add_output_dir_arg(parser, default="results"):
+    parser.add_argument(
+        "--output_dir",
+        type=str,
+        default=default,
+        help="Directory where results (metrics, predictions, logs) are written.",
+    )
+    return parser
+
+
 def add_transfer_paths_args(parser):
     parser.add_argument(
         "--pretrain_ckpt",
         type=str,
         default="pretrained_model.pt",
-        help="Filename (relative to --output_dir, prefixed by cancer) of the pre-trained checkpoint.",
+        help="Filename (relative to --ckpt_dir, prefixed by cancer) of the pre-trained checkpoint.",
     )
     parser.add_argument(
         "--best_params_in",
         type=str,
         default="best_params_source.json",
-        help="Filename (relative to --output_dir, prefixed by cancer) of the best-hyperparameters JSON.",
+        help="Filename (relative to --ckpt_dir, prefixed by cancer) of the best-hyperparameters JSON.",
     )
     parser.add_argument(
-        "--output_dir",
+        "--ckpt_dir",
         type=str,
         default="tl_ckpt",
-        help="Directory where checkpoint/config/results are read from and written to.",
+        help="Directory where the pre-trained checkpoint and its config are read from and written to.",
     )
     return parser
 

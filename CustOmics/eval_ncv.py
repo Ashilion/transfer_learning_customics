@@ -28,6 +28,7 @@ from pipeline_utils.missing_data import simulate_missing_modalities, apply_missi
 from pipeline_utils.cli import (
     base_parser, add_cancer_arg, add_outer_cv_args, add_inner_cv_args,
     add_optuna_args, add_training_args, add_cox_args, add_missing_modality_args,
+    add_output_dir_arg,
 )
 from pipeline_utils.cox_cv import maybe_concat_clinical
 from pipeline_utils.data import load_cancer_data, load_clinical_test, build_omics_dict
@@ -45,6 +46,7 @@ def parse_args():
     add_training_args(parser)
     add_cox_args(parser)
     add_missing_modality_args(parser)
+    add_output_dir_arg(parser, default="../results/folds")
     parser.add_argument("--nb_features", type=int, default=5000,
         help="Number of maximum features per omics.")
     parser.add_argument("--linear_decoder", action="store_true", default=False,
@@ -129,6 +131,7 @@ def main():
     print(f"  Modality dropout : {args.modality_dropout}  |  mode : {args.md_mode}")
     print(f"  Missing rate : {args.missing_rate}  |  strategy : {args.missing_strategy}")
     print(f"  Hyperparams source : {'fixed file' if args.fixed_params_file else 'optuna'}")
+    print(f"  Output dir   : {args.output_dir}")
     print(f"{'='*60}\n")
 
     data = load_cancer_data(args.cancer)
@@ -244,11 +247,11 @@ def main():
         missing_strategy=args.missing_strategy,
     )
 
-    loss_plot_dir = "results"
+    loss_plot_dir = os.path.join(args.output_dir, "loss_plots")
     os.makedirs(loss_plot_dir, exist_ok=True)
     tag = f"{args.name_suffix}{args.cancer}_fold{args.outer_fold}"
-    model.plot_loss_detailed(save_path=f"{loss_plot_dir}/loss_sans_tl_{tag}.png")
-    model.plot_loss_detailed_stacked(save_path=f"{loss_plot_dir}/loss_sans_tl_stacked_{tag}.png")
+    model.plot_loss_detailed(save_path=os.path.join(loss_plot_dir, f"loss_sans_tl_{tag}.png"))
+    model.plot_loss_detailed_stacked(save_path=os.path.join(loss_plot_dir, f"loss_sans_tl_stacked_{tag}.png"))
 
     Z_train_outer = model.get_latent_representation(omics_train_outer)
     Z_test_outer = model.get_latent_representation(omics_test_outer)
@@ -301,9 +304,11 @@ def main():
         **{f"hp_{k}": v for k, v in best_params.items()},
     }]
 
-    out_dir = "../results/folds"
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = f"{out_dir}/ncv_custcox_optuna_{args.name_suffix}{args.cancer}_fold{args.outer_fold}.csv"
+    os.makedirs(args.output_dir, exist_ok=True)
+    out_path = os.path.join(
+        args.output_dir,
+        f"ncv_custcox_optuna_{args.name_suffix}{args.cancer}_fold{args.outer_fold}.csv",
+    )
     pd.DataFrame(result).to_csv(out_path, index=False)
     print(f"\nResult saved to {out_path}")
 

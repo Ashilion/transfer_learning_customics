@@ -1,8 +1,8 @@
 """Post-Optuna evaluation for SOURCE pan-cancer pre-training.
 
 Recharge l'étude Optuna produite par `search_source_pretrain.py`, réentraîne
-le modèle final sur toutes les données source, et sauvegarde :
-  - le checkpoint des poids (`--output_dir/{cancer}_{pretrain_ckpt}`),
+le modèle final sur toutes les données source, et sauvegarde dans --ckpt_dir :
+  - le checkpoint des poids (`--ckpt_dir/{cancer}_{pretrain_ckpt}`),
   - le sélecteur de features utilisé (`....selector.pkl`),
   - la config JSON (architecture + meilleurs hyperparamètres) consommée
     ensuite par `search_target_finetune.py` / `eval_target_finetune.py`.
@@ -41,12 +41,12 @@ def parse_args():
         help="Number of source samples used during training (-1 = all).")
     parser.add_argument("--name_suffix", type=str, default="",
         help="Suffix used in journal/study name during training.")
-    parser.add_argument("--output_dir", type=str, default="tl_ckpt",
-        help="Directory to write the result CSV and model checkpoint.")
+    parser.add_argument("--ckpt_dir", type=str, default="tl_ckpt",
+        help="Directory where the model checkpoint, feature selector and config JSON are written.")
     parser.add_argument("--pretrain_ckpt", type=str, default="pretrained_model.pt",
-        help="Path where the final model weights will be saved.")
+        help="Filename (relative to --ckpt_dir, prefixed by cancer) of the final model weights.")
     parser.add_argument("--best_params_out", type=str, default="best_params_source.json",
-        help="Path where the best config JSON will be saved.")
+        help="Filename (relative to --ckpt_dir, prefixed by cancer) of the best config JSON.")
     parser.add_argument("--n_epochs", type=int, default=1000,
         help="Max epochs for the final model (early stopping applies).")
     parser.add_argument("--supervised", action="store_true", default=False, help="Train in supervised mode.")
@@ -81,6 +81,7 @@ def main():
     print(f"  Domain Adversarial: {args.domain_adv}")
     print(f"  Modality dropout : {args.modality_dropout}  |  mode : {args.md_mode}")
     print(f"  Missing rate   : {args.missing_rate}  |  strategy : {args.missing_strategy}")
+    print(f"  Ckpt dir       : {args.ckpt_dir}")
     print(f"{'='*60}\n")
 
     study_name = f"source_{args.name_suffix}{args.cancer}"
@@ -133,8 +134,8 @@ def main():
             "hidden_layers": args.domain_hidden_dim, "dropout": dropout,
         }
 
-    os.makedirs(args.output_dir, exist_ok=True)
-    paths = TransferPaths(args.output_dir, args.cancer, args.pretrain_ckpt, args.best_params_out)
+    os.makedirs(args.ckpt_dir, exist_ok=True)
+    paths = TransferPaths(args.ckpt_dir, args.cancer, args.pretrain_ckpt, args.best_params_out)
 
     selector_source = fit_feature_selector(omics_df, nbFeatures=5000)
     omics_source = apply_feature_selector(omics_df, selector_source)
