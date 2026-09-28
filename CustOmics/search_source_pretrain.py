@@ -24,7 +24,8 @@ from custcox_utils import (
     LeaveOneCancerOutCV, fit_scalers, apply_scalers,
 )
 from src.tools.utils import get_sub_omics_df
-from missing_data_load_all import simulate_missing_modalities, apply_missing_modalities
+from pipeline_utils.missing_data import simulate_missing_modalities, apply_missing_modalities
+
 
 from pipeline_utils.cli import (
     base_parser, add_cancer_arg, add_optuna_args, add_training_args, add_missing_modality_args,

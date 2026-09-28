@@ -29,7 +29,8 @@ from pipeline_utils.data import load_pancancer, get_source_data
 from pipeline_utils.hidden_dims_params import reconstruct_autoencoder_hidden_dims
 from pipeline_utils.model import build_customics_model
 from pipeline_utils.optuna_utils import load_best_trial
-from missing_data_load_all import simulate_missing_modalities, apply_missing_modalities
+from pipeline_utils.missing_data import simulate_missing_modalities, apply_missing_modalities
+
 
 
 def parse_args():
