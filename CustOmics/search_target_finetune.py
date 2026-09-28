@@ -163,7 +163,7 @@ def main():
     args = parse_args()
     unsupervised = not args.supervised
     multiproc = max(1, args.multiproc)
-    paths = TransferPaths(args.output_dir, args.cancer, args.pretrain_ckpt, args.best_params_in)
+    paths = TransferPaths(args.ckpt_dir, args.cancer, args.pretrain_ckpt, args.best_params_in)
 
     with open(paths.selector, "rb") as f:
         sel_outer = pickle.load(f)
