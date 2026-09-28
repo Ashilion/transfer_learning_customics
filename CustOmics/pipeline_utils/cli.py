@@ -131,7 +131,7 @@ def add_output_dir_arg(parser, default="results"):
         "--output_dir",
         type=str,
         default=default,
-        help="Directory where results (metrics, predictions, logs) are written.",
+        help="Directory where results are written.",
     )
     return parser
 
