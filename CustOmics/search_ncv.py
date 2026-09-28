@@ -5,8 +5,9 @@ Recherche Optuna pour UN outer fold donné (--outer_fold). Voir
 métriques finales (C-index / IBS).
 
 """
-import multiprocessing as mp
 import os
+_INITIAL_AFFINITY = sorted(os.sched_getaffinity(0))  # avant que torch/OpenMP ne la restreigne
+
 import sys
 import time
 
@@ -17,7 +18,7 @@ from sklearn.model_selection import KFold, StratifiedKFold
 sys.path.append('..')
 import utils.folds_utils as fold_utils
 
-from custcox_utils import (fit_feature_selector, apply_feature_selector, 
+from custcox_utils import (fit_feature_selector, apply_feature_selector,
 build_survival_array, fit_scalers, apply_scalers)
 from src.tools.utils import get_sub_omics_df
 from missing_data_load_all import simulate_missing_modalities, apply_missing_modalities
@@ -25,11 +26,12 @@ from missing_data_load_all import simulate_missing_modalities, apply_missing_mod
 from pipeline_utils.cli import (
     base_parser, add_cancer_arg, add_outer_cv_args, add_inner_cv_args,
     add_optuna_args, add_training_args, add_cox_args, add_missing_modality_args,
+    add_parallel_args,
 )
 from pipeline_utils.data import load_cancer_data, load_clinical_test, build_omics_dict
 from pipeline_utils.hidden_dims_params import suggest_autoencoder_hidden_dims
 from pipeline_utils.model import build_customics_model
-from pipeline_utils.optuna_utils import get_or_create_study
+from pipeline_utils.parallel import run_study
 
 
 def parse_args():
@@ -41,15 +43,12 @@ def parse_args():
     add_training_args(parser)
     add_cox_args(parser)
     add_missing_modality_args(parser)
+    add_parallel_args(parser)
     parser.add_argument("--nb_features", type=int, default=5000,
         help="Number of maximum features per omics.")
     parser.add_argument("--linear_decoder", action="store_true", default=False,
         help="Remove activation layers from the central decoder to push the model "
              "to have a 'linear' latent representation.")
-    parser.add_argument("--multiproc", type=int, default=1,
-        help="Number of parallel worker processes for Optuna (each runs "
-             "n_trials_per_worker trials, sharing the same JournalStorage file). "
-             "1 = sequential, no multiprocessing.")
     return parser.parse_args()
 
 
@@ -181,22 +180,6 @@ def make_objective(cfg, args):
     return objective
 
 
-# ===== Worker (multiproc) ===================================================
-
-_CFG = None
-_ARGS = None
-_STUDY_NAME = None
-_JOURNAL_FILE = None
-_N_TRIALS_PER_WORKER = None
-
-
-def run_optimization(worker_id):
-    print(f"[worker {worker_id}] starting in process {os.getpid()}")
-    study = get_or_create_study(_STUDY_NAME, _JOURNAL_FILE)
-    study.optimize(make_objective(_CFG, _ARGS), n_trials=_N_TRIALS_PER_WORKER, catch=(Exception,))
-    print(f"[worker {worker_id}] done")
-
-
 # ===== Main ==================================================================
 
 def main():
@@ -216,7 +199,7 @@ def main():
     print(f"  Ridge        : {args.ridge}")
     print(f"  Nb features  : {args.nb_features}")
     print(f"  Linear Decoder: {args.linear_decoder}")
-    print(f"  Multiproc    : {multiproc} worker(s)")
+    print(f"  Multiproc    : {multiproc} worker(s)  |  affinity : {args.affinity}")
     print(f"  Modality dropout : {args.modality_dropout}  |  mode : {args.md_mode}")
     print(f"  Missing rate : {args.missing_rate}  |  strategy : {args.missing_strategy}")
     print(f"{'='*60}\n")
@@ -303,23 +286,10 @@ def main():
     journal_file = f"optuna_journal/journal_{args.name_suffix}{args.cancer}_fold{args.outer_fold}.log"
 
     debut = time.time()
-
-    if multiproc > 1:
-        global _CFG, _ARGS, _STUDY_NAME, _JOURNAL_FILE, _N_TRIALS_PER_WORKER
-        _CFG = cfg
-        _ARGS = args
-        _STUDY_NAME = study_name
-        _JOURNAL_FILE = journal_file
-        _N_TRIALS_PER_WORKER = args.n_trials_per_worker
-        # Les workers héritent des globals via fork (copy-on-write) plutôt que
-        # de les recevoir picklés à travers le Pool.
-        with mp.Pool(processes=multiproc) as pool:
-            pool.map(run_optimization, range(multiproc))
-    else:
-        study = get_or_create_study(study_name, journal_file)
-        study.optimize(make_objective(cfg, args), n_trials=args.n_trials_per_worker,
-                        timeout=args.timeout, catch=(Exception,))
-
+    run_study(lambda: make_objective(cfg, args), study_name, journal_file,
+              n_trials=args.n_trials_per_worker, timeout=args.timeout,
+              multiproc=multiproc, affinity=args.affinity,
+              initial_affinity=_INITIAL_AFFINITY)
     print(f"time study : {time.time() - debut}")
 
 

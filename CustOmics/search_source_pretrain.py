@@ -6,7 +6,11 @@ learning). Voir `eval_source_pretrain.py` pour le script pendant qui
 réentraîne le modèle final et sauvegarde le checkpoint utilisé ensuite par
 `search_target_finetune.py` / `eval_target_finetune.py`.
 """
+import os
+_INITIAL_AFFINITY = sorted(os.sched_getaffinity(0))  # avant que torch/OpenMP ne la restreigne
+
 import sys
+import time
 
 import torch
 import optuna
@@ -24,12 +28,13 @@ from missing_data_load_all import simulate_missing_modalities, apply_missing_mod
 
 from pipeline_utils.cli import (
     base_parser, add_cancer_arg, add_optuna_args, add_training_args, add_missing_modality_args,
+    add_parallel_args,
 )
 from pipeline_utils.cox_cv import estimate_alpha_grid, run_inner_cv_cox, run_inner_cv_loss
 from pipeline_utils.data import load_pancancer, get_source_data, load_clinical_test, build_omics_dict
 from pipeline_utils.hidden_dims_params import suggest_autoencoder_hidden_dims
 from pipeline_utils.model import build_customics_model
-from pipeline_utils.optuna_utils import get_or_create_study
+from pipeline_utils.parallel import run_study
 
 
 def parse_args():
@@ -38,6 +43,7 @@ def parse_args():
     add_optuna_args(parser)
     add_training_args(parser)
     add_missing_modality_args(parser)
+    add_parallel_args(parser)
     parser.add_argument("--n_epochs", type=int, default=400,
         help="Max number of training epochs (ceiling when early stopping is active).")
     parser.add_argument("--final_epochs", type=int, default=400,
@@ -93,8 +99,6 @@ def make_objective(cfg):
         n_epochs = cfg["n_epochs"]
         switch_epoch = cfg["switch_epoch"]
 
-        # modality_dropout_p = cfg["modality_dropout_p"] if cfg["modality_dropout_p"] > 0 else None
-        
         def domain_params_for(dropout):
             if not cfg["domain_adv"]:
                 return None
@@ -105,7 +109,6 @@ def make_objective(cfg):
 
         y_all = build_survival_array(clinical_df, lt_samples, cfg["event"], cfg["surv_time"])
 
-        
         # ===== Branche CoxNet (validation vvh / ibs) =====
         if cfg["validation_function"] != "loss":
             ref_model = build_customics_model(
@@ -227,6 +230,7 @@ def make_objective(cfg):
 def main():
     args = parse_args()
     unsupervised = not args.supervised
+    multiproc = max(1, args.multiproc)
     n_epochs = args.limit_epochs if args.limit_epochs else args.n_epochs
     switch_epoch = n_epochs // 2
 
@@ -241,6 +245,7 @@ def main():
     print(f"  Limit epochs   : {args.limit_epochs}")
     print(f"  Validation     : {args.validation}")
     print(f"  Domain Adversarial: {args.domain_adv}")
+    print(f"  Multiproc      : {multiproc} worker(s)  |  affinity : {args.affinity}")
     print(f"  Modality dropout : {args.modality_dropout}  |  mode : {args.md_mode}")
     print(f"  Missing rate   : {args.missing_rate}  |  strategy : {args.missing_strategy}")
     print(f"{'='*60}\n")
@@ -258,7 +263,11 @@ def main():
         clinical_test = load_clinical_test(args.cancer)
         offset = clinical_df.index[0] - clinical_test.index[0]
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # En multiproc (fork), on reste sur CPU : un contexte CUDA ne survit pas au fork.
+    if multiproc > 1:
+        device = torch.device("cpu")
+    else:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     sources = list(omics_df.keys())
 
     print("=== Feature selection on source cancers ===")
@@ -317,9 +326,13 @@ def main():
 
     study_name = f"source_{args.name_suffix}{args.cancer}"
     journal_file = f"optuna_journal/journal_tl_{args.name_suffix}source_{args.cancer}.log"
-    study = get_or_create_study(study_name, journal_file)
-    study.optimize(make_objective(cfg), n_trials=args.n_trials_per_worker,
-                    timeout=args.timeout, catch=(Exception,))
+
+    debut = time.time()
+    run_study(lambda: make_objective(cfg), study_name, journal_file,
+              n_trials=args.n_trials_per_worker, timeout=args.timeout,
+              multiproc=multiproc, affinity=args.affinity,
+              initial_affinity=_INITIAL_AFFINITY)
+    print(f"time study : {time.time() - debut}")
 
 
 if __name__ == "__main__":

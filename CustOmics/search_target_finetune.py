@@ -5,7 +5,13 @@ checkpoint pré-entraîné produit par `eval_source_pretrain.py`. Voir
 `eval_target_finetune.py` pour le script pendant qui réentraîne le modèle
 final et calcule les métriques.
 """
+import os
+_INITIAL_AFFINITY = sorted(os.sched_getaffinity(0))  # avant que torch/OpenMP ne la restreigne
+
+import json
+import pickle
 import sys
+import time
 
 import numpy as np
 import optuna
@@ -15,7 +21,7 @@ from sklearn.model_selection import StratifiedKFold
 sys.path.append('..')
 import utils.folds_utils as fold_utils
 
-from custcox_utils import (fit_feature_selector, apply_feature_selector, 
+from custcox_utils import (fit_feature_selector, apply_feature_selector,
 fit_coxnet, build_survival_array, fit_scalers, apply_scalers)
 from src.tools.utils import get_sub_omics_df
 from missing_data_load_all import simulate_missing_modalities, apply_missing_modalities
@@ -24,11 +30,12 @@ from pipeline_utils.checkpoints import TransferPaths
 from pipeline_utils.cli import (
     base_parser, add_cancer_arg, add_outer_cv_args, add_inner_cv_args,
     add_optuna_args, add_cox_args, add_transfer_paths_args, add_missing_modality_args,
+    add_parallel_args,
 )
 from pipeline_utils.cox_cv import estimate_alpha_grid, run_inner_cv_cox
 from pipeline_utils.data import load_cancer_data, load_clinical_test, build_omics_dict
 from pipeline_utils.finetune import resolve_finetune_architecture, build_and_finetune
-from pipeline_utils.optuna_utils import get_or_create_study
+from pipeline_utils.parallel import run_study
 
 
 def parse_args():
@@ -40,6 +47,7 @@ def parse_args():
     add_optuna_args(parser)
     add_cox_args(parser)
     add_missing_modality_args(parser)
+    add_parallel_args(parser)
     parser.add_argument("--n_epochs_ft", type=int, default=200,
         help="Max fine-tuning epochs (ceiling when early stopping is active).")
     parser.add_argument("--add_clinical", action="store_true", default=False,
@@ -154,10 +162,10 @@ def make_objective(cfg):
 def main():
     args = parse_args()
     unsupervised = not args.supervised
+    multiproc = max(1, args.multiproc)
     paths = TransferPaths(args.output_dir, args.cancer, args.pretrain_ckpt, args.best_params_in)
 
     with open(paths.selector, "rb") as f:
-        import pickle
         sel_outer = pickle.load(f)
 
     print(f"\n{'='*60}")
@@ -171,11 +179,11 @@ def main():
     print(f"  Optuna trials  : {args.n_trials_per_worker}  |  timeout: {args.timeout}s")
     print(f"  Saved folds    : {args.use_saved_folds}")
     print(f"  Ridge          : {args.ridge}")
+    print(f"  Multiproc      : {multiproc} worker(s)  |  affinity : {args.affinity}")
     print(f"  Modality dropout : {args.modality_dropout}  |  mode : {args.md_mode}")
     print(f"  Missing rate   : {args.missing_rate}  |  strategy : {args.missing_strategy}")
     print(f"{'='*60}\n")
 
-    import json
     with open(paths.best_params, "r") as f:
         best_config = json.load(f)
     best_params = best_config["best_params"]
@@ -248,9 +256,13 @@ def main():
 
     study_name = f"ft_{args.name_suffix}{args.cancer}_fold{args.outer_fold}"
     journal_file = f"optuna_journal/journal_{args.name_suffix}ft_{args.cancer}_fold{args.outer_fold}.log"
-    study = get_or_create_study(study_name, journal_file)
-    study.optimize(make_objective(cfg), n_trials=args.n_trials_per_worker,
-                    timeout=args.timeout, catch=(Exception,))
+
+    debut = time.time()
+    run_study(lambda: make_objective(cfg), study_name, journal_file,
+              n_trials=args.n_trials_per_worker, timeout=args.timeout,
+              multiproc=multiproc, affinity=args.affinity,
+              initial_affinity=_INITIAL_AFFINITY)
+    print(f"time study : {time.time() - debut}")
 
 
 if __name__ == "__main__":

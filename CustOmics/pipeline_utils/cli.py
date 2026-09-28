@@ -179,3 +179,13 @@ def add_missing_modality_args(parser):
              "'drop': incomplete patients removed from train/val.",
     )
     return parser
+
+def add_parallel_args(parser):
+    parser.add_argument("--multiproc", type=int, default=1,
+        help="Number of parallel worker processes for Optuna (each runs "
+             "n_trials_per_worker trials, sharing the same JournalStorage file). "
+             "1 = sequential, no multiprocessing.")
+    parser.add_argument("--affinity", action="store_true", default=False,
+        help="Répartit les cœurs initialement alloués entre les workers "
+             "(2 workers par cœur physique, 1 thread HT chacun). Fait pour Topaze. "
+             "Avec --multiproc 1, restaure simplement l'affinité initiale.")
