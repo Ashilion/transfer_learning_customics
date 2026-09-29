@@ -38,3 +38,24 @@ Les commandes suivantes génèrent le fichier de tache (eg tasks.dag), pour modi
 ./run_scripts/eval_allc_allf.sh --supervised --name_suffix supridge_
 ./run_scripts/eval_allc_allf.sh --name_suffix ridge_
 ```
+
+
+## Avec TL - Source
+
+Utilise partition A100 et gpu
+
+```shell
+ccc_msub scripts_ccc/tl_source_optu.sh
+```
+
+## Avec TL - Target
+
+```shell
+#search
+./scripts_ccc/generate_task_tl_list_cancer.sh
+ccc_msub scripts_ccc/tl_list_cancer.sh
+
+#eval
+./scripts_ccc/generate_task_tl_eval_all.sh
+ccc_msub scripts_ccc/tl_load_all.sh
+```
