@@ -245,8 +245,8 @@ def main():
         track_loss_components=True,
         modality_mask_train=mask_train_outer,
         missing_strategy=args.missing_strategy,
+        latent_pca_every=100, latent_pca_space="central", latent_pca_lim=5
     )
-
     loss_plot_dir = os.path.join(args.output_dir, "loss_plots")
     os.makedirs(loss_plot_dir, exist_ok=True)
     tag = f"{args.name_suffix}{args.cancer}_fold{args.outer_fold}"

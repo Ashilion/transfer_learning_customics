@@ -10,6 +10,7 @@ Created on Wed 01 Sept 2021
 
 Build the CustOMICS module.
 """
+import os
 import numpy as np
 
 from src.loss.survival_loss import CoxLoss
@@ -20,6 +21,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.svm import SVC
+from sklearn.decomposition import PCA
 
 from torch.optim import Adam, AdamW
 
@@ -327,10 +329,24 @@ class CustOMICS(nn.Module):
     def fit(self, omics_train, clinical_df, label, event, surv_time, task, omics_val=None,
         batch_size=32, n_epochs=30, verbose=False, patience=None, min_delta=1e-3,
         early_stopping_on="val", track_loss_components=False,
-        modality_mask_train=None, modality_mask_val=None, missing_strategy="impute"):
+        modality_mask_train=None, modality_mask_val=None, missing_strategy="impute",
+        latent_pca_every=None, latent_pca_space="central", latent_pca_idx=0,
+        latent_pca_dir="figures/latent_pca", latent_pca_lim=None):
+        """
+        latent_pca_every (int|None) : si renseigné, toutes les `latent_pca_every` epochs, trace pour
+            chaque modalité une PCA de l'espace latent où l'individu `latent_pca_idx` du train a
+            cette modalité mise à 0 en entrée (cf. plot_latent_pca_zeroed).
+        latent_pca_space (str)      : "central" (moyenne du VAE central) ou "source" (latent de l'AE de la modalité).
+        latent_pca_idx (int)        : indice (dans le train) de l'individu dont on annule la modalité.
+        latent_pca_dir (str)        : dossier de sauvegarde des figures.
+        latent_pca_lim (float|None) : si renseigné, axes fixés à [-lim, lim] en x et en y pour toutes les
+            figures ; sinon limite symétrique recalculée à chaque figure. Échelle x/y toujours identique.
+        """
         
         if missing_strategy not in ("impute", "drop"):
             raise ValueError("missing_strategy doit être 'impute' ou 'drop'.")
+        if latent_pca_space not in ("central", "source"):
+            raise ValueError("latent_pca_space doit être 'central' ou 'source'.")
 
         encoded_clinical_df = clinical_df.copy()
         self.label_encoder = LabelEncoder().fit(encoded_clinical_df.loc[:, label].values)
@@ -361,6 +377,16 @@ class CustOMICS(nn.Module):
             modality_mask_df=modality_mask_train,
         )
         train_loader = DataLoader(dataset_train, batch_size=batch_size, shuffle=False, **kwargs)
+
+        # Données complètes du train (un seul batch, même prétraitement que l'entraînement)
+        # pour le suivi PCA de l'espace latent
+        x_pca = None
+        if latent_pca_every:
+            x_pca = next(iter(DataLoader(dataset_train, batch_size=len(dataset_train), shuffle=False)))[0]
+            if verbose:
+                print(f"\t[latent PCA] individu suivi : {lt_samples_train[latent_pca_idx]} "
+                      f"(indice {latent_pca_idx}), tous les {latent_pca_every} epochs -> {latent_pca_dir}")
+
         if omics_val:
             lt_samples_val = get_common_samples([df for df in omics_val.values()] + [clinical_df])
             if missing_strategy == "drop":
@@ -444,6 +470,12 @@ class CustOMICS(nn.Module):
                 
                 if verbose:
                     print("\tEpoch", epoch + 1, "complete!", "\tAverage Loss Train : ", average_loss_train, "\tAverage Loss Val : ", average_loss_val, "\t Time :", end_time_epoch-start_time_epoch)
+
+            # Suivi PCA de l'espace latent (avant l'early stopping pour ne pas être sauté par le break)
+            if latent_pca_every and (epoch + 1) % latent_pca_every == 0:
+                self.plot_latent_pca_zeroed(x_pca, epoch + 1, space=latent_pca_space,
+                                            idx=latent_pca_idx, save_dir=latent_pca_dir,
+                                            axis_lim=latent_pca_lim)
                 
             if patience is not None:
                 monitored_loss = average_loss_train if early_stopping_on == "train" else average_loss_val
@@ -566,6 +598,89 @@ class CustOMICS(nn.Module):
         lt_samples = get_common_samples([df for df in omics_df.values()] + [clinical_df])
         z = self.get_latent_representation(omics_df=omics_df)
         save_plot_score(filename, z, labels_df[lt_samples].values, title, show=True)
+
+
+    # ============================================================
+    # PCA de l'espace latent avec une modalité mise à 0 pour un individu
+    # ============================================================
+    def plot_latent_pca_zeroed(self, x_ref, epoch, space="central", idx=0,
+                               save_dir="figures/latent_pca", show=False, axis_lim=None):
+        """
+        Pour chaque modalité m : on met à 0 l'entrée de la modalité m pour l'individu `idx`
+        (les autres individus et les autres modalités de idx sont inchangés), on encode,
+        puis on projette par PCA. La PCA est ajustée sur la population non modifiée
+        (individu idx exclu), puis appliquée à l'individu idx original et modifié.
+
+        Parameters:
+            x_ref (list[Tensor]) -- un tenseur par modalité, tous les individus du train
+            epoch (int)          -- numéro d'epoch (pour le titre et le nom de fichier)
+            space (str)          -- "central" : moyenne du VAE central ;
+                                    "source"  : latent de l'autoencodeur de la modalité m
+            idx (int)            -- indice de l'individu dont on annule la modalité
+            save_dir (str)       -- dossier de sauvegarde
+            show (bool)          -- afficher la figure
+            axis_lim (float|None)-- si renseigné, axes fixés à [-axis_lim, axis_lim] ; sinon limite
+                                    symétrique automatique. Dans les deux cas, même échelle en x et y.
+        """
+        os.makedirs(save_dir, exist_ok=True)
+        was_training = self.central_layer.training
+        self.eval_all()
+
+        fig, axes = plt.subplots(1, self.n_source, figsize=(6 * self.n_source, 5), squeeze=False)
+        with torch.no_grad():
+            x_ref = [xi.to(self.device) for xi in x_ref]
+            _, lt_rep_ref, z_ref = self.forward(x_ref)
+
+            for m, name in enumerate(self.source_names):
+                x_mod = [xi.clone() for xi in x_ref]
+                x_mod[m][idx] = 0.0
+                _, lt_rep_mod, z_mod = self.forward(x_mod)
+
+                if space == "central":
+                    lat_ref, lat_mod = z_ref, z_mod
+                else:
+                    lat_ref, lat_mod = lt_rep_ref[m], lt_rep_mod[m]
+                lat_ref = lat_ref.cpu().numpy()
+                lat_mod = lat_mod.cpu().numpy()
+
+                others = np.delete(np.arange(lat_ref.shape[0]), idx)
+                pca = PCA(n_components=2).fit(lat_ref[others])
+                p_others = pca.transform(lat_ref[others])
+                p_orig = pca.transform(lat_ref[idx:idx + 1])
+                p_zero = pca.transform(lat_mod[idx:idx + 1])
+
+                ax = axes[0, m]
+                ax.scatter(p_others[:, 0], p_others[:, 1], s=8, c="lightgrey", label="autres individus")
+                ax.scatter(p_orig[:, 0], p_orig[:, 1], s=120, facecolors="none",
+                           edgecolors="tab:blue", linewidths=2, label=f"ind. {idx} (original)")
+                ax.scatter(p_zero[:, 0], p_zero[:, 1], s=120, c="tab:red", marker="X",
+                           label=f"ind. {idx} ({name} = 0)")
+
+                # Même échelle en x et y, limites symétriques (la PCA centre la population en 0)
+                if axis_lim is None:
+                    pts = np.vstack([p_others, p_orig, p_zero])
+                    lim = 1.05 * np.abs(pts).max()
+                else:
+                    lim = axis_lim
+                ax.set_xlim(-lim, lim)
+                ax.set_ylim(-lim, lim)
+                ax.set_aspect("equal", adjustable="box")
+
+                ev = pca.explained_variance_ratio_
+                ax.set_title(f"{name} mis à 0 — latent {space}", fontsize=12)
+                ax.set_xlabel(f"PC1 ({ev[0]:.1%})", fontsize=10)
+                ax.set_ylabel(f"PC2 ({ev[1]:.1%})", fontsize=10)
+                ax.tick_params(labelsize=9)
+                ax.legend(fontsize=9)
+
+        fig.suptitle(f"Epoch {epoch} — phase {self.phase}", fontsize=14)
+        fig.tight_layout()
+        fig.savefig(os.path.join(save_dir, f"latent_pca_{space}_epoch{epoch:04d}.png"), bbox_inches="tight")
+        if show:
+            plt.show()
+        plt.close(fig)
+        if was_training:
+            self.train_all()
 
 
     def source_predict(self, expr_df, source):
